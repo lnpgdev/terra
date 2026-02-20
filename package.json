@@ -1,6 +1,6 @@
 {
   "name": "@lnpg/terra",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Framework-agnostic UI Kit for LNPG internal applications.",
   "homepage": "https://github.com/lnpgdev/terra#readme",
   "bugs": {
