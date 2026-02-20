@@ -1,0 +1,75 @@
+{
+    "name": "@lnpg/terra",
+    "version": "0.1.0",
+    "description": "Framework-agnostic UI Kit for LNPG internal applications.",
+    "homepage": "https://github.com/lnpgdev/terra#readme",
+    "bugs": {
+        "url": "https://github.com/lnpgdev/terra/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lnpgdev/terra.git"
+    },
+    "license": "ISC",
+    "author": "LNPG Development Team",
+    "type": "module",
+    "main": "./dist/terra.cjs.js",
+    "module": "./dist/terra.es.js",
+    "types": "./dist/types/index.d.ts",
+    "style": "./dist/terra.css",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "sideEffects": [
+        "**/*.css",
+        "**/*.scss"
+    ],
+    "exports": {
+        ".": {
+            "import": "./dist/terra.es.js",
+            "require": "./dist/terra.cjs.js",
+            "types": "./dist/types/index.d.ts"
+        },
+        "./styles": "./dist/terra.css"
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build && tsc --emitDeclarationOnly",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint src",
+        "lint:fix": "eslint src --fix",
+        "lint:styles": "stylelint \"src/**/*.scss\"",
+        "lint:styles:fix": "stylelint \"src/**/*.scss\" --fix",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "test:coverage": "vitest run --coverage",
+        "prepack": "npm run build"
+    },
+    "peerDependencies": {
+        "@lnpg/sol": "github:lnpgdev/sol#v1.0.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.0.0",
+        "@lnpg/sol": "github:lnpgdev/sol#v1.0.0",
+        "@typescript-eslint/eslint-plugin": "^8.0.0",
+        "@typescript-eslint/parser": "^8.0.0",
+        "@vitest/coverage-v8": "^4.0.0",
+        "eslint": "^9.0.0",
+        "eslint-config-prettier": "^10.0.0",
+        "eslint-plugin-import": "^2.31.0",
+        "globals": "^15.0.0",
+        "postcss-scss": "^4.0.0",
+        "prettier": "^3.0.0",
+        "sass": "^1.83.0",
+        "sass-embedded": "^1.83.0",
+        "stylelint": "^17.0.0",
+        "stylelint-config-standard-scss": "^17.0.0",
+        "stylelint-scss": "^7.0.0",
+        "typescript": "^5.7.0",
+        "vite": "^6.0.0",
+        "vitest": "^4.0.0"
+    }
+}
