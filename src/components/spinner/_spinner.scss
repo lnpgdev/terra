@@ -1,0 +1,20 @@
+.spinner {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: 0.25em solid currentcolor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: terra-spin 0.75s linear infinite;
+  vertical-align: -0.125em;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: 1.5s;
+  }
+}
+
+@keyframes terra-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

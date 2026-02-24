@@ -1,1 +1,3 @@
-// Component exports are added here as each component is built.
+import './terra.scss';
+
+export * from './components/spinner/index';
