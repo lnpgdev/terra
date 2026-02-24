@@ -5,4 +5,5 @@
 @use './tokens/index' as *;
 
 // Component overrides
+@use './components/placeholder/placeholder';
 @use './components/spinner/spinner';

@@ -1,0 +1,23 @@
+/**
+ * Terra UI Kit: Placeholder
+ *
+ * Loading skeleton utilities. Built on Bootstrap's .placeholder base —
+ * Terra extends it with shape variants not provided by Bootstrap.
+ *
+ * Bootstrap provides: .placeholder, .placeholder-glow, .placeholder-wave
+ * Terra adds: .placeholder-circle, .placeholder-square, .placeholder-triangle
+ */
+
+.placeholder-circle {
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.placeholder-square {
+  aspect-ratio: 1;
+}
+
+.placeholder-triangle {
+  aspect-ratio: 1;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
