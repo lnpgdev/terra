@@ -5,6 +5,7 @@
 @use './tokens/index' as *;
 
 // Component overrides
+@use './components/close-button/close-button';
 @use './components/horizontal-rule/horizontal-rule';
 @use './components/placeholder/placeholder';
 @use './components/spinner/spinner';
