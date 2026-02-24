@@ -6,10 +6,11 @@
  * classes on the native `<hr>` element.
  *
  * Usage:
- * ```html
- * <hr />
- * <hr class="hr-success hr-md" />
- * <hr class="hr-danger hr-lg" />
+ * ```ts
+ * import { createHr } from '@lnpg/terra/components/horizontal-rule';
+ *
+ * const el = createHr({ tone: 'success', size: 'md' });
+ * document.body.appendChild(el);
  * ```
  *
  * References:
@@ -19,6 +20,45 @@
  * @module
  * @category Components
  */
+
+// ─── Types ───────────────────────────────────────────────────────────────────
+
+/** Semantic colour tone for the horizontal rule. */
+export type HrTone = 'success' | 'danger' | 'warning' | 'dark';
+
+/** Thickness size for the horizontal rule. */
+export type HrSize = 'sm' | 'md' | 'lg';
+
+/** Options for {@link createHr}. */
+export interface HrOptions {
+  /** Semantic colour tone. Omit for the default muted rule. */
+  tone?: HrTone;
+  /** Border thickness. Omit for Bootstrap's default. */
+  size?: HrSize;
+}
+
+// ─── Factory ──────────────────────────────────────────────────────────────────
+
+/**
+ * Creates a Horizontal Rule element.
+ *
+ * @param options - Configuration for the horizontal rule.
+ * @returns An `<hr>` element ready to be appended to the DOM.
+ */
+export function createHr(options: HrOptions = {}): HTMLHRElement {
+  const { tone, size } = options;
+
+  const el = document.createElement('hr');
+
+  const classes: string[] = [];
+  if (tone) classes.push(hr.tones[tone]);
+  if (size) classes.push(hr.sizes[size]);
+  if (classes.length) el.className = classes.join(' ');
+
+  return el;
+}
+
+// ─── Constants ────────────────────────────────────────────────────────────────
 
 /** CSS class references for the Horizontal Rule component. @category Constants */
 export const hr = {
