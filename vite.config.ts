@@ -44,6 +44,10 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         api: 'modern-compiler',
+        // Bootstrap 5 uses deprecated Sass APIs internally. These warnings are
+        // not actionable by us and will be resolved when Bootstrap upgrades to
+        // Sass-modern-compatible syntax in a future major release.
+        silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function'],
       },
     },
   },

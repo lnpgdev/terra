@@ -1,7 +1,8 @@
+// Bootstrap — compiled as the foundation layer.
+@use 'bootstrap/scss/bootstrap';
+
+// Tokens — Sol overrides applied on top of Bootstrap. Uncomment when Sol is available.
 @use './tokens/index' as *;
 
-// Styles
-@use './styles/utilities';
-
-// Components
+// Component overrides
 @use './components/spinner/spinner';

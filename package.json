@@ -1,6 +1,6 @@
 {
   "name": "@lnpg/terra",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Framework-agnostic UI Kit for LNPG internal applications.",
   "homepage": "https://github.com/lnpgdev/terra#readme",
   "bugs": {
@@ -60,6 +60,7 @@
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "@vitest/coverage-v8": "^4.0.0",
+    "bootstrap": "^5.3.8",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-import": "^2.31.0",
