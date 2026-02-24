@@ -6,10 +6,11 @@
  * alerts, toasts, and other dismissible components.
  *
  * Usage:
- * ```html
- * <button type="button" class="btn-close" aria-label="Close"></button>
- * <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
- * <button type="button" class="btn-close" disabled aria-label="Close"></button>
+ * ```ts
+ * import { createCloseButton } from '@lnpg/terra/components/close-button';
+ *
+ * const btn = createCloseButton({ onClick: () => modal.hide() });
+ * document.body.appendChild(btn);
  * ```
  *
  * References:
@@ -19,6 +20,47 @@
  * @module
  * @category Components
  */
+
+// ─── Types ───────────────────────────────────────────────────────────────────
+
+/** Options for {@link createCloseButton}. */
+export interface CloseButtonOptions {
+  /** White variant for use on dark backgrounds. Defaults to `false`. */
+  white?: boolean;
+  /** Renders the button in a disabled state. Defaults to `false`. */
+  disabled?: boolean;
+  /** Accessible label. Defaults to `'Close'`. */
+  label?: string;
+  /** Click handler attached to the button. */
+  onClick?: (event: MouseEvent) => void;
+}
+
+// ─── Factory ──────────────────────────────────────────────────────────────────
+
+/**
+ * Creates a Close Button element.
+ *
+ * @param options - Configuration for the close button.
+ * @returns A `<button>` element ready to be appended to the DOM.
+ */
+export function createCloseButton(options: CloseButtonOptions = {}): HTMLButtonElement {
+  const { white = false, disabled = false, label = 'Close', onClick } = options;
+
+  const btn = document.createElement('button');
+  btn.type = 'button';
+
+  const classes: string[] = [closeButton.base];
+  if (white) classes.push(closeButton.white);
+  btn.className = classes.join(' ');
+
+  btn.setAttribute('aria-label', label);
+  if (disabled) btn.disabled = true;
+  if (onClick) btn.addEventListener('click', onClick);
+
+  return btn;
+}
+
+// ─── Constants ────────────────────────────────────────────────────────────────
 
 /** CSS class references for the Close Button component. @category Constants */
 export const closeButton = {

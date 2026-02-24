@@ -2,20 +2,23 @@
  * Terra UI Kit: Logo
  *
  * @remarks
- * LNPG icon asset exported in colour, white, and black variants. Use on an
- * `<img>` element with Terra's size modifier classes. To use a custom logo,
- * replace the `src` attribute with your own image — the sizing classes apply
- * regardless of which image is used.
+ * LNPG logo component. Defaults to the official LNPG asset but accepts a
+ * custom `src` override. Can be rendered as a static image or a link.
  *
  * Usage:
- * ```html
- * <img src="..." class="logo logo-md" alt="LNPG" />
- * ```
- *
  * ```ts
- * import { logoAssets, logo } from '@lnpg/terra/components/logo';
+ * import { createLogo } from '@lnpg/terra/components/logo';
  *
- * // <img :src="logoAssets.colour" class="logo logo-md" alt="LNPG" />
+ * // Static logo
+ * const el = createLogo({ size: 'md' });
+ *
+ * // Logo as a link
+ * const el = createLogo({ href: '/', size: 'md' });
+ *
+ * // Custom asset
+ * const el = createLogo({ src: '/my-logo.png', alt: 'My Company' });
+ *
+ * document.body.appendChild(el);
  * ```
  *
  * References:
@@ -28,6 +31,83 @@
 import logoBlack from '../../assets/logo-black.png';
 import logoColour from '../../assets/logo-colour.png';
 import logoWhite from '../../assets/logo-white.png';
+
+// ─── Types ───────────────────────────────────────────────────────────────────
+
+/**
+ * Background context the logo will be placed on.
+ * Determines which bundled asset is used when `src` is not provided.
+ */
+export type LogoVariant = 'light' | 'dark' | 'transparent';
+
+/** Size of the logo. */
+export type LogoSize = 'sm' | 'md' | 'lg';
+
+/** Options for {@link createLogo}. */
+export interface LogoOptions {
+  /** Alt text for the image. Defaults to `'LNPG Logo'`. */
+  alt?: string;
+  /**
+   * Renders the logo inside an `<a>` element.
+   * Must not be used together with `to`.
+   */
+  href?: string;
+  /**
+   * Route target for client-side navigation.
+   * Rendered as `href` in the factory — framework-specific routing should be
+   * handled by the consuming framework.
+   * Must not be used together with `href`.
+   */
+  to?: string;
+  /** Custom image source. Overrides the bundled asset. */
+  src?: string;
+  /** Background context. Determines the bundled asset used. Defaults to `'light'`. */
+  variant?: LogoVariant;
+  /** Size of the logo. Defaults to `'md'`. */
+  size?: LogoSize;
+}
+
+// ─── Internal ────────────────────────────────────────────────────────────────
+
+const VARIANT_ASSETS: Record<LogoVariant, string> = {
+  light: logoColour,
+  dark: logoWhite,
+  transparent: logoBlack,
+};
+
+// ─── Factory ──────────────────────────────────────────────────────────────────
+
+/**
+ * Creates a Logo element.
+ *
+ * @param options - Configuration for the logo.
+ * @returns An `<img>` element, or an `<a>` wrapping an `<img>` when `href` or `to` is provided.
+ * @throws If both `href` and `to` are provided.
+ */
+export function createLogo(options: LogoOptions = {}): HTMLElement {
+  const { alt = 'LNPG Logo', href, to, src, variant = 'light', size = 'md' } = options;
+
+  if (href && to) {
+    throw new Error('[Terra] Logo: `href` and `to` must not be used together.');
+  }
+
+  const img = document.createElement('img');
+  img.src = src ?? VARIANT_ASSETS[variant];
+  img.alt = alt;
+  img.className = [logo.base, logo.sizes[size]].join(' ');
+
+  const linkTarget = href ?? to;
+  if (linkTarget) {
+    const anchor = document.createElement('a');
+    anchor.href = linkTarget;
+    anchor.appendChild(img);
+    return anchor;
+  }
+
+  return img;
+}
+
+// ─── Constants ────────────────────────────────────────────────────────────────
 
 /** Bundled logo image URLs. Use as the `src` of an `<img>` element. @category Assets */
 export const logoAssets = {

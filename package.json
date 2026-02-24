@@ -1,6 +1,6 @@
 {
   "name": "@lnpg/terra",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Framework-agnostic UI Kit for LNPG internal applications.",
   "homepage": "https://github.com/lnpgdev/terra#readme",
   "bugs": {
@@ -23,7 +23,8 @@
   ],
   "sideEffects": [
     "**/*.css",
-    "**/*.scss"
+    "**/*.scss",
+    "**/*.js"
   ],
   "exports": {
     ".": {
@@ -32,6 +33,11 @@
       "require": "./dist/index.cjs.js"
     },
     "./styles": "./dist/terra.css",
+    "./components/alert": {
+      "types": "./dist/types/components/alert/index.d.ts",
+      "import": "./dist/components/alert/index.es.js",
+      "require": "./dist/components/alert/index.cjs.js"
+    },
     "./components/logo": {
       "types": "./dist/types/components/logo/index.d.ts",
       "import": "./dist/components/logo/index.es.js",
@@ -77,6 +83,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
+    "@types/bootstrap": "^5.2.10",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "@vitest/coverage-v8": "^4.0.0",
