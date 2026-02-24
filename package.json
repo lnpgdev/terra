@@ -50,12 +50,8 @@
     "test:coverage": "vitest run --coverage",
     "prepack": "npm run build"
   },
-  "peerDependencies": {
-    "@lnpg/sol": "github:lnpgdev/sol#v1.0.0"
-  },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
-    "@lnpg/sol": "github:lnpgdev/sol#v1.0.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "@vitest/coverage-v8": "^4.0.0",

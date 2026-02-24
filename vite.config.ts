@@ -39,14 +39,6 @@ export default defineConfig({
       formats: ['es', 'cjs'],
       fileName: (format, entryAlias) => `${entryAlias}.${format}.js`,
     },
-    rollupOptions: {
-      external: ['@lnpg/sol'],
-      output: {
-        globals: {
-          '@lnpg/sol': 'Sol',
-        },
-      },
-    },
   },
   css: {
     preprocessorOptions: {
