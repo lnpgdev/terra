@@ -1,6 +1,6 @@
 {
   "name": "@lnpg/terra",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Framework-agnostic UI Kit for LNPG internal applications.",
   "homepage": "https://github.com/lnpgdev/terra#readme",
   "bugs": {
@@ -32,6 +32,11 @@
       "require": "./dist/index.cjs.js"
     },
     "./styles": "./dist/terra.css",
+    "./components/logo": {
+      "types": "./dist/types/components/logo/index.d.ts",
+      "import": "./dist/components/logo/index.es.js",
+      "require": "./dist/components/logo/index.cjs.js"
+    },
     "./components/close-button": {
       "types": "./dist/types/components/close-button/index.d.ts",
       "import": "./dist/components/close-button/index.es.js",
