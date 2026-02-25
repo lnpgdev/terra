@@ -83,6 +83,11 @@ export interface BadgeOptions {
    */
   ariaLabel?: string;
   /**
+   * URL for the badge to link to. When provided, the badge renders as an
+   * `<a>` element. Required for the `link` variant to be interactive.
+   */
+  href?: string;
+  /**
    * Positions the badge absolutely at the given edge of its parent.
    * The parent element must have `position: relative`.
    */
@@ -142,6 +147,7 @@ export function createBadge(options: BadgeOptions = {}): HTMLElement {
     shape = 'pill',
     label,
     ariaLabel,
+    href,
     direction,
     max,
     icon,
@@ -149,7 +155,8 @@ export function createBadge(options: BadgeOptions = {}): HTMLElement {
     tooltipPosition,
   } = options;
 
-  const el = document.createElement('span');
+  const el = document.createElement(href ? 'a' : 'span');
+  if (href) (el as HTMLAnchorElement).href = href;
   const classes: string[] = [];
 
   if (shape === 'dot') {

@@ -41,20 +41,24 @@
   color: var(--bs-danger);
 }
 
-// Link variant
+// Link variant -- subtle tinted background with emphasis text colour.
+// Renders as an <a> element in the factory when href is provided.
 .badge-link-success {
-  background-color: transparent;
-  color: var(--bs-success);
+  background-color: var(--bs-success-bg-subtle);
+  color: var(--bs-success-text-emphasis);
+  text-decoration: none;
 }
 
 .badge-link-warning {
-  background-color: transparent;
-  color: var(--bs-warning);
+  background-color: var(--bs-warning-bg-subtle);
+  color: var(--bs-warning-text-emphasis);
+  text-decoration: none;
 }
 
 .badge-link-danger {
-  background-color: transparent;
-  color: var(--bs-danger);
+  background-color: var(--bs-danger-bg-subtle);
+  color: var(--bs-danger-text-emphasis);
+  text-decoration: none;
 }
 
 // Sizes
