@@ -43,45 +43,92 @@
         <span class="badge rounded-pill text-bg-success badge-lg">Large</span>
       </div>
 
-      <h6 class="text-muted mb-2">Dot</h6>
+      <h6 class="text-muted mb-2">Dot - solid</h6>
       <div class="d-flex align-items-center gap-3 mb-4">
-        <span class="badge badge-dot text-bg-success" aria-label="Success" role="img"></span>
-        <span class="badge badge-dot text-bg-warning" aria-label="Warning" role="img"></span>
-        <span class="badge badge-dot text-bg-danger" aria-label="Danger" role="img"></span>
+        <span class="badge-dot badge-dot-success" aria-label="Success" role="img"></span>
+        <span class="badge-dot badge-dot-warning" aria-label="Warning" role="img"></span>
+        <span class="badge-dot badge-dot-danger" aria-label="Danger" role="img"></span>
+      </div>
+
+      <h6 class="text-muted mb-2">Dot - outline</h6>
+      <div class="d-flex align-items-center gap-3 mb-4">
+        <span class="badge-dot badge-dot-outline-success" aria-label="Success" role="img"></span>
+        <span class="badge-dot badge-dot-outline-warning" aria-label="Warning" role="img"></span>
+        <span class="badge-dot badge-dot-outline-danger" aria-label="Danger" role="img"></span>
       </div>
 
       <h6 class="text-muted mb-2">Triangle</h6>
       <div class="d-flex align-items-center gap-3 mb-4">
-        <span
-          class="badge badge-triangle badge-outline-success"
-          aria-label="Success"
-          role="img"
-        ></span>
-        <span
-          class="badge badge-triangle badge-outline-warning"
-          aria-label="Warning"
-          role="img"
-        ></span>
-        <span
-          class="badge badge-triangle badge-outline-danger"
-          aria-label="Danger"
-          role="img"
-        ></span>
+        <span class="badge-triangle badge-triangle-success" aria-label="Success" role="img"></span>
+        <span class="badge-triangle badge-triangle-warning" aria-label="Warning" role="img"></span>
+        <span class="badge-triangle badge-triangle-danger" aria-label="Danger" role="img"></span>
       </div>
 
-      <h6 class="text-muted mb-2">Overlay (direction)</h6>
+      <h6 class="text-muted mb-2">Overlay - corners (dot)</h6>
       <div class="d-flex gap-4 mb-4">
         <div class="position-relative d-inline-block">
-          <button type="button" class="btn btn-success">Inbox</button>
+          <button type="button" class="btn btn-success">Top right</button>
           <span
-            class="badge badge-dot text-bg-danger badge-top"
-            aria-label="New messages"
+            class="badge-dot badge-dot-danger badge-top-right"
+            aria-label="New"
             role="img"
           ></span>
         </div>
         <div class="position-relative d-inline-block">
+          <button type="button" class="btn btn-success">Top left</button>
+          <span
+            class="badge-dot badge-dot-danger badge-top-left"
+            aria-label="New"
+            role="img"
+          ></span>
+        </div>
+        <div class="position-relative d-inline-block">
+          <button type="button" class="btn btn-success">Bottom right</button>
+          <span
+            class="badge-dot badge-dot-danger badge-bottom-right"
+            aria-label="New"
+            role="img"
+          ></span>
+        </div>
+        <div class="position-relative d-inline-block">
+          <button type="button" class="btn btn-success">Bottom left</button>
+          <span
+            class="badge-dot badge-dot-danger badge-bottom-left"
+            aria-label="New"
+            role="img"
+          ></span>
+        </div>
+      </div>
+
+      <h6 class="text-muted mb-2">Overlay - corners (pill count)</h6>
+      <div class="d-flex gap-4 mb-4">
+        <div class="position-relative d-inline-block">
           <button type="button" class="btn btn-success">Updates</button>
-          <span class="badge rounded-pill text-bg-danger badge-top">99+</span>
+          <span class="badge rounded-pill text-bg-danger badge-top-right">99+</span>
+        </div>
+        <div class="position-relative d-inline-block">
+          <button type="button" class="btn btn-success">Alerts</button>
+          <span class="badge rounded-pill text-bg-warning badge-top-left">5</span>
+        </div>
+      </div>
+
+      <h6 class="text-muted mb-2">Overlay - edges</h6>
+      <div class="d-flex gap-4 mb-4">
+        <div class="position-relative d-inline-block">
+          <button type="button" class="btn btn-success">Top</button>
+          <span class="badge-dot badge-dot-danger badge-top" aria-label="New" role="img"></span>
+        </div>
+        <div class="position-relative d-inline-block">
+          <button type="button" class="btn btn-success">Right</button>
+          <span class="badge-dot badge-dot-danger badge-right" aria-label="New" role="img"></span>
+        </div>
+        <div class="position-relative d-inline-block">
+          <button type="button" class="btn btn-success">Bottom</button>
+          <span class="badge-dot badge-dot-danger badge-bottom" aria-label="New" role="img"></span>
+        </div>
+        <div class="position-relative d-inline-block">
+          <button type="button" class="btn btn-success">Left</button>
+          <span class="badge-dot badge-dot-danger badge-left" aria-label="New" role="img"></span>
         </div>
       </div>
     </section>

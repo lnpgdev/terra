@@ -5,41 +5,24 @@
  * and danger tones. Shapes: pill, square, dot, and triangle.
  * Includes absolute-positioning helpers for overlay use.
  *
+ * Pill and square shapes build on Bootstrap's .badge base class.
+ * Dot and triangle shapes are standalone -- they do NOT use .badge as a
+ * base to avoid inheriting text-oriented sizing (padding, font-size,
+ * line-height) that conflicts with their purely visual rendering.
+ *
  * Built on Bootstrap's .badge -- overrides and LNPG-specific extensions only.
  * Terra-specific overrides will be added once Sol tokens are available.
  */
 
 // ---------------------------------------------------------------------------
-// Shapes
+// Pill / Square (build on Bootstrap's .badge)
 // ---------------------------------------------------------------------------
 
 .badge-square {
   border-radius: 0;
 }
 
-.badge-dot {
-  width: 0.625rem;
-  height: 0.625rem;
-  padding: 0;
-  border-radius: 50%;
-}
-
-.badge-triangle {
-  width: 0;
-  height: 0;
-  padding: 0;
-  background-color: transparent !important; // stylelint-disable-line declaration-no-important
-  border-style: solid;
-  border-width: 0 0.5rem 0.875rem;
-  border-color: transparent transparent currentcolor;
-  font-size: 0;
-  line-height: 0;
-}
-
-// ---------------------------------------------------------------------------
 // Outline variant
-// ---------------------------------------------------------------------------
-
 .badge-outline-success {
   background-color: transparent;
   border: 1px solid var(--bs-success);
@@ -58,10 +41,7 @@
   color: var(--bs-danger);
 }
 
-// ---------------------------------------------------------------------------
 // Link variant
-// ---------------------------------------------------------------------------
-
 .badge-link-success {
   background-color: transparent;
   color: var(--bs-success);
@@ -77,10 +57,7 @@
   color: var(--bs-danger);
 }
 
-// ---------------------------------------------------------------------------
 // Sizes
-// ---------------------------------------------------------------------------
-
 .badge-sm {
   font-size: 0.6em;
   padding: 0.2em 0.45em;
@@ -92,12 +69,92 @@
 }
 
 // ---------------------------------------------------------------------------
+// Dot (standalone -- does NOT use .badge as a base)
+// ---------------------------------------------------------------------------
+
+.badge-dot {
+  --badge-dot-color: var(--bs-secondary);
+
+  display: inline-block;
+  flex-shrink: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: var(--badge-dot-color);
+  vertical-align: middle;
+}
+
+.badge-dot-success {
+  --badge-dot-color: var(--bs-success);
+}
+
+.badge-dot-warning {
+  --badge-dot-color: var(--bs-warning);
+}
+
+.badge-dot-danger {
+  --badge-dot-color: var(--bs-danger);
+}
+
+// Outline dots -- transparent fill with a coloured border ring
+.badge-dot-outline-success {
+  --badge-dot-color: transparent;
+
+  border: 2px solid var(--bs-success);
+}
+
+.badge-dot-outline-warning {
+  --badge-dot-color: transparent;
+
+  border: 2px solid var(--bs-warning);
+}
+
+.badge-dot-outline-danger {
+  --badge-dot-color: transparent;
+
+  border: 2px solid var(--bs-danger);
+}
+
+// ---------------------------------------------------------------------------
+// Triangle (standalone -- does NOT use .badge as a base)
+// ---------------------------------------------------------------------------
+
+// Rendered via the CSS border trick: width/height are 0 and the visible
+// triangle is formed entirely by the bottom border colour.
+
+.badge-triangle {
+  --badge-triangle-color: var(--bs-secondary);
+
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0.55rem 0.95rem;
+  border-color: transparent transparent var(--badge-triangle-color);
+  font-size: 0;
+  line-height: 0;
+}
+
+.badge-triangle-success {
+  --badge-triangle-color: var(--bs-success);
+}
+
+.badge-triangle-warning {
+  --badge-triangle-color: var(--bs-warning);
+}
+
+.badge-triangle-danger {
+  --badge-triangle-color: var(--bs-danger);
+}
+
+// ---------------------------------------------------------------------------
 // Direction (overlay positioning)
 // ---------------------------------------------------------------------------
 
-// Parent element must have position: relative (or Bootstrap's
+// The parent element must have position: relative (or Bootstrap's
 // position-relative utility class) for these to work correctly.
 
+// Edge (centred on each side)
 .badge-top {
   position: absolute;
   top: 0;
@@ -124,4 +181,33 @@
   top: 50%;
   left: 0;
   transform: translate(-50%, -50%);
+}
+
+// Corner
+.badge-top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+.badge-top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.badge-bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(50%, 50%);
+}
+
+.badge-bottom-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translate(-50%, 50%);
 }

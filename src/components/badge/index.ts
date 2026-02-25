@@ -44,8 +44,16 @@ export type BadgeSize = 'sm' | 'md' | 'lg';
 /** Shape of the badge. */
 export type BadgeShape = 'dot' | 'square' | 'triangle' | 'pill';
 
-/** Cardinal direction for overlay positioning relative to a parent element. */
-export type BadgeDirection = 'top' | 'right' | 'bottom' | 'left';
+/** Direction for overlay positioning relative to a parent element. */
+export type BadgeDirection =
+  | 'top'
+  | 'right'
+  | 'bottom'
+  | 'left'
+  | 'top-right'
+  | 'top-left'
+  | 'bottom-right'
+  | 'bottom-left';
 
 /**
  * Placeholder for the Terra Icon type.
@@ -142,24 +150,33 @@ export function createBadge(options: BadgeOptions = {}): HTMLElement {
   } = options;
 
   const el = document.createElement('span');
-  const classes: string[] = [badge.base];
+  const classes: string[] = [];
 
-  // Shape
-  if (shape === 'pill') classes.push(badge.shapes.pill);
-  else if (shape === 'square') classes.push(badge.shapes.square);
-  else if (shape === 'dot') classes.push(badge.shapes.dot);
-  else if (shape === 'triangle') classes.push(badge.shapes.triangle);
-
-  // Variant + tone
-  if (tone) {
-    if (variant === 'solid') classes.push(badge.solid[tone]);
-    else if (variant === 'outline') classes.push(badge.outline[tone]);
-    else if (variant === 'link') classes.push(badge.link[tone]);
+  if (shape === 'dot') {
+    // Dot is standalone -- does not use .badge as base
+    classes.push(badge.shapes.dot);
+    if (tone) {
+      if (variant === 'outline') classes.push(badge.dotOutline[tone]);
+      else classes.push(badge.dotSolid[tone]); // solid and link both fill
+    }
+  } else if (shape === 'triangle') {
+    // Triangle is standalone -- does not use .badge as base
+    classes.push(badge.shapes.triangle);
+    if (tone) classes.push(badge.triangleSolid[tone]);
+  } else {
+    // Pill and square build on Bootstrap's .badge
+    classes.push(badge.base);
+    if (shape === 'pill') classes.push(badge.shapes.pill);
+    else if (shape === 'square') classes.push(badge.shapes.square);
+    if (tone) {
+      if (variant === 'solid') classes.push(badge.solid[tone]);
+      else if (variant === 'outline') classes.push(badge.outline[tone]);
+      else if (variant === 'link') classes.push(badge.link[tone]);
+    }
+    // Size only applies to pill/square
+    if (size === 'sm') classes.push(badge.sizes.sm);
+    else if (size === 'lg') classes.push(badge.sizes.lg);
   }
-
-  // Size
-  if (size === 'sm') classes.push(badge.sizes.sm);
-  else if (size === 'lg') classes.push(badge.sizes.lg);
 
   // Direction
   if (direction) classes.push(badge.directions[direction]);
@@ -207,34 +224,54 @@ export function createBadge(options: BadgeOptions = {}): HTMLElement {
 
 /** CSS class references for the Badge component. @category Constants */
 export const badge = {
-  /** Base badge class. Always applied. */
+  /** Base badge class. Applied to pill and square shapes only. */
   base: 'badge',
-  /** Shape modifier classes. */
+  /** Shape classes. */
   shapes: {
     pill: 'rounded-pill',
     square: 'badge-square',
+    /** Standalone -- do not combine with `badge.base`. */
     dot: 'badge-dot',
+    /** Standalone -- do not combine with `badge.base`. */
     triangle: 'badge-triangle',
   },
-  /** Solid (filled) variant classes, keyed by tone. */
+  /** Solid variant tone classes for pill/square (Bootstrap text-bg helpers). */
   solid: {
     success: 'text-bg-success',
     warning: 'text-bg-warning',
     danger: 'text-bg-danger',
   },
-  /** Outline variant classes, keyed by tone. */
+  /** Outline variant tone classes for pill/square. */
   outline: {
     success: 'badge-outline-success',
     warning: 'badge-outline-warning',
     danger: 'badge-outline-danger',
   },
-  /** Link variant classes, keyed by tone. */
+  /** Link variant tone classes for pill/square. */
   link: {
     success: 'badge-link-success',
     warning: 'badge-link-warning',
     danger: 'badge-link-danger',
   },
-  /** Size modifier classes. */
+  /** Solid tone classes for dot shape. */
+  dotSolid: {
+    success: 'badge-dot-success',
+    warning: 'badge-dot-warning',
+    danger: 'badge-dot-danger',
+  },
+  /** Outline tone classes for dot shape. */
+  dotOutline: {
+    success: 'badge-dot-outline-success',
+    warning: 'badge-dot-outline-warning',
+    danger: 'badge-dot-outline-danger',
+  },
+  /** Tone classes for triangle shape (solid fill via CSS border trick). */
+  triangleSolid: {
+    success: 'badge-triangle-success',
+    warning: 'badge-triangle-warning',
+    danger: 'badge-triangle-danger',
+  },
+  /** Size modifier classes (pill/square only). */
   sizes: {
     sm: 'badge-sm',
     lg: 'badge-lg',
@@ -245,5 +282,9 @@ export const badge = {
     right: 'badge-right',
     bottom: 'badge-bottom',
     left: 'badge-left',
+    'top-right': 'badge-top-right',
+    'top-left': 'badge-top-left',
+    'bottom-right': 'badge-bottom-right',
+    'bottom-left': 'badge-bottom-left',
   },
 } as const;
