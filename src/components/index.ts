@@ -1,6 +1,7 @@
 export * from './alert/index';
 export * from './badge/index';
 export * from './button/index';
+export * from './tooltip/index';
 export * from './close-button/index';
 export * from './horizontal-rule/index';
 export * from './logo/index';

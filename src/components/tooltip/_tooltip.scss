@@ -1,0 +1,12 @@
+/**
+ * Terra UI Kit: Tooltip
+ *
+ * Square corners, consistent with Terra's design language.
+ *
+ * Built on Bootstrap's .tooltip -- overrides and LNPG-specific extensions only.
+ * Terra-specific overrides will be added once Sol tokens are available.
+ */
+
+.tooltip {
+  --bs-tooltip-border-radius: 0;
+}

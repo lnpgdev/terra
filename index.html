@@ -369,5 +369,70 @@
         <span class="placeholder placeholder-triangle" style="width: 4rem"></span>
       </div>
     </section>
+    <!-- ------------------------------------------------------------------ -->
+    <!-- Tooltip                                                              -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="mb-5">
+      <h2 class="mb-3">Tooltip</h2>
+
+      <h6 class="text-muted mb-2">Placements</h6>
+      <div class="d-flex gap-3 mb-4">
+        <button
+          type="button"
+          class="btn btn-success"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          data-bs-title="Tooltip on top"
+        >
+          Top
+        </button>
+        <button
+          type="button"
+          class="btn btn-success"
+          data-bs-toggle="tooltip"
+          data-bs-placement="right"
+          data-bs-title="Tooltip on right"
+        >
+          Right
+        </button>
+        <button
+          type="button"
+          class="btn btn-success"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          data-bs-title="Tooltip on bottom"
+        >
+          Bottom
+        </button>
+        <button
+          type="button"
+          class="btn btn-success"
+          data-bs-toggle="tooltip"
+          data-bs-placement="left"
+          data-bs-title="Tooltip on left"
+        >
+          Left
+        </button>
+      </div>
+
+      <h6 class="text-muted mb-2">On other elements</h6>
+      <div class="d-flex align-items-center gap-3">
+        <span
+          class="badge rounded-pill text-bg-success"
+          data-bs-toggle="tooltip"
+          data-bs-title="This badge has a tooltip"
+        >
+          Badge
+        </span>
+        <a
+          href="#"
+          data-bs-toggle="tooltip"
+          data-bs-placement="right"
+          data-bs-title="Links can have tooltips too"
+        >
+          Hover this link
+        </a>
+      </div>
+    </section>
   </body>
 </html>
