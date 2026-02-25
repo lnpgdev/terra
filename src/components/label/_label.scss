@@ -1,0 +1,141 @@
+/**
+ * Terra UI Kit: Label
+ *
+ * Custom component -- not a Bootstrap wrapper. Built from scratch.
+ *
+ * Variants: solid (tinted bg + emphasis text), outline (border + text),
+ * ghost (text only).
+ * Shapes: pill, rounded, square.
+ * Sizes: sm, md (default), lg.
+ * Supports an optional leading icon via an <i> element.
+ */
+
+// ---------------------------------------------------------------------------
+// Base
+// ---------------------------------------------------------------------------
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.25em 0.6em;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+// ---------------------------------------------------------------------------
+// Shapes
+// ---------------------------------------------------------------------------
+
+.label-square {
+  border-radius: 0;
+}
+
+.label-rounded {
+  border-radius: 0.25rem;
+}
+
+.label-pill {
+  border-radius: 50rem;
+}
+
+// ---------------------------------------------------------------------------
+// Sizes
+// ---------------------------------------------------------------------------
+
+.label-sm {
+  padding: 0.15em 0.45em;
+  font-size: 0.75rem;
+}
+
+.label-lg {
+  padding: 0.4em 0.85em;
+  font-size: 1rem;
+}
+
+// ---------------------------------------------------------------------------
+// Solid variant -- tinted bg, emphasis text
+// ---------------------------------------------------------------------------
+
+.label-solid-info {
+  background-color: var(--bs-info-bg-subtle);
+  color: var(--bs-info-text-emphasis);
+  border-color: transparent;
+}
+
+.label-solid-success {
+  background-color: var(--bs-success-bg-subtle);
+  color: var(--bs-success-text-emphasis);
+  border-color: transparent;
+}
+
+.label-solid-warning {
+  background-color: var(--bs-warning-bg-subtle);
+  color: var(--bs-warning-text-emphasis);
+  border-color: transparent;
+}
+
+.label-solid-danger {
+  background-color: var(--bs-danger-bg-subtle);
+  color: var(--bs-danger-text-emphasis);
+  border-color: transparent;
+}
+
+// ---------------------------------------------------------------------------
+// Outline variant -- transparent bg, coloured border + text
+// ---------------------------------------------------------------------------
+
+.label-outline-info {
+  background-color: transparent;
+  border-color: var(--bs-info);
+  color: var(--bs-info);
+}
+
+.label-outline-success {
+  background-color: transparent;
+  border-color: var(--bs-success);
+  color: var(--bs-success);
+}
+
+.label-outline-warning {
+  background-color: transparent;
+  border-color: var(--bs-warning);
+  color: var(--bs-warning);
+}
+
+.label-outline-danger {
+  background-color: transparent;
+  border-color: var(--bs-danger);
+  color: var(--bs-danger);
+}
+
+// ---------------------------------------------------------------------------
+// Ghost variant -- no bg, no border, coloured text only
+// ---------------------------------------------------------------------------
+
+.label-ghost-info {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--bs-info-text-emphasis);
+}
+
+.label-ghost-success {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--bs-success-text-emphasis);
+}
+
+.label-ghost-warning {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--bs-warning-text-emphasis);
+}
+
+.label-ghost-danger {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--bs-danger-text-emphasis);
+}
