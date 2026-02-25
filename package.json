@@ -33,6 +33,11 @@
       "require": "./dist/index.cjs.js"
     },
     "./styles": "./dist/terra.css",
+    "./components": {
+      "types": "./dist/types/components/index.d.ts",
+      "import": "./dist/components/index.es.js",
+      "require": "./dist/components/index.cjs.js"
+    },
     "./components/alert": {
       "types": "./dist/types/components/alert/index.d.ts",
       "import": "./dist/components/alert/index.es.js",
