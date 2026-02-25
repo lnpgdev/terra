@@ -8,3 +8,4 @@ export * from './horizontal-rule/index';
 export * from './logo/index';
 export * from './placeholder/index';
 export * from './spinner/index';
+export * from './button-group/index';
