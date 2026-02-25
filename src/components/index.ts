@@ -10,3 +10,4 @@ export * from './placeholder/index';
 export * from './spinner/index';
 export * from './button-group/index';
 export * from './label/index';
+export * from './collapse/index';

@@ -284,6 +284,51 @@
       </div>
     </section>
     <!-- ------------------------------------------------------------------ -->
+    <!-- Collapse                                                             -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="mb-5">
+      <h2 class="mb-3">Collapse</h2>
+
+      <h6 class="text-muted mb-2">Button toggle</h6>
+      <div class="mb-4">
+        <button
+          type="button"
+          class="btn btn-success mb-2"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseButton"
+          aria-expanded="false"
+          aria-controls="collapseButton"
+        >
+          Toggle panel
+        </button>
+        <div id="collapseButton" class="collapse">
+          <div class="card card-body">
+            This panel is toggled by the button above. It uses Bootstrap's collapse plugin via
+            <code>data-bs-toggle="collapse"</code>.
+          </div>
+        </div>
+      </div>
+
+      <h6 class="text-muted mb-2">Anchor toggle (starts open)</h6>
+      <div class="mb-4">
+        <a
+          href="#collapseAnchor"
+          class="btn btn-outline-success mb-2"
+          data-bs-toggle="collapse"
+          role="button"
+          aria-expanded="true"
+          aria-controls="collapseAnchor"
+        >
+          Toggle panel
+        </a>
+        <div id="collapseAnchor" class="collapse show">
+          <div class="card card-body">
+            This panel starts open. Toggle it using the anchor link above.
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ------------------------------------------------------------------ -->
     <!-- Alert                                                                -->
     <!-- ------------------------------------------------------------------ -->
     <section class="mb-5">
