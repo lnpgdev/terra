@@ -59,7 +59,7 @@ export interface LabelOptions {
   tone?: LabelTone;
   /** Visual style. Defaults to `'solid'`. */
   variant?: LabelVariant;
-  /** Shape. Defaults to `'pill'`. */
+  /** Shape. Defaults to `'square'`. */
   shape?: LabelShape;
   /** Size modifier. Defaults to `'md'` (no size class). */
   size?: LabelSize;
@@ -100,7 +100,7 @@ export function createLabel(options: LabelOptions): HTMLSpanElement {
     label: text,
     tone,
     variant = 'solid',
-    shape = 'pill',
+    shape = 'square',
     size,
     icon,
     tooltip,
