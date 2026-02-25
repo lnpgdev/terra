@@ -1,0 +1,127 @@
+/**
+ * Terra UI Kit: Badge
+ *
+ * Supports solid, outline, and link variants across success, warning,
+ * and danger tones. Shapes: pill, square, dot, and triangle.
+ * Includes absolute-positioning helpers for overlay use.
+ *
+ * Built on Bootstrap's .badge -- overrides and LNPG-specific extensions only.
+ * Terra-specific overrides will be added once Sol tokens are available.
+ */
+
+// ---------------------------------------------------------------------------
+// Shapes
+// ---------------------------------------------------------------------------
+
+.badge-square {
+  border-radius: 0;
+}
+
+.badge-dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.badge-triangle {
+  width: 0;
+  height: 0;
+  padding: 0;
+  background-color: transparent !important; // stylelint-disable-line declaration-no-important
+  border-style: solid;
+  border-width: 0 0.5rem 0.875rem;
+  border-color: transparent transparent currentcolor;
+  font-size: 0;
+  line-height: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Outline variant
+// ---------------------------------------------------------------------------
+
+.badge-outline-success {
+  background-color: transparent;
+  border: 1px solid var(--bs-success);
+  color: var(--bs-success);
+}
+
+.badge-outline-warning {
+  background-color: transparent;
+  border: 1px solid var(--bs-warning);
+  color: var(--bs-warning);
+}
+
+.badge-outline-danger {
+  background-color: transparent;
+  border: 1px solid var(--bs-danger);
+  color: var(--bs-danger);
+}
+
+// ---------------------------------------------------------------------------
+// Link variant
+// ---------------------------------------------------------------------------
+
+.badge-link-success {
+  background-color: transparent;
+  color: var(--bs-success);
+}
+
+.badge-link-warning {
+  background-color: transparent;
+  color: var(--bs-warning);
+}
+
+.badge-link-danger {
+  background-color: transparent;
+  color: var(--bs-danger);
+}
+
+// ---------------------------------------------------------------------------
+// Sizes
+// ---------------------------------------------------------------------------
+
+.badge-sm {
+  font-size: 0.6em;
+  padding: 0.2em 0.45em;
+}
+
+.badge-lg {
+  font-size: 0.9em;
+  padding: 0.45em 0.8em;
+}
+
+// ---------------------------------------------------------------------------
+// Direction (overlay positioning)
+// ---------------------------------------------------------------------------
+
+// Parent element must have position: relative (or Bootstrap's
+// position-relative utility class) for these to work correctly.
+
+.badge-top {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.badge-right {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+.badge-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.badge-left {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
