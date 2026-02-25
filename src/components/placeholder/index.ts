@@ -30,7 +30,7 @@ export type PlaceholderShape = 'circle' | 'square' | 'triangle';
 
 /** Options for {@link createPlaceholder}. */
 export interface PlaceholderOptions {
-  /** Bootstrap grid column width (1–12). */
+  /** Bootstrap grid column width (1-12). */
   cols?: number;
   /** Wraps the placeholder in an animated container. */
   animation?: PlaceholderAnimation;

@@ -67,8 +67,9 @@
   "scripts": {
     "dev": "vite",
     "clean": "rm -rf dist",
-    "prebuild": "npm run clean && npm run typecheck && npm run lint && npm run lint:styles && npm run format:check",
+    "prebuild": "npm run clean && npm run scrub && npm run typecheck && npm run lint && npm run lint:styles && npm run format:check",
     "build": "vite build && tsc --emitDeclarationOnly",
+    "scrub": "unicode-scrub \"src/**/*\" \"index.html\"",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
@@ -83,6 +84,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
+    "@lnpg/unicode-scrub": "^1.0.0",
     "@types/bootstrap": "^5.2.10",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",

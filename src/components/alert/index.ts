@@ -51,7 +51,7 @@ export interface AlertOptions {
   variant: AlertVariant;
   /** Short description displayed in the alert body. */
   message: string;
-  /** URL opened by the "Read more." link — typically a modal anchor. */
+  /** URL opened by the "Read more." link - typically a modal anchor. */
   href: string;
   /** Auto-dismiss delay in milliseconds. Omit to disable auto-dismiss. */
   timeout?: number;

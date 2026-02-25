@@ -54,7 +54,7 @@ export interface LogoOptions {
   href?: string;
   /**
    * Route target for client-side navigation.
-   * Rendered as `href` in the factory — framework-specific routing should be
+   * Rendered as `href` in the factory - framework-specific routing should be
    * handled by the consuming framework.
    * Must not be used together with `href`.
    */
@@ -113,7 +113,7 @@ export function createLogo(options: LogoOptions = {}): HTMLElement {
 export const logoAssets = {
   /** Full-colour variant. */
   colour: logoColour,
-  /** White variant — for use on dark backgrounds. */
+  /** White variant - for use on dark backgrounds. */
   white: logoWhite,
   /** Black variant. */
   black: logoBlack,

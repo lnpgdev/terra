@@ -1,14 +1,14 @@
 /**
  * Terra UI Kit: Horizontal Rule
  *
- * Divider element with tone and size variants. Built on Bootstrap's hr —
+ * Divider element with tone and size variants. Built on Bootstrap's hr -
  * overrides Bootstrap's CSS custom properties for colour and thickness.
  *
  * Tone colours reference Bootstrap's semantic colour tokens directly, so they
  * will automatically reflect Sol overrides when Sol becomes available.
  */
 
-// Tones — Bootstrap's hr uses color:inherit as currentColor for the border.
+// Tones - Bootstrap's hr uses color:inherit as currentColor for the border.
 // opacity:1 overrides Bootstrap's default 0.25 so tone colours render fully.
 .hr-success {
   color: var(--bs-success);
