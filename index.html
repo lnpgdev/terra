@@ -370,6 +370,195 @@
       </div>
     </section>
     <!-- ------------------------------------------------------------------ -->
+    <!-- Toast                                                                -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="mb-5">
+      <h2 class="mb-3">Toast</h2>
+
+      <h6 class="text-muted mb-2">Variants (body only)</h6>
+      <div class="d-flex flex-column gap-2 mb-4" style="max-width: 350px">
+        <div class="toast show toast-info" role="status" aria-live="polite" aria-atomic="true">
+          <div class="toast-body">Info notification.</div>
+        </div>
+        <div class="toast show toast-success" role="status" aria-live="polite" aria-atomic="true">
+          <div class="toast-body">Success notification.</div>
+        </div>
+        <div class="toast show toast-warning" role="status" aria-live="polite" aria-atomic="true">
+          <div class="toast-body">Warning notification.</div>
+        </div>
+        <div class="toast show toast-danger" role="status" aria-live="polite" aria-atomic="true">
+          <div class="toast-body">Danger notification.</div>
+        </div>
+      </div>
+
+      <h6 class="text-muted mb-2">With header and dismiss</h6>
+      <div class="d-flex flex-column gap-2 mb-4" style="max-width: 350px">
+        <div class="toast show toast-success" role="status" aria-live="polite" aria-atomic="true">
+          <div class="toast-header">
+            <strong class="toast-title me-auto">Saved</strong>
+            <small class="toast-meta">Just now</small>
+            <button
+              type="button"
+              class="btn-close"
+              aria-label="Close"
+              data-lnpg-dismiss="toast"
+            ></button>
+          </div>
+          <div class="toast-body">Your changes have been saved successfully.</div>
+        </div>
+        <div class="toast show toast-danger" role="status" aria-live="polite" aria-atomic="true">
+          <div class="toast-header">
+            <strong class="toast-title me-auto">Error</strong>
+            <small class="toast-meta">2s ago</small>
+            <button
+              type="button"
+              class="btn-close"
+              aria-label="Close"
+              data-lnpg-dismiss="toast"
+            ></button>
+          </div>
+          <div class="toast-body">Failed to save. Please try again.</div>
+        </div>
+        <div class="toast show toast-warning" role="status" aria-live="polite" aria-atomic="true">
+          <div class="toast-header">
+            <strong class="toast-title me-auto">Warning</strong>
+            <small class="toast-meta">5m ago</small>
+            <button
+              type="button"
+              class="btn-close"
+              aria-label="Close"
+              data-lnpg-dismiss="toast"
+            ></button>
+          </div>
+          <div class="toast-body">Your session is about to expire.</div>
+        </div>
+      </div>
+
+      <h6 class="text-muted mb-2">Triggered (top-end, autohide 4s, pause on hover)</h6>
+      <div class="d-flex gap-2 mb-4">
+        <button
+          type="button"
+          class="btn btn-success"
+          data-lnpg-toggle="toast"
+          data-lnpg-target="previewToastSuccess"
+        >
+          Success
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning"
+          data-lnpg-toggle="toast"
+          data-lnpg-target="previewToastWarning"
+        >
+          Warning
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-lnpg-toggle="toast"
+          data-lnpg-target="previewToastDanger"
+        >
+          Danger
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          data-lnpg-toggle="toast"
+          data-lnpg-target="previewToastInfo"
+        >
+          Info
+        </button>
+      </div>
+
+      <!-- Fixed container for triggered toasts -->
+      <div class="toast-container p-3" data-lnpg-placement="top-end">
+        <div
+          class="toast toast-success"
+          id="previewToastSuccess"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          data-lnpg-autohide="true"
+          data-lnpg-delay="4000"
+        >
+          <div class="toast-header">
+            <strong class="toast-title me-auto">Success</strong>
+            <small class="toast-meta">Just now</small>
+            <button
+              type="button"
+              class="btn-close"
+              aria-label="Close"
+              data-lnpg-dismiss="toast"
+            ></button>
+          </div>
+          <div class="toast-body">Operation completed successfully.</div>
+        </div>
+        <div
+          class="toast toast-warning"
+          id="previewToastWarning"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          data-lnpg-autohide="true"
+          data-lnpg-delay="4000"
+        >
+          <div class="toast-header">
+            <strong class="toast-title me-auto">Warning</strong>
+            <small class="toast-meta">Just now</small>
+            <button
+              type="button"
+              class="btn-close"
+              aria-label="Close"
+              data-lnpg-dismiss="toast"
+            ></button>
+          </div>
+          <div class="toast-body">Please review before continuing.</div>
+        </div>
+        <div
+          class="toast toast-danger"
+          id="previewToastDanger"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          data-lnpg-autohide="true"
+          data-lnpg-delay="4000"
+        >
+          <div class="toast-header">
+            <strong class="toast-title me-auto">Error</strong>
+            <small class="toast-meta">Just now</small>
+            <button
+              type="button"
+              class="btn-close"
+              aria-label="Close"
+              data-lnpg-dismiss="toast"
+            ></button>
+          </div>
+          <div class="toast-body">Something went wrong. Please try again.</div>
+        </div>
+        <div
+          class="toast toast-info"
+          id="previewToastInfo"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          data-lnpg-autohide="true"
+          data-lnpg-delay="4000"
+        >
+          <div class="toast-header">
+            <strong class="toast-title me-auto">Info</strong>
+            <small class="toast-meta">Just now</small>
+            <button
+              type="button"
+              class="btn-close"
+              aria-label="Close"
+              data-lnpg-dismiss="toast"
+            ></button>
+          </div>
+          <div class="toast-body">A new call has been assigned to you.</div>
+        </div>
+      </div>
+    </section>
+    <!-- ------------------------------------------------------------------ -->
     <!-- Tooltip                                                              -->
     <!-- ------------------------------------------------------------------ -->
     <section class="mb-5">

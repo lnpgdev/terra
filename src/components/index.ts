@@ -1,4 +1,5 @@
 export * from './alert/index';
+export * from './toast/index';
 export * from './badge/index';
 export * from './button/index';
 export * from './tooltip/index';
