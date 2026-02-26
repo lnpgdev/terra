@@ -1080,6 +1080,202 @@
       </div>
     </section>
     <!-- ------------------------------------------------------------------ -->
+    <!-- Accordion                                                            -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="mb-5">
+      <h2 class="mb-3">Accordion</h2>
+
+      <h6 class="text-muted mb-2">Single mode (one open at a time)</h6>
+      <div class="accordion mb-4" id="accordionSingle">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#acc1"
+              aria-expanded="true"
+              aria-controls="acc1"
+            >
+              What is Terra?
+            </button>
+          </h2>
+          <div id="acc1" class="accordion-collapse collapse show" data-bs-parent="#accordionSingle">
+            <div class="accordion-body">Terra is LNPG's UI Kit, built on Bootstrap 5.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#acc2"
+              aria-expanded="false"
+              aria-controls="acc2"
+            >
+              How do I install it?
+            </button>
+          </h2>
+          <div id="acc2" class="accordion-collapse collapse" data-bs-parent="#accordionSingle">
+            <div class="accordion-body">
+              Run <code>npm install @lnpg/terra</code> in your project.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#acc3"
+              aria-expanded="false"
+              aria-controls="acc3"
+            >
+              Is it framework-agnostic?
+            </button>
+          </h2>
+          <div id="acc3" class="accordion-collapse collapse" data-bs-parent="#accordionSingle">
+            <div class="accordion-body">
+              Yes. Terra ships plain HTML, CSS, and JS with no framework dependency.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h6 class="text-muted mb-2">Multiple mode (independent toggle)</h6>
+      <div class="accordion mb-4" id="accordionMultiple">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#accm1"
+              aria-expanded="true"
+              aria-controls="accm1"
+            >
+              Section A
+            </button>
+          </h2>
+          <div id="accm1" class="accordion-collapse collapse show">
+            <div class="accordion-body">Content for section A.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#accm2"
+              aria-expanded="true"
+              aria-controls="accm2"
+            >
+              Section B
+            </button>
+          </h2>
+          <div id="accm2" class="accordion-collapse collapse show">
+            <div class="accordion-body">Content for section B -- both can be open at once.</div>
+          </div>
+        </div>
+      </div>
+
+      <h6 class="text-muted mb-2">Flush</h6>
+      <div class="accordion accordion-flush mb-4" id="accordionFlush">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#accf1"
+              aria-expanded="false"
+              aria-controls="accf1"
+            >
+              Flush item 1
+            </button>
+          </h2>
+          <div id="accf1" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
+            <div class="accordion-body">No outer borders or rounded corners.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#accf2"
+              aria-expanded="false"
+              aria-controls="accf2"
+            >
+              Flush item 2
+            </button>
+          </h2>
+          <div id="accf2" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
+            <div class="accordion-body">Useful inside cards or panels.</div>
+          </div>
+        </div>
+      </div>
+
+      <h6 class="text-muted mb-2">Notification variant (left accent per tone)</h6>
+      <div class="accordion accordion-notification" id="accordionNotification">
+        <div class="accordion-item accordion-item-success">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#accn1"
+              aria-expanded="true"
+              aria-controls="accn1"
+            >
+              Active Call
+            </button>
+          </h2>
+          <div id="accn1" class="accordion-collapse collapse show">
+            <div class="accordion-body">John Smith - Inbound - 04:12</div>
+          </div>
+        </div>
+        <div class="accordion-item accordion-item-warning">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#accn2"
+              aria-expanded="false"
+              aria-controls="accn2"
+            >
+              On Hold
+            </button>
+          </h2>
+          <div id="accn2" class="accordion-collapse collapse">
+            <div class="accordion-body">Jane Doe - Outbound - waiting 01:30</div>
+          </div>
+        </div>
+        <div class="accordion-item accordion-item-danger">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#accn3"
+              aria-expanded="false"
+              aria-controls="accn3"
+            >
+              Missed Call
+            </button>
+          </h2>
+          <div id="accn3" class="accordion-collapse collapse">
+            <div class="accordion-body">Mark R. - 2 minutes ago</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ------------------------------------------------------------------ -->
     <!-- Card                                                                 -->
     <!-- ------------------------------------------------------------------ -->
     <section class="mb-5">
@@ -1204,7 +1400,10 @@
       <h6 class="text-muted mb-2">Full card (header, body, footer)</h6>
       <div class="d-flex gap-3 mb-4">
         <div class="card card-elevated card-radius-md card-has-accent" style="width: 300px">
-          <div class="card-accent card-accent-top card-accent-success card-accent-md" aria-hidden="true"></div>
+          <div
+            class="card-accent card-accent-top card-accent-success card-accent-md"
+            aria-hidden="true"
+          ></div>
           <div class="card-header d-flex justify-content-between align-items-center">
             <strong>Active Call</strong>
             <span class="label label-pill label-solid-success label-sm">Live</span>
@@ -1220,7 +1419,10 @@
           </div>
         </div>
         <div class="card card-elevated card-radius-md card-has-accent" style="width: 300px">
-          <div class="card-accent card-accent-top card-accent-danger card-accent-md" aria-hidden="true"></div>
+          <div
+            class="card-accent card-accent-top card-accent-danger card-accent-md"
+            aria-hidden="true"
+          ></div>
           <div class="card-header d-flex justify-content-between align-items-center">
             <strong>Missed Call</strong>
             <span class="label label-pill label-solid-danger label-sm">Missed</span>

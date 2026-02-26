@@ -76,8 +76,12 @@ export interface CollapseOptions {
  * @category Initialiser
  */
 export function initCollapses(): void {
-  document.querySelectorAll<HTMLElement>(collapse.selector).forEach((el) => {
-    BsCollapse.getOrCreateInstance(el);
+  document.querySelectorAll<HTMLElement>(collapse.selector).forEach((trigger) => {
+    const selector = trigger.getAttribute('data-bs-target') ?? trigger.getAttribute('href');
+    if (!selector) return;
+    document.querySelectorAll<HTMLElement>(selector).forEach((panel) => {
+      BsCollapse.getOrCreateInstance(panel, { toggle: false });
+    });
   });
 }
 
