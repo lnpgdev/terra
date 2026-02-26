@@ -1,0 +1,10 @@
+/**
+ * Terra UI Kit: Pagination
+ *
+ * Built on Bootstrap's .pagination — square corners applied via
+ * --bs-pagination-border-radius CSS custom property.
+ */
+
+.pagination {
+  --bs-pagination-border-radius: 0;
+}
