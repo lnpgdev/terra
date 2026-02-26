@@ -20,3 +20,4 @@ export * from './pagination/index';
 export * from './list-group/index';
 export * from './table/index';
 export * from './search-bar/index';
+export * from './select/index';

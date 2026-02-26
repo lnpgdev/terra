@@ -1276,6 +1276,49 @@
       </div>
     </section>
     <!-- ------------------------------------------------------------------ -->
+    <!-- Select                                                               -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="mb-5">
+      <h2 class="mb-3">Select</h2>
+
+      <h6 class="text-muted mb-2">Default</h6>
+      <select class="form-select mb-4" style="max-width: 280px" aria-label="Queue">
+        <option value="">Choose queue…</option>
+        <option value="sales">Sales</option>
+        <option value="support">Support</option>
+        <option value="billing">Billing</option>
+      </select>
+
+      <h6 class="text-muted mb-2">With label + pre-selected value</h6>
+      <div class="mb-4" style="max-width: 280px">
+        <label class="form-label" for="selectQueue">Queue</label>
+        <select class="form-select" id="selectQueue">
+          <option value="sales">Sales</option>
+          <option value="support" selected>Support</option>
+          <option value="billing">Billing</option>
+        </select>
+      </div>
+
+      <h6 class="text-muted mb-2">Sizes</h6>
+      <div class="d-flex flex-column gap-2 mb-4" style="max-width: 280px">
+        <select class="form-select form-select-sm" aria-label="Small">
+          <option>Small</option>
+        </select>
+        <select class="form-select" aria-label="Medium">
+          <option>Medium</option>
+        </select>
+        <select class="form-select form-select-lg" aria-label="Large">
+          <option>Large</option>
+        </select>
+      </div>
+
+      <h6 class="text-muted mb-2">Disabled</h6>
+      <select class="form-select mb-4" style="max-width: 280px" disabled aria-label="Disabled">
+        <option>Cannot change</option>
+      </select>
+
+    </section>
+    <!-- ------------------------------------------------------------------ -->
     <!-- Search Bar                                                           -->
     <!-- ------------------------------------------------------------------ -->
     <section class="mb-5">

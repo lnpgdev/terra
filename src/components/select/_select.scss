@@ -1,0 +1,10 @@
+/**
+ * Terra UI Kit: Select
+ *
+ * Built on Bootstrap's .form-select — square corners applied via
+ * --bs-form-select-border-radius CSS custom property.
+ */
+
+.form-select {
+  --bs-form-select-border-radius: 0;
+}
