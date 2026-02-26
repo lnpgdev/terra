@@ -1,0 +1,11 @@
+/**
+ * Terra UI Kit: List Group
+ *
+ * Built on Bootstrap's .list-group — square corners applied via
+ * --bs-list-group-border-radius CSS custom property.
+ */
+
+.list-group {
+  --bs-list-group-border-radius: 0;
+  --bs-list-group-item-border-radius: 0;
+}

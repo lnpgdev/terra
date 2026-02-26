@@ -17,3 +17,4 @@ export * from './card/index';
 export * from './accordion/index';
 export * from './breadcrumb/index';
 export * from './pagination/index';
+export * from './list-group/index';
