@@ -1276,6 +1276,73 @@
       </div>
     </section>
     <!-- ------------------------------------------------------------------ -->
+    <!-- Carousel                                                             -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="mb-5">
+      <h2 class="mb-3">Carousel</h2>
+
+      <h6 class="text-muted mb-2">Manual (no autoplay)</h6>
+      <div id="carouselManual" class="carousel slide mb-4">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="bg-success d-flex align-items-center justify-content-center text-white" style="height: 200px">
+              <strong>Slide 1</strong>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="bg-warning d-flex align-items-center justify-content-center text-white" style="height: 200px">
+              <strong>Slide 2</strong>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="bg-danger d-flex align-items-center justify-content-center text-white" style="height: 200px">
+              <strong>Slide 3</strong>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" data-bs-target="#carouselManual" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" data-bs-target="#carouselManual" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <h6 class="text-muted mb-2">Autoplay (3 s interval, pause on hover)</h6>
+      <div id="carouselAuto" class="carousel slide mb-4"
+           data-lnpg-autoplay="true"
+           data-lnpg-interval="3000"
+           data-lnpg-pause-on-hover="true">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="bg-primary d-flex align-items-center justify-content-center text-white" style="height: 200px">
+              <strong>Auto — Slide 1</strong>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="bg-secondary d-flex align-items-center justify-content-center text-white" style="height: 200px">
+              <strong>Auto — Slide 2</strong>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="bg-info d-flex align-items-center justify-content-center text-white" style="height: 200px">
+              <strong>Auto — Slide 3</strong>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" data-bs-target="#carouselAuto" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" data-bs-target="#carouselAuto" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+    <!-- ------------------------------------------------------------------ -->
     <!-- Select                                                               -->
     <!-- ------------------------------------------------------------------ -->
     <section class="mb-5">
