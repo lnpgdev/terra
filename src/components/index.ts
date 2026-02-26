@@ -13,3 +13,4 @@ export * from './label/index';
 export * from './collapse/index';
 export * from './tab/index';
 export * from './dropdown/index';
+export * from './card/index';

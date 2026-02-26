@@ -1,0 +1,157 @@
+/**
+ * Terra UI Kit: Card
+ *
+ * Built on Bootstrap's .card. Defaults to square corners.
+ * Supports four visual variants, three sizes, configurable border-radius,
+ * and an accent bar (coloured status strip) on any edge.
+ *
+ * The accent bar is an absolutely-positioned child element.
+ * .card-has-accent applies overflow: hidden so the bar is clipped to the
+ * card's border-radius automatically (handles the default inherit radius).
+ */
+
+// ---------------------------------------------------------------------------
+// Base -- square corners override
+// ---------------------------------------------------------------------------
+
+.card {
+  --bs-card-border-radius: 0;
+  --bs-card-inner-border-radius: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Variants
+// ---------------------------------------------------------------------------
+
+.card-outlined {
+  border-color: var(--bs-border-color);
+  background-color: transparent;
+}
+
+.card-elevated {
+  border-color: transparent;
+  box-shadow: var(--bs-box-shadow);
+}
+
+.card-muted {
+  background-color: var(--bs-secondary-bg);
+  border-color: transparent;
+}
+
+// ---------------------------------------------------------------------------
+// Radius
+// ---------------------------------------------------------------------------
+
+.card-radius-sm {
+  --bs-card-border-radius: 0.25rem;
+  --bs-card-inner-border-radius: calc(0.25rem - var(--bs-border-width));
+}
+
+.card-radius-md {
+  --bs-card-border-radius: 0.5rem;
+  --bs-card-inner-border-radius: calc(0.5rem - var(--bs-border-width));
+}
+
+.card-radius-lg {
+  --bs-card-border-radius: 1rem;
+  --bs-card-inner-border-radius: calc(1rem - var(--bs-border-width));
+}
+
+// ---------------------------------------------------------------------------
+// Sizes
+// ---------------------------------------------------------------------------
+
+.card-sm {
+  --bs-card-spacer-y: 0.5rem;
+  --bs-card-spacer-x: 0.75rem;
+  --bs-card-cap-padding-y: 0.35rem;
+  --bs-card-cap-padding-x: 0.75rem;
+}
+
+.card-lg {
+  --bs-card-spacer-y: 1.5rem;
+  --bs-card-spacer-x: 2rem;
+  --bs-card-cap-padding-y: 0.75rem;
+  --bs-card-cap-padding-x: 2rem;
+}
+
+// ---------------------------------------------------------------------------
+// Accent bar
+// ---------------------------------------------------------------------------
+
+// Applied to the card when it contains an accent bar.
+// overflow: hidden clips the bar to the card's border-radius (inherit mode).
+.card-has-accent {
+  overflow: hidden;
+}
+
+.card-accent {
+  --card-accent-color: var(--bs-secondary);
+  --card-accent-size: 4px;
+
+  position: absolute;
+  background-color: var(--card-accent-color);
+}
+
+// Positions
+.card-accent-top {
+  top: 0;
+  right: 0;
+  left: 0;
+  height: var(--card-accent-size);
+}
+
+.card-accent-bottom {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: var(--card-accent-size);
+}
+
+.card-accent-left {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--card-accent-size);
+}
+
+.card-accent-right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--card-accent-size);
+}
+
+// Thickness
+.card-accent-xs {
+  --card-accent-size: 2px;
+}
+
+.card-accent-sm {
+  --card-accent-size: 4px;
+}
+
+.card-accent-md {
+  --card-accent-size: 6px;
+}
+
+// Tones
+.card-accent-info {
+  --card-accent-color: var(--bs-info);
+}
+
+.card-accent-success {
+  --card-accent-color: var(--bs-success);
+}
+
+.card-accent-warning {
+  --card-accent-color: var(--bs-warning);
+}
+
+.card-accent-danger {
+  --card-accent-color: var(--bs-danger);
+}
+
+.card-accent-neutral {
+  --card-accent-color: var(--bs-secondary);
+}
