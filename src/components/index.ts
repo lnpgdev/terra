@@ -15,3 +15,4 @@ export * from './tab/index';
 export * from './dropdown/index';
 export * from './card/index';
 export * from './accordion/index';
+export * from './breadcrumb/index';

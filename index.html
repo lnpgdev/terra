@@ -1276,6 +1276,48 @@
       </div>
     </section>
     <!-- ------------------------------------------------------------------ -->
+    <!-- Breadcrumb                                                           -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="mb-5">
+      <h2 class="mb-3">Breadcrumb</h2>
+
+      <h6 class="text-muted mb-2">Default (/ divider)</h6>
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Members</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Em Yates</li>
+        </ol>
+      </nav>
+
+      <h6 class="text-muted mb-2">Custom divider (›)</h6>
+      <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '›';" class="mb-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="#">Settings</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Notifications</li>
+        </ol>
+      </nav>
+
+      <h6 class="text-muted mb-2">Single item (root only)</h6>
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page">Home</li>
+        </ol>
+      </nav>
+
+      <h6 class="text-muted mb-2">With disabled item</h6>
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item">
+            <a href="#" class="disabled" aria-disabled="true" tabindex="-1">Restricted</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Report</li>
+        </ol>
+      </nav>
+    </section>
+    <!-- ------------------------------------------------------------------ -->
     <!-- Card                                                                 -->
     <!-- ------------------------------------------------------------------ -->
     <section class="mb-5">
