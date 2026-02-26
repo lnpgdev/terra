@@ -1276,6 +1276,39 @@
       </div>
     </section>
     <!-- ------------------------------------------------------------------ -->
+    <!-- Scrollspy                                                            -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="mb-5">
+      <h2 class="mb-3">Scrollspy</h2>
+      <h6 class="text-muted mb-2">Nav pills tracking a scrollable region</h6>
+      <div class="d-flex gap-4 mb-4">
+        <nav id="scrollspyNav" style="min-width: 140px; position: sticky; top: 1rem; align-self: flex-start;">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item"><a class="nav-link" href="#spy1">Introduction</a></li>
+            <li class="nav-item"><a class="nav-link" href="#spy2">Features</a></li>
+            <li class="nav-item"><a class="nav-link" href="#spy3">Usage</a></li>
+            <li class="nav-item"><a class="nav-link" href="#spy4">Summary</a></li>
+          </ul>
+        </nav>
+        <div
+          data-bs-spy="scroll"
+          data-bs-target="#scrollspyNav"
+          data-bs-root-margin="0px 0px -40%"
+          style="height: 320px; overflow-y: scroll; flex: 1;"
+          tabindex="0"
+        >
+          <h5 id="spy1">Introduction</h5>
+          <p style="min-height: 120px;">Scrollspy observes the scroll position and updates the active nav link to match the visible section. It uses Bootstrap's ScrollSpy plugin under the hood.</p>
+          <h5 id="spy2">Features</h5>
+          <p style="min-height: 120px;">Supports configurable root margin and programmatic initialisation via <code>initScrollspy()</code>. Works with any scrollable container.</p>
+          <h5 id="spy3">Usage</h5>
+          <p style="min-height: 120px;">Add <code>data-bs-spy="scroll"</code> and <code>data-bs-target</code> to the scrollable container. Bootstrap auto-initialises. Use <code>initScrollspy()</code> for programmatic setup.</p>
+          <h5 id="spy4">Summary</h5>
+          <p style="min-height: 120px;">A lightweight wrapper — no additional CSS overrides needed. Bootstrap handles active-link highlighting via the <code>.active</code> class on the matching nav link.</p>
+        </div>
+      </div>
+    </section>
+    <!-- ------------------------------------------------------------------ -->
     <!-- Carousel                                                             -->
     <!-- ------------------------------------------------------------------ -->
     <section class="mb-5">

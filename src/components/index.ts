@@ -22,3 +22,4 @@ export * from './table/index';
 export * from './search-bar/index';
 export * from './select/index';
 export * from './carousel/index';
+export * from './scrollspy/index';
