@@ -1,0 +1,127 @@
+/**
+ * Terra UI Kit: Search Bar
+ *
+ * Custom component — not a Bootstrap wrapper. Uses Bootstrap CSS variables for
+ * colours and focus states. Two modes: single (whole query on submit) and multi
+ * (commits individual terms as token chips, submits the array).
+ */
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  background-color: var(--bs-body-bg);
+  overflow: hidden;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+
+  &:focus-within {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+  }
+}
+
+.search-bar-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0.375rem 0 0.375rem 0.75rem;
+  color: var(--bs-secondary-color);
+  pointer-events: none;
+}
+
+.search-bar-tokens {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0 0.25rem 0.5rem;
+}
+
+.search-bar-token {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.375rem;
+  background-color: var(--bs-secondary-bg);
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  font-size: 0.875em;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.search-bar-token-remove {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--bs-secondary-color);
+  line-height: 1;
+  font-size: 1em;
+
+  &:hover {
+    color: var(--bs-body-color);
+  }
+}
+
+.search-bar-input {
+  flex: 1;
+  min-width: 4rem;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 0.375rem 0.75rem;
+  color: var(--bs-body-color);
+  font-size: 1rem;
+  line-height: 1.5;
+
+  &::placeholder {
+    color: var(--bs-secondary-color);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+// Size variants
+
+.search-bar-sm {
+  .search-bar-icon {
+    padding: 0.25rem 0 0.25rem 0.5rem;
+  }
+
+  .search-bar-input {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+.search-bar-lg {
+  .search-bar-icon {
+    padding: 0.5rem 0 0.5rem 1rem;
+  }
+
+  .search-bar-input {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+  }
+}
+
+// Rounded (pill) variant
+
+.search-bar-rounded {
+  border-radius: 50rem;
+
+  .search-bar-token {
+    border-radius: 50rem;
+  }
+}
+
+// Disabled state
+
+.search-bar:has(.search-bar-input:disabled) {
+  opacity: 0.65;
+  pointer-events: none;
+}

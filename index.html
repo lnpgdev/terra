@@ -1276,6 +1276,80 @@
       </div>
     </section>
     <!-- ------------------------------------------------------------------ -->
+    <!-- Search Bar                                                           -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="mb-5">
+      <h2 class="mb-3">Search Bar</h2>
+
+      <h6 class="text-muted mb-2">Single mode</h6>
+      <div id="search-single" class="mb-4" style="max-width: 420px"></div>
+
+      <h6 class="text-muted mb-2">Multi mode (token chips)</h6>
+      <div id="search-multi" class="mb-4" style="max-width: 520px"></div>
+
+      <h6 class="text-muted mb-2">With visible label + small</h6>
+      <div id="search-labeled" class="mb-4" style="max-width: 360px"></div>
+
+      <h6 class="text-muted mb-2">Large + rounded</h6>
+      <div id="search-large" class="mb-4" style="max-width: 480px"></div>
+
+      <h6 class="text-muted mb-2">Disabled</h6>
+      <div id="search-disabled" class="mb-4" style="max-width: 420px"></div>
+
+      <script type="module">
+        import { createSearchBar } from '/src/components/search-bar/index.ts';
+
+        document.getElementById('search-single').appendChild(
+          createSearchBar({
+            mode: 'single',
+            placeholder: 'Search members\u2026',
+            ariaLabel: 'Search members',
+            onSubmit: (q) => console.log('Single submit:', q),
+          })
+        );
+
+        document.getElementById('search-multi').appendChild(
+          createSearchBar({
+            mode: 'multi',
+            placeholder: 'Add search term\u2026',
+            ariaLabel: 'Search',
+            onSubmit: (tokens) => console.log('Multi submit:', tokens),
+            onTokenAdd: (t) => console.log('Token added:', t),
+            onTokenRemove: (t) => console.log('Token removed:', t),
+          })
+        );
+
+        document.getElementById('search-labeled').appendChild(
+          createSearchBar({
+            mode: 'single',
+            label: 'Filter by name',
+            size: 'sm',
+            onSubmit: (q) => console.log('Labeled submit:', q),
+          })
+        );
+
+        document.getElementById('search-large').appendChild(
+          createSearchBar({
+            mode: 'single',
+            placeholder: 'Search\u2026',
+            ariaLabel: 'Search',
+            rounded: true,
+            size: 'lg',
+            onSubmit: (q) => console.log('Large submit:', q),
+          })
+        );
+
+        document.getElementById('search-disabled').appendChild(
+          createSearchBar({
+            mode: 'single',
+            placeholder: 'Search disabled\u2026',
+            ariaLabel: 'Search',
+            disabled: true,
+          })
+        );
+      </script>
+    </section>
+    <!-- ------------------------------------------------------------------ -->
     <!-- Table                                                                -->
     <!-- ------------------------------------------------------------------ -->
     <section class="mb-5">
