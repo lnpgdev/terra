@@ -1,6 +1,6 @@
 {
   "name": "@lnpg/terra",
-  "version": "0.29.0",
+  "version": "0.30.0",
   "description": "UI Kit for LNPG internal applications, built with Bootstrap compatibility.",
   "homepage": "https://github.com/lnpgdev/terra#readme",
   "bugs": {
@@ -167,6 +167,11 @@
       "types": "./dist/types/components/offcanvas/index.d.ts",
       "import": "./dist/components/offcanvas/index.es.js",
       "require": "./dist/components/offcanvas/index.cjs.js"
+    },
+    "./components/sidenav": {
+      "types": "./dist/types/components/sidenav/index.d.ts",
+      "import": "./dist/components/sidenav/index.es.js",
+      "require": "./dist/components/sidenav/index.cjs.js"
     }
   },
   "scripts": {

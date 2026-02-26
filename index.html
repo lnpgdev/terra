@@ -2185,5 +2185,90 @@
         </div>
       </div>
     </section>
+    <!-- ------------------------------------------------------------------ -->
+    <!-- SideNav                                                              -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="mb-5">
+      <h2 class="mb-3">SideNav</h2>
+      <p class="text-muted">
+        Fixed trigger tabs are visible at the viewport edges. Click them to open the panels.
+      </p>
+
+      <!-- Left-top: page navigation -->
+      <div class="sidenav sidenav-left-top sidenav-rounded" id="sidenavLeft">
+        <button
+          type="button"
+          class="sidenav-tab"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#sidenavLeftPanel"
+          aria-controls="sidenavLeftPanel"
+        >
+          <span class="sidenav-tab-content">
+            <span class="sidenav-tab-icon">&#9776;</span>
+            <span class="sidenav-tab-label">Nav</span>
+          </span>
+        </button>
+        <div
+          class="offcanvas offcanvas-start"
+          tabindex="-1"
+          id="sidenavLeftPanel"
+          aria-labelledby="sidenavLeftTitle"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="sidenavLeftTitle">Navigation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="nav flex-column gap-1">
+              <li><a href="#" class="nav-link">Dashboard</a></li>
+              <li><a href="#" class="nav-link">Reports</a></li>
+              <li><a href="#" class="nav-link">Settings</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right (centred): call queue -->
+      <div class="sidenav sidenav-right sidenav-rounded" id="sidenavRight">
+        <button
+          type="button"
+          class="sidenav-tab"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#sidenavRightPanel"
+          aria-controls="sidenavRightPanel"
+        >
+          <span class="sidenav-tab-content">
+            <span class="sidenav-tab-icon">&#128222;</span>
+            <span class="sidenav-tab-label">Calls</span>
+          </span>
+        </button>
+        <div
+          class="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="sidenavRightPanel"
+          aria-labelledby="sidenavRightTitle"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="sidenavRightTitle">Call Queue</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <p class="text-muted small mb-3">3 active calls</p>
+            <div class="card mb-2 p-3">
+              <div class="fw-semibold">John Smith</div>
+              <div class="text-muted small">Inbound &middot; 00:42</div>
+            </div>
+            <div class="card mb-2 p-3">
+              <div class="fw-semibold">Jane Doe</div>
+              <div class="text-muted small">Outbound &middot; 01:15</div>
+            </div>
+            <div class="card mb-2 p-3">
+              <div class="fw-semibold">Bob Brown</div>
+              <div class="text-muted small">Inbound &middot; 00:07</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
