@@ -2121,5 +2121,69 @@
         </a>
       </div>
     </section>
+    <!-- ------------------------------------------------------------------ -->
+    <!-- Offcanvas                                                            -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="mb-5">
+      <h2 class="mb-3">Offcanvas</h2>
+
+      <h6 class="text-muted mb-2">Start (left)</h6>
+      <div class="mb-4">
+        <button type="button" class="btn btn-primary" data-lnpg-target="offcanvasStart">
+          Open Left Panel
+        </button>
+        <div id="offcanvasStart" data-lnpg-placement="start" aria-labelledby="offcanvasStartTitle">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasStartTitle">Left Panel</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <p>This panel slides in from the left. Used for page navigation or filters.</p>
+          </div>
+        </div>
+      </div>
+
+      <h6 class="text-muted mb-2">End (right)</h6>
+      <div class="mb-4">
+        <button type="button" class="btn btn-primary" data-lnpg-target="offcanvasEnd">
+          Open Right Panel
+        </button>
+        <div id="offcanvasEnd" data-lnpg-placement="end" aria-labelledby="offcanvasEndTitle">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasEndTitle">Right Panel</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <p>This panel slides in from the right. Used for call queues or secondary content.</p>
+          </div>
+          <div class="offcanvas-footer">
+            <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="offcanvas">Cancel</button>
+            <button type="button" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+      </div>
+
+      <h6 class="text-muted mb-2">No backdrop, body scroll allowed</h6>
+      <div class="mb-4">
+        <button type="button" class="btn btn-outline-secondary" data-lnpg-target="offcanvasScroll">
+          Open (scroll + no backdrop)
+        </button>
+        <div
+          id="offcanvasScroll"
+          data-lnpg-placement="start"
+          data-lnpg-backdrop="false"
+          data-lnpg-scroll="true"
+          aria-labelledby="offcanvasScrollTitle"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasScrollTitle">No Backdrop</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <p>Page scrolling is allowed while this panel is open, and there is no backdrop overlay.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
