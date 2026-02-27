@@ -145,14 +145,37 @@ export function switchModalPage(targetPageId: string): void {
   const targetIndex = sourcePages.indexOf(targetPage);
   if (targetIndex === -1) return;
 
-  // Sync ALL .modal-pages containers within the same modal to the same index.
-  // This keeps body pages and footer pages in lockstep without extra attributes.
   const parentModal = sourceContainer.closest<HTMLElement>(`.${modal.base}`);
   if (!parentModal) return;
 
+  // Switch all .modal-pages containers in the modal to the same index.
   parentModal.querySelectorAll<HTMLElement>(`.${modal.pages}`).forEach((container) => {
     const pages = Array.from(container.querySelectorAll<HTMLElement>(`:scope > .${modal.page}`));
     pages.forEach((page, i) => page.classList.toggle('active', i === targetIndex));
+  });
+
+  // Update prev/next button visibility.
+  _updatePageNav(parentModal, targetIndex, sourcePages.length);
+}
+
+/**
+ * Updates the visibility of `[data-lnpg-modal-prev]` and
+ * `[data-lnpg-modal-next]` buttons within a modal based on the current page.
+ * @internal
+ */
+function _updatePageNav(parentModal: HTMLElement, currentIndex: number, total: number): void {
+  const isFirst = currentIndex === 0;
+  const isLast = currentIndex === total - 1;
+
+  parentModal.querySelectorAll<HTMLElement>('[data-lnpg-modal-prev]').forEach((btn) => {
+    btn.classList.toggle('d-none', isFirst);
+  });
+  parentModal.querySelectorAll<HTMLElement>('[data-lnpg-modal-next]').forEach((btn) => {
+    btn.classList.toggle('d-none', isLast);
+  });
+  // data-lnpg-modal-last: visible only on the final page (e.g. a Save button).
+  parentModal.querySelectorAll<HTMLElement>('[data-lnpg-modal-last]').forEach((btn) => {
+    btn.classList.toggle('d-none', !isLast);
   });
 }
 
@@ -163,7 +186,10 @@ export function switchModalPage(targetPageId: string): void {
  *   `data-bs-toggle="modal"` / `data-bs-target`.
  * - Translates `data-lnpg-dismiss="modal"` to `data-bs-dismiss="modal"`.
  * - Applies the `.fade` class to modals with `data-lnpg-fade="true"`.
- * - Registers a delegated click handler for `data-lnpg-modal-page` toggles.
+ * - Registers delegated click handlers for `data-lnpg-modal-page`,
+ *   `data-lnpg-modal-prev`, and `data-lnpg-modal-next` toggles.
+ * - Initialises `[data-lnpg-modal-prev]` / `[data-lnpg-modal-next]` button
+ *   visibility based on the initially active page.
  *
  * Runs automatically on `DOMContentLoaded`. Call manually after dynamically
  * inserting modal elements into the DOM.
@@ -193,19 +219,68 @@ export function initModals(): void {
   document
     .querySelectorAll<HTMLElement>('[data-lnpg-dismiss="modal"]')
     .forEach((el) => el.setAttribute('data-bs-dismiss', 'modal'));
+
+  // Initialise prev/next button visibility for any paged modals in the DOM.
+  document.querySelectorAll<HTMLElement>(`.${modal.base}`).forEach((modalEl) => {
+    const firstContainer = modalEl.querySelector<HTMLElement>(`.${modal.pages}`);
+    if (!firstContainer) return;
+    const pages = firstContainer.querySelectorAll<HTMLElement>(`:scope > .${modal.page}`);
+    const activeIndex = Array.from(pages).findIndex((p) => p.classList.contains('active'));
+    _updatePageNav(modalEl, activeIndex === -1 ? 0 : activeIndex, pages.length);
+  });
 }
 
-// Delegated click handler for modal page toggles — works for dynamically
-// inserted modals too, since it listens on the document.
+// Delegated click handlers — listen on document so they work for dynamically
+// inserted modals too.
 if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
     initModals();
 
     document.addEventListener('click', (e) => {
-      const toggle = (e.target as HTMLElement).closest<HTMLElement>('[data-lnpg-modal-page]');
-      if (!toggle) return;
-      const pageId = toggle.getAttribute('data-lnpg-modal-page');
-      if (pageId) switchModalPage(pageId);
+      const target = e.target as HTMLElement;
+
+      // data-lnpg-modal-page: jump to a named page.
+      const pageToggle = target.closest<HTMLElement>('[data-lnpg-modal-page]');
+      if (pageToggle) {
+        const pageId = pageToggle.getAttribute('data-lnpg-modal-page');
+        if (pageId) switchModalPage(pageId);
+        return;
+      }
+
+      // data-lnpg-modal-prev: go to the previous page.
+      const prevBtn = target.closest<HTMLElement>('[data-lnpg-modal-prev]');
+      if (prevBtn) {
+        const parentModal = prevBtn.closest<HTMLElement>(`.${modal.base}`);
+        if (!parentModal) return;
+        const container = parentModal.querySelector<HTMLElement>(`.${modal.pages}`);
+        if (!container) return;
+        const pages = Array.from(
+          container.querySelectorAll<HTMLElement>(`:scope > .${modal.page}`),
+        );
+        const activeIndex = pages.findIndex((p) => p.classList.contains('active'));
+        if (activeIndex > 0) {
+          const prevPage = pages[activeIndex - 1];
+          if (prevPage.id) switchModalPage(prevPage.id);
+        }
+        return;
+      }
+
+      // data-lnpg-modal-next: go to the next page.
+      const nextBtn = target.closest<HTMLElement>('[data-lnpg-modal-next]');
+      if (nextBtn) {
+        const parentModal = nextBtn.closest<HTMLElement>(`.${modal.base}`);
+        if (!parentModal) return;
+        const container = parentModal.querySelector<HTMLElement>(`.${modal.pages}`);
+        if (!container) return;
+        const pages = Array.from(
+          container.querySelectorAll<HTMLElement>(`:scope > .${modal.page}`),
+        );
+        const activeIndex = pages.findIndex((p) => p.classList.contains('active'));
+        if (activeIndex < pages.length - 1) {
+          const nextPage = pages[activeIndex + 1];
+          if (nextPage.id) switchModalPage(nextPage.id);
+        }
+      }
     });
   });
 }
@@ -386,6 +461,21 @@ export function createModalPage(options: ModalPageOptions): HTMLElement {
 // ---------------------------------------------------------------------------
 // Constants
 // ---------------------------------------------------------------------------
+
+/**
+ * Data attribute names used by the modal page navigation system.
+ * @category Constants
+ */
+export const modalPageAttrs = {
+  /** Attribute on a button that jumps to a named page by ID. */
+  page: 'data-lnpg-modal-page',
+  /** Attribute on a button that navigates to the previous page. Hidden on page 1. */
+  prev: 'data-lnpg-modal-prev',
+  /** Attribute on a button that navigates to the next page. Hidden on the last page. */
+  next: 'data-lnpg-modal-next',
+  /** Attribute on a button that is only visible on the last page (e.g. Save). */
+  last: 'data-lnpg-modal-last',
+} as const;
 
 /** CSS class and selector references for the Modal component. @category Constants */
 export const modal = {

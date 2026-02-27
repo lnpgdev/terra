@@ -2318,20 +2318,16 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <!-- Footer pages sync with body pages by index — no extra attributes needed. -->
-                <div class="modal-pages">
-                  <div class="modal-page active">
-                    <button type="button" class="btn btn-primary btn-sm" data-lnpg-modal-page="userPage2">
-                      Next &rarr;
-                    </button>
-                  </div>
-                  <div class="modal-page">
-                    <button type="button" class="btn btn-outline-secondary btn-sm me-2" data-lnpg-modal-page="userPage1">
-                      &larr; Back
-                    </button>
-                    <button type="button" class="btn btn-success btn-sm">Save</button>
-                  </div>
-                </div>
+                <!-- Prev hidden on first page, Next hidden on last page — managed automatically. -->
+                <button type="button" class="btn btn-outline-secondary btn-sm me-auto d-none" data-lnpg-modal-prev>
+                  &larr; Back
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" data-lnpg-modal-next>
+                  Next &rarr;
+                </button>
+                <button type="button" class="btn btn-success btn-sm d-none" data-lnpg-modal-last>
+                  Save
+                </button>
               </div>
             </div>
           </div>
