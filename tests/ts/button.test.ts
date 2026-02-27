@@ -68,4 +68,21 @@ describe('createButton', () => {
     el.click();
     expect(onClick).toHaveBeenCalledOnce();
   });
+
+  it('sets reset type', () => {
+    const el = createButton({ type: 'reset' });
+    expect(el.type).toBe('reset');
+  });
+
+  it('does not throw when no onClick is provided', () => {
+    expect(() => {
+      const el = createButton();
+      el.click();
+    }).not.toThrow();
+  });
+
+  it('applies no extra class when no tone is given', () => {
+    const el = createButton({ variant: 'solid' });
+    expect(el.className).toBe('btn');
+  });
 });

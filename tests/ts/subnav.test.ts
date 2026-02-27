@@ -66,4 +66,10 @@ describe('createSubNavLink', () => {
     expect(spans[0].textContent).toBe('All');
     expect(spans[1].innerHTML).toBe(icon);
   });
+
+  it('renders only label span when icon is not provided', () => {
+    const el = createSubNavLink({ label: 'Home', href: '/' }, 'left');
+    expect(el.querySelectorAll('span').length).toBe(1);
+    expect(el.querySelector('span')?.textContent).toBe('Home');
+  });
 });

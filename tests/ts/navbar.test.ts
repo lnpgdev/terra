@@ -59,6 +59,16 @@ describe('createNavbar', () => {
     const el = createNavbar({ expand: false });
     expect(el.className).not.toContain('navbar-expand');
   });
+
+  it('applies expand-sm class', () => {
+    const el = createNavbar({ expand: 'sm' });
+    expect(el.classList.contains('navbar-expand-sm')).toBe(true);
+  });
+
+  it('applies expand-md class', () => {
+    const el = createNavbar({ expand: 'md' });
+    expect(el.classList.contains('navbar-expand-md')).toBe(true);
+  });
 });
 
 describe('createNavbarBrand', () => {

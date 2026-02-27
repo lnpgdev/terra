@@ -63,4 +63,15 @@ describe('createButtonGroup', () => {
     const el = createButtonGroup({ buttons: twoButtons, ariaLabel: 'Actions' });
     expect(el.getAttribute('aria-label')).toBe('Actions');
   });
-});
+
+  it('applies lg size to group and buttons', () => {
+    const el = createButtonGroup({ buttons: twoButtons, size: 'lg' });
+    expect(el.classList.contains('btn-group-lg')).toBe(true);
+    el.querySelectorAll('button').forEach((btn) => expect(btn.classList.contains('btn-lg')).toBe(true));
+  });
+
+  it('uses default aria-label when none is provided', () => {
+    const el = createButtonGroup({ buttons: twoButtons });
+    expect(el.getAttribute('aria-label')).toBe('Button group');
+  });
+});;

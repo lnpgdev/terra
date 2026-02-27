@@ -42,4 +42,19 @@ describe('createHr', () => {
     expect(el.classList.contains('hr-danger')).toBe(true);
     expect(el.classList.contains('hr-md')).toBe(true);
   });
+
+  it('applies sm size class', () => {
+    const el = createHr({ size: 'sm' });
+    expect(el.classList.contains('hr-sm')).toBe(true);
+  });
+
+  it('applies warning tone', () => {
+    const el = createHr({ tone: 'warning' });
+    expect(el.classList.contains('hr-warning')).toBe(true);
+  });
+
+  it('applies dark tone', () => {
+    const el = createHr({ tone: 'dark' });
+    expect(el.classList.contains('hr-dark')).toBe(true);
+  });
 });

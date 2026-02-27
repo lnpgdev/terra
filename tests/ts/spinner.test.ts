@@ -49,4 +49,15 @@ describe('createSpinner', () => {
     const hidden = el.querySelector('.visually-hidden');
     expect(hidden?.textContent).toBe('Processing...');
   });
+
+  it('grow variant does not apply border class', () => {
+    const el = createSpinner({ variant: 'grow' });
+    expect(el.classList.contains('spinner-border')).toBe(false);
+    expect(el.classList.contains('spinner-grow')).toBe(true);
+  });
+
+  it('applies color class for grow variant too', () => {
+    const el = createSpinner({ variant: 'grow', color: 'text-success' });
+    expect(el.classList.contains('text-success')).toBe(true);
+  });
 });

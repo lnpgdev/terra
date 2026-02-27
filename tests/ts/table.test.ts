@@ -52,6 +52,16 @@ describe('createTable', () => {
     const el = createTable({ stickyHeader: true });
     expect(el.classList.contains('table-scrollable')).toBe(true);
   });
+
+  it('applies bordered class', () => {
+    const el = createTable({ bordered: true });
+    expect(el.classList.contains('table-bordered')).toBe(true);
+  });
+
+  it('applies borderless class', () => {
+    const el = createTable({ borderless: true });
+    expect(el.classList.contains('table-borderless')).toBe(true);
+  });
 });
 
 describe('createTableRow', () => {
@@ -88,9 +98,29 @@ describe('createTableCell', () => {
     expect(el.classList.contains('text-end')).toBe(true);
   });
 
+  it('applies text-center for center align', () => {
+    const el = createTableCell('42', { align: 'center' });
+    expect(el.classList.contains('text-center')).toBe(true);
+  });
+
+  it('applies text-start for left align', () => {
+    const el = createTableCell('42', { align: 'left' });
+    expect(el.classList.contains('text-start')).toBe(true);
+  });
+
   it('applies text-end for numeric', () => {
     const el = createTableCell('42', { numeric: true });
     expect(el.classList.contains('text-end')).toBe(true);
+  });
+
+  it('applies text-truncate when truncate=true', () => {
+    const el = createTableCell('Long text', { truncate: true });
+    expect(el.classList.contains('text-truncate')).toBe(true);
+  });
+
+  it('applies text-nowrap when nowrap=true', () => {
+    const el = createTableCell('No wrap', { nowrap: true });
+    expect(el.classList.contains('text-nowrap')).toBe(true);
   });
 
   it('sets contenteditable when isEditable', () => {
@@ -105,6 +135,16 @@ describe('createTableHeadCell', () => {
     expect(el.tagName).toBe('TH');
     expect(el.scope).toBe('col');
     expect(el.textContent).toBe('Name');
+  });
+
+  it('applies text-end for right align', () => {
+    const el = createTableHeadCell('Amount', { align: 'right' });
+    expect(el.classList.contains('text-end')).toBe(true);
+  });
+
+  it('applies text-end for numeric', () => {
+    const el = createTableHeadCell('Count', { numeric: true });
+    expect(el.classList.contains('text-end')).toBe(true);
   });
 });
 

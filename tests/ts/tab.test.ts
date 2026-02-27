@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 vi.mock('bootstrap/js/dist/tab', () => ({
   default: {
@@ -6,15 +6,23 @@ vi.mock('bootstrap/js/dist/tab', () => ({
   },
 }));
 
-import { createTabs, createTabContent, tab } from '../../src/components/tab/index';
+import BsTab from 'bootstrap/js/dist/tab';
+import { createTabs, createTabContent, initTabs, tab } from '../../src/components/tab/index';
 
 describe('tab constants', () => {
   it('exports expected class names', () => {
     expect(tab.nav).toBe('nav');
     expect(tab.variants.tabs).toBe('nav-tabs');
     expect(tab.variants.pills).toBe('nav-pills');
+    expect(tab.variants.underline).toBe('nav-underline');
     expect(tab.item).toBe('nav-item');
     expect(tab.link).toBe('nav-link');
+    expect(tab.sizes.sm).toBe('nav-sm');
+    expect(tab.sizes.lg).toBe('nav-lg');
+    expect(tab.align.centre).toBe('justify-content-center');
+    expect(tab.align.end).toBe('justify-content-end');
+    expect(tab.align.spread).toBe('nav-fill');
+    expect(tab.scroll).toBe('nav-scroll');
     expect(tab.content).toBe('tab-content');
     expect(tab.pane).toBe('tab-pane');
   });
@@ -72,6 +80,58 @@ describe('createTabs', () => {
   it('applies centre alignment', () => {
     const el = createTabs({ tabs: sampleTabs, align: 'centre' });
     expect(el.classList.contains('justify-content-center')).toBe(true);
+  });
+
+  it('applies end alignment', () => {
+    const el = createTabs({ tabs: sampleTabs, align: 'end' });
+    expect(el.classList.contains('justify-content-end')).toBe(true);
+  });
+
+  it('applies spread alignment', () => {
+    const el = createTabs({ tabs: sampleTabs, align: 'spread' });
+    expect(el.classList.contains('nav-fill')).toBe(true);
+  });
+
+  it('applies sm size class', () => {
+    const el = createTabs({ tabs: sampleTabs, size: 'sm' });
+    expect(el.classList.contains('nav-sm')).toBe(true);
+  });
+
+  it('applies lg size class', () => {
+    const el = createTabs({ tabs: sampleTabs, size: 'lg' });
+    expect(el.classList.contains('nav-lg')).toBe(true);
+  });
+
+  it('applies underline variant', () => {
+    const el = createTabs({ tabs: sampleTabs, variant: 'underline' });
+    expect(el.classList.contains('nav-underline')).toBe(true);
+  });
+
+  it('does not set data-bs-toggle on buttons in links mode', () => {
+    const linkTabs = [{ id: 'l1', label: 'Home', href: '/home' }];
+    const el = createTabs({ tabs: linkTabs, mode: 'links' });
+    const anchor = el.querySelector('a.nav-link');
+    expect(anchor?.getAttribute('data-bs-toggle')).toBeNull();
+  });
+});
+
+describe('initTabs', () => {
+  beforeEach(() => {
+    document.body.innerHTML = '';
+    vi.mocked(BsTab.getOrCreateInstance).mockClear();
+  });
+
+  it('calls BsTab.getOrCreateInstance for each [data-bs-toggle="tab"] element', () => {
+    const btn = document.createElement('button');
+    btn.setAttribute('data-bs-toggle', 'tab');
+    document.body.appendChild(btn);
+
+    initTabs();
+    expect(BsTab.getOrCreateInstance).toHaveBeenCalledWith(btn);
+  });
+
+  it('does not throw when no tab elements are present', () => {
+    expect(() => initTabs()).not.toThrow();
   });
 });
 

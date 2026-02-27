@@ -47,3 +47,28 @@ describe('createMemberHeaderRight', () => {
     expect(el.classList.contains('member-header-right')).toBe(true);
   });
 });
+
+describe('MemberHeader composition', () => {
+  it('can accept all three slot elements as children', () => {
+    const header = createMemberHeader();
+    const left = createMemberHeaderLeft();
+    const center = createMemberHeaderCenter();
+    const right = createMemberHeaderRight();
+
+    header.appendChild(left);
+    header.appendChild(center);
+    header.appendChild(right);
+
+    expect(header.querySelector('.member-header-left')).not.toBeNull();
+    expect(header.querySelector('.member-header-center')).not.toBeNull();
+    expect(header.querySelector('.member-header-right')).not.toBeNull();
+  });
+
+  it('slots accept arbitrary child content', () => {
+    const center = createMemberHeaderCenter();
+    const heading = document.createElement('h1');
+    heading.textContent = 'Page Title';
+    center.appendChild(heading);
+    expect(center.querySelector('h1')?.textContent).toBe('Page Title');
+  });
+});

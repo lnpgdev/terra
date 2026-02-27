@@ -42,4 +42,16 @@ describe('createCloseButton', () => {
     btn.click();
     expect(onClick).toHaveBeenCalledOnce();
   });
+
+  it('does not throw when no onClick is provided', () => {
+    expect(() => {
+      const btn = createCloseButton();
+      btn.click();
+    }).not.toThrow();
+  });
+
+  it('white=false does not apply white class', () => {
+    const btn = createCloseButton({ white: false });
+    expect(btn.classList.contains('btn-close-white')).toBe(false);
+  });
 });

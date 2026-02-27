@@ -70,4 +70,21 @@ describe('createPagination', () => {
     const el = createPagination({ items: [{ label: '...' }] });
     expect(el.querySelector('span.page-link')).not.toBeNull();
   });
+
+  it('applies lg size class', () => {
+    const el = createPagination({ items, size: 'lg' });
+    expect(el.querySelector('ul')?.classList.contains('pagination-lg')).toBe(true);
+  });
+
+  it('applies end alignment class', () => {
+    const el = createPagination({ items, align: 'end' });
+    expect(el.querySelector('ul')?.classList.contains('justify-content-end')).toBe(true);
+  });
+
+  it('does not add alignment class for start (default)', () => {
+    const el = createPagination({ items });
+    const ul = el.querySelector('ul');
+    expect(ul?.classList.contains('justify-content-center')).toBe(false);
+    expect(ul?.classList.contains('justify-content-end')).toBe(false);
+  });
 });

@@ -61,4 +61,14 @@ describe('createBreadcrumb', () => {
     expect(a?.classList.contains('disabled')).toBe(true);
     expect(a?.getAttribute('aria-disabled')).toBe('true');
   });
+
+  it('does not set divider CSS var when divider is not specified', () => {
+    const el = createBreadcrumb({ items: [] });
+    expect((el as HTMLElement).style.getPropertyValue('--bs-breadcrumb-divider')).toBe('');
+  });
+
+  it('renders span (not anchor) for non-active, non-link item', () => {
+    const el = createBreadcrumb({ items: [{ label: 'Current', active: true }] });
+    expect(el.querySelector('a')).toBeNull();
+  });
 });

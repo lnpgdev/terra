@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 vi.mock('bootstrap/js/dist/collapse', () => ({
   default: {
@@ -6,12 +6,14 @@ vi.mock('bootstrap/js/dist/collapse', () => ({
   },
 }));
 
-import { createCollapseToggle, createCollapse, collapse } from '../../src/components/collapse/index';
+import BsCollapse from 'bootstrap/js/dist/collapse';
+import { createCollapseToggle, createCollapse, collapse, initCollapses } from '../../src/components/collapse/index';
 
 describe('collapse constants', () => {
   it('exports expected class names', () => {
     expect(collapse.base).toBe('collapse');
     expect(collapse.show).toBe('show');
+    expect(collapse.collapsing).toBe('collapsing');
     expect(collapse.toggle).toBe('collapse');
     expect(collapse.selector).toBe('[data-bs-toggle="collapse"]');
   });
@@ -71,5 +73,34 @@ describe('createCollapse', () => {
   it('adds show class when open=true', () => {
     const el = createCollapse({ id: 'myPanel', open: true });
     expect(el.classList.contains('show')).toBe(true);
+  });
+});
+
+describe('initCollapses', () => {
+  beforeEach(() => {
+    document.body.innerHTML = '';
+    vi.mocked(BsCollapse.getOrCreateInstance).mockClear();
+  });
+
+  it('calls BsCollapse.getOrCreateInstance for each target panel', () => {
+    const panel = document.createElement('div');
+    panel.id = 'testPanel';
+    document.body.appendChild(panel);
+
+    const toggle = document.createElement('button');
+    toggle.setAttribute('data-bs-toggle', 'collapse');
+    toggle.setAttribute('data-bs-target', '#testPanel');
+    document.body.appendChild(toggle);
+
+    initCollapses();
+    expect(BsCollapse.getOrCreateInstance).toHaveBeenCalledWith(panel, { toggle: false });
+  });
+
+  it('ignores toggles with no target', () => {
+    const toggle = document.createElement('button');
+    toggle.setAttribute('data-bs-toggle', 'collapse');
+    document.body.appendChild(toggle);
+
+    expect(() => initCollapses()).not.toThrow();
   });
 });

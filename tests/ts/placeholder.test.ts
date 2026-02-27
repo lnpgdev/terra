@@ -6,6 +6,9 @@ describe('placeholder constants', () => {
     expect(placeholder.base).toBe('placeholder');
     expect(placeholder.glow).toBe('placeholder-glow');
     expect(placeholder.wave).toBe('placeholder-wave');
+    expect(placeholder.circle).toBe('placeholder-circle');
+    expect(placeholder.square).toBe('placeholder-square');
+    expect(placeholder.triangle).toBe('placeholder-triangle');
   });
 });
 
@@ -50,5 +53,22 @@ describe('createPlaceholder', () => {
   it('sets inline width style', () => {
     const el = createPlaceholder({ width: '3rem' });
     expect(el.style.width).toBe('3rem');
+  });
+
+  it('does not apply col class when cols is not specified', () => {
+    const el = createPlaceholder();
+    const colClass = Array.from(el.classList).find((c) => c.startsWith('col-'));
+    expect(colClass).toBeUndefined();
+  });
+
+  it('does not apply shape class when shape is not specified', () => {
+    const el = createPlaceholder();
+    expect(el.classList.contains('placeholder-circle')).toBe(false);
+    expect(el.classList.contains('placeholder-square')).toBe(false);
+  });
+
+  it('applies col-12 for full-width columns', () => {
+    const el = createPlaceholder({ cols: 12 });
+    expect(el.classList.contains('col-12')).toBe(true);
   });
 });

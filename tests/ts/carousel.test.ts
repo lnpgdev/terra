@@ -31,6 +31,11 @@ describe('createCarouselSlide', () => {
     expect(el.classList.contains('active')).toBe(true);
   });
 
+  it('does not add active class by default', () => {
+    const el = createCarouselSlide({ content: 'Slide' });
+    expect(el.classList.contains('active')).toBe(false);
+  });
+
   it('renders string content as text', () => {
     const el = createCarouselSlide({ content: 'Hello Slide' });
     expect(el.textContent).toBe('Hello Slide');
@@ -77,5 +82,15 @@ describe('createCarousel', () => {
   it('sets data-lnpg-autoplay when autoplay=true', () => {
     const el = createCarousel({ id: 'c', slides: [{ content: 'A' }], autoplay: true });
     expect(el.getAttribute('data-lnpg-autoplay')).toBe('true');
+  });
+
+  it('does not set data-lnpg-autoplay when autoplay is not specified', () => {
+    const el = createCarousel({ id: 'c', slides: [{ content: 'A' }] });
+    expect(el.getAttribute('data-lnpg-autoplay')).toBeNull();
+  });
+
+  it('renders correct number of slides', () => {
+    const el = createCarousel({ id: 'c', slides: [{ content: 'A', active: true }, { content: 'B' }, { content: 'C' }] });
+    expect(el.querySelectorAll('.carousel-item').length).toBe(3);
   });
 });

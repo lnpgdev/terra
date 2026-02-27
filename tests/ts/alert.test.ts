@@ -11,8 +11,12 @@ import { createAlert, alert } from '../../src/components/alert/index';
 describe('alert constants', () => {
   it('exports expected class names', () => {
     expect(alert.base).toBe('alert');
+    expect(alert.heading).toBe('alert-heading');
+    expect(alert.link).toBe('alert-link');
     expect(alert.variants.success).toBe('alert-success');
     expect(alert.variants.danger).toBe('alert-danger');
+    expect(alert.variants.warning).toBe('alert-warning');
+    expect(alert.variants.info).toBe('alert-info');
     expect(alert.dismissible).toBe('alert-dismissible');
     expect(alert.bordered).toBe('alert-bordered');
   });
@@ -53,5 +57,21 @@ describe('createAlert', () => {
   it('adds bordered class', () => {
     const el = createAlert({ variant: 'secondary', message: 'Hi', href: '#', bordered: true });
     expect(el.classList.contains('alert-bordered')).toBe(true);
+  });
+
+  it('renders correct link text', () => {
+    const el = createAlert({ variant: 'success', message: 'Done', href: '/details' });
+    const link = el.querySelector('a.alert-link');
+    expect(link?.textContent).toBe('Read more.');
+  });
+
+  it('renders warning variant', () => {
+    const el = createAlert({ variant: 'warning', message: 'Watch out', href: '#' });
+    expect(el.classList.contains('alert-warning')).toBe(true);
+  });
+
+  it('renders info variant', () => {
+    const el = createAlert({ variant: 'info', message: 'FYI', href: '#' });
+    expect(el.classList.contains('alert-info')).toBe(true);
   });
 });

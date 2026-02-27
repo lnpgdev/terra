@@ -23,6 +23,8 @@ describe('offcanvas constants', () => {
     expect(offcanvas.footer).toBe('offcanvas-footer');
     expect(offcanvas.placements.start).toBe('offcanvas-start');
     expect(offcanvas.placements.end).toBe('offcanvas-end');
+    expect(offcanvas.placements.top).toBe('offcanvas-top');
+    expect(offcanvas.placements.bottom).toBe('offcanvas-bottom');
   });
 });
 
@@ -64,6 +66,16 @@ describe('createOffcanvas', () => {
   it('sets aria-labelledby when provided', () => {
     const el = createOffcanvas({ id: 'p', labelledBy: 'pTitle' });
     expect(el.getAttribute('aria-labelledby')).toBe('pTitle');
+  });
+
+  it('does not set aria-labelledby when not provided', () => {
+    const el = createOffcanvas({ id: 'p' });
+    expect(el.getAttribute('aria-labelledby')).toBeNull();
+  });
+
+  it('defaults to start placement', () => {
+    const el = createOffcanvas({ id: 'p' });
+    expect(el.classList.contains('offcanvas-start')).toBe(true);
   });
 });
 

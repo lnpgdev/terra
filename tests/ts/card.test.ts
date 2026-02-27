@@ -4,12 +4,23 @@ import { createCard, createCardAccent, card } from '../../src/components/card/in
 describe('card constants', () => {
   it('exports expected class names', () => {
     expect(card.base).toBe('card');
+    expect(card.variants.outlined).toBe('card-outlined');
     expect(card.variants.elevated).toBe('card-elevated');
+    expect(card.variants.muted).toBe('card-muted');
+    expect(card.sizes.sm).toBe('card-sm');
+    expect(card.sizes.lg).toBe('card-lg');
+    expect(card.radius.sm).toBe('card-radius-sm');
     expect(card.radius.md).toBe('card-radius-md');
+    expect(card.radius.lg).toBe('card-radius-lg');
     expect(card.hasAccent).toBe('card-has-accent');
     expect(card.accent.base).toBe('card-accent');
     expect(card.accent.tones.success).toBe('card-accent-success');
+    expect(card.accent.tones.neutral).toBe('card-accent-neutral');
     expect(card.accent.positions.left).toBe('card-accent-left');
+    expect(card.accent.positions.bottom).toBe('card-accent-bottom');
+    expect(card.accent.thickness.xs).toBe('card-accent-xs');
+    expect(card.accent.thickness.sm).toBe('card-accent-sm');
+    expect(card.accent.thickness.md).toBe('card-accent-md');
   });
 });
 
@@ -41,6 +52,16 @@ describe('createCardAccent', () => {
     const el = createCardAccent({ position: 'top', tone: 'danger', ariaLabel: 'Danger state' });
     expect(el.getAttribute('aria-label')).toBe('Danger state');
     expect(el.getAttribute('aria-hidden')).toBeNull();
+  });
+
+  it('applies xs thickness', () => {
+    const el = createCardAccent({ position: 'top', tone: 'info', thickness: 'xs' });
+    expect(el.classList.contains('card-accent-xs')).toBe(true);
+  });
+
+  it('applies bottom position', () => {
+    const el = createCardAccent({ position: 'bottom', tone: 'warning' });
+    expect(el.classList.contains('card-accent-bottom')).toBe(true);
   });
 });
 
@@ -81,5 +102,25 @@ describe('createCard', () => {
   it('applies sm size', () => {
     const el = createCard({ size: 'sm' });
     expect(el.classList.contains('card-sm')).toBe(true);
+  });
+
+  it('applies lg size', () => {
+    const el = createCard({ size: 'lg' });
+    expect(el.classList.contains('card-lg')).toBe(true);
+  });
+
+  it('applies outlined variant class', () => {
+    const el = createCard({ variant: 'outlined' });
+    expect(el.classList.contains('card-outlined')).toBe(true);
+  });
+
+  it('applies muted variant class', () => {
+    const el = createCard({ variant: 'muted' });
+    expect(el.classList.contains('card-muted')).toBe(true);
+  });
+
+  it('applies sm radius class', () => {
+    const el = createCard({ radius: 'sm' });
+    expect(el.classList.contains('card-radius-sm')).toBe(true);
   });
 });

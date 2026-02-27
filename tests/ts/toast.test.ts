@@ -11,9 +11,15 @@ import { createToast, createToastContainer, toast } from '../../src/components/t
 describe('toast constants', () => {
   it('exports expected class names', () => {
     expect(toast.base).toBe('toast');
+    expect(toast.header).toBe('toast-header');
+    expect(toast.body).toBe('toast-body');
+    expect(toast.title).toBe('toast-title');
+    expect(toast.meta).toBe('toast-meta');
+    expect(toast.container).toBe('toast-container');
     expect(toast.variants.success).toBe('toast-success');
     expect(toast.variants.danger).toBe('toast-danger');
-    expect(toast.container).toBe('toast-container');
+    expect(toast.variants.warning).toBe('toast-warning');
+    expect(toast.variants.info).toBe('toast-info');
   });
 });
 
@@ -61,6 +67,32 @@ describe('createToast', () => {
     expect(el.getAttribute('role')).toBe('status');
     expect(el.getAttribute('aria-live')).toBe('polite');
   });
+
+  it('sets aria-atomic=true', () => {
+    const el = createToast({ body: 'B' });
+    expect(el.getAttribute('aria-atomic')).toBe('true');
+  });
+
+  it('applies no variant class when variant is omitted', () => {
+    const el = createToast({ body: 'B' });
+    expect(el.className).toBe('toast');
+  });
+
+  it('renders meta text when provided', () => {
+    const el = createToast({ body: 'B', title: 'T', meta: 'Just now' });
+    const meta = el.querySelector('.toast-meta');
+    expect(meta?.textContent).toBe('Just now');
+  });
+
+  it('renders no header when no title and dismissible=false', () => {
+    const el = createToast({ body: 'B', dismissible: false });
+    expect(el.querySelector('.toast-header')).toBeNull();
+  });
+
+  it('does not set lnpg-autohide when autohide=true (default)', () => {
+    const el = createToast({ body: 'B' });
+    expect(el.dataset.lnpgAutohide).toBeUndefined();
+  });
 });
 
 describe('createToastContainer', () => {
@@ -80,5 +112,17 @@ describe('createToastContainer', () => {
     const el = createToastContainer({ placement: 'bottom-start' });
     expect(el.classList.contains('bottom-0')).toBe(true);
     expect(el.classList.contains('start-0')).toBe(true);
+  });
+
+  it('applies top-center placement classes', () => {
+    const el = createToastContainer({ placement: 'top-center' });
+    expect(el.classList.contains('top-0')).toBe(true);
+    expect(el.classList.contains('start-50')).toBe(true);
+    expect(el.classList.contains('translate-middle-x')).toBe(true);
+  });
+
+  it('sets data-lnpg-placement attribute', () => {
+    const el = createToastContainer({ placement: 'bottom-end' });
+    expect(el.getAttribute('data-lnpg-placement')).toBe('bottom-end');
   });
 });

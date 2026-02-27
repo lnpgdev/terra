@@ -7,9 +7,14 @@ describe('accordion constants', () => {
     expect(accordion.item).toBe('accordion-item');
     expect(accordion.header).toBe('accordion-header');
     expect(accordion.button).toBe('accordion-button');
+    expect(accordion.panel).toBe('accordion-collapse');
     expect(accordion.body).toBe('accordion-body');
     expect(accordion.flush).toBe('accordion-flush');
+    expect(accordion.variants.notification).toBe('accordion-notification');
     expect(accordion.tones.success).toBe('accordion-item-success');
+    expect(accordion.tones.danger).toBe('accordion-item-danger');
+    expect(accordion.tones.warning).toBe('accordion-item-warning');
+    expect(accordion.tones.info).toBe('accordion-item-info');
   });
 });
 
@@ -84,5 +89,33 @@ describe('createAccordion', () => {
     const el = createAccordion({ id: 'a', items: disabledItems });
     const btn = el.querySelector('.accordion-button') as HTMLButtonElement;
     expect(btn.disabled).toBe(true);
+  });
+
+  it('sets aria-expanded=true on open item button', () => {
+    const el = createAccordion({ id: 'faq', items });
+    const buttons = el.querySelectorAll('.accordion-button');
+    expect(buttons[0].getAttribute('aria-expanded')).toBe('true');
+    expect(buttons[1].getAttribute('aria-expanded')).toBe('false');
+  });
+
+  it('sets aria-controls on each button matching panel id', () => {
+    const el = createAccordion({ id: 'faq', items });
+    const buttons = el.querySelectorAll('.accordion-button');
+    expect(buttons[0].getAttribute('aria-controls')).toBe('q1');
+    expect(buttons[1].getAttribute('aria-controls')).toBe('q2');
+  });
+
+  it('renders body text inside each accordion body', () => {
+    const el = createAccordion({ id: 'faq', items });
+    const bodies = el.querySelectorAll('.accordion-body');
+    expect(bodies[0].textContent).toBe('Answer 1');
+    expect(bodies[1].textContent).toBe('Answer 2');
+  });
+
+  it('defaults to single mode', () => {
+    const el = createAccordion({ id: 'faq', items });
+    el.querySelectorAll('.accordion-collapse').forEach((panel) => {
+      expect(panel.getAttribute('data-bs-parent')).toBe('#faq');
+    });
   });
 });
