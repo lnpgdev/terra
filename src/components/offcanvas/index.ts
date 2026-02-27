@@ -114,8 +114,11 @@ export function initOffcanvases(): void {
     trigger.setAttribute('aria-controls', target);
 
     // Find and configure the panel.
+    // Guard: only process panels explicitly marked with data-lnpg-placement so
+    // this init does not interfere with other components (e.g. Modal) that also
+    // use data-lnpg-target.
     const panel = document.getElementById(target);
-    if (!panel) return;
+    if (!panel || !panel.hasAttribute('data-lnpg-placement')) return;
 
     const placement = (panel.getAttribute('data-lnpg-placement') ?? 'start') as OffcanvasPlacement;
     panel.classList.add(offcanvas.base, offcanvas.placements[placement]);
