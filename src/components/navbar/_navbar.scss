@@ -1,0 +1,53 @@
+/**
+ * Terra UI Kit: Navbar
+ *
+ * Top-level navigation wrapper. Built on Bootstrap's .navbar with Terra-specific
+ * class aliases (.navbar-item, .navbar-link) and an .navbar-actions slot for
+ * right-side content (search, buttons, etc.).
+ *
+ * Terra-specific overrides will be added once Sol tokens are available.
+ */
+
+.navbar {
+  // .navbar-item is the Terra alias for Bootstrap's .nav-item.
+  .navbar-item {
+    list-style: none;
+  }
+
+  // .navbar-link is the Terra alias for Bootstrap's .nav-link.
+  .navbar-link {
+    display: block;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
+    color: var(--bs-navbar-color);
+    text-decoration: none;
+    background: none;
+    border: 0;
+    transition: color 0.15s ease-in-out;
+
+    &:hover,
+    &:focus {
+      color: var(--bs-navbar-hover-color);
+    }
+
+    &.active {
+      color: var(--bs-navbar-active-color);
+    }
+
+    &.disabled {
+      color: var(--bs-navbar-disabled-color);
+      pointer-events: none;
+      cursor: default;
+    }
+  }
+
+  // .navbar-actions is a Terra slot for right-aligned utility content
+  // (search bar, buttons, user avatar, etc.).
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+  }
+}

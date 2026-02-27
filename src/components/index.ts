@@ -25,3 +25,4 @@ export * from './carousel/index';
 export * from './scrollspy/index';
 export * from './offcanvas/index';
 export * from './sidenav/index';
+export * from './navbar/index';
