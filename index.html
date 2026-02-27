@@ -2261,6 +2261,87 @@
       </nav>
     </section>
     <!-- ------------------------------------------------------------------ -->
+    <!-- Notification                                                         -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="mb-5">
+      <h2 class="mb-3">Notification</h2>
+
+      <h6 class="text-muted mb-2">Mixed list — read, unread, expandable</h6>
+      <div class="border rounded mb-4" style="max-width: 420px;">
+
+        <!-- Unread, non-expandable -->
+        <div class="notification notification-unread">
+          <div class="notification-header">
+            <span class="notification-unread-dot"></span>
+            <div class="notification-content">
+              <span class="notification-title">John Smith</span>
+              <span class="notification-subtitle">Inbound call &middot; 3 min</span>
+            </div>
+            <span class="notification-time">2:34 PM</span>
+          </div>
+        </div>
+
+        <!-- Read, non-expandable -->
+        <div class="notification">
+          <div class="notification-header">
+            <div class="notification-content">
+              <span class="notification-title">Jane Doe</span>
+              <span class="notification-subtitle">Outbound call &middot; 7 min</span>
+            </div>
+            <span class="notification-time">1:15 PM</span>
+          </div>
+        </div>
+
+        <!-- Unread, expandable, initially closed -->
+        <div class="notification notification-unread notification-expandable">
+          <button
+            type="button"
+            class="notification-header"
+            data-bs-toggle="collapse"
+            data-bs-target="#notifExpandBody"
+            aria-expanded="false"
+            aria-controls="notifExpandBody"
+          >
+            <span class="notification-unread-dot"></span>
+            <div class="notification-content">
+              <span class="notification-title">Bob Brown</span>
+              <span class="notification-subtitle">Missed call &middot; voicemail left</span>
+            </div>
+            <span class="notification-time">11:02 AM</span>
+            <span class="notification-chevron" aria-hidden="true"></span>
+          </button>
+          <div id="notifExpandBody" class="collapse notification-body">
+            <p class="mb-1 small text-muted">Timeline</p>
+            <p class="mb-0 small">11:02 AM &mdash; Inbound call, no answer.</p>
+            <p class="mb-0 small">11:03 AM &mdash; Voicemail recorded (0:42).</p>
+          </div>
+        </div>
+
+        <!-- Read, expandable, initially open -->
+        <div class="notification notification-expandable">
+          <button
+            type="button"
+            class="notification-header"
+            data-bs-toggle="collapse"
+            data-bs-target="#notifExpandOpen"
+            aria-expanded="true"
+            aria-controls="notifExpandOpen"
+          >
+            <div class="notification-content">
+              <span class="notification-title">Alice Green</span>
+              <span class="notification-subtitle">Callback scheduled</span>
+            </div>
+            <span class="notification-time">9:45 AM</span>
+            <span class="notification-chevron" aria-hidden="true"></span>
+          </button>
+          <div id="notifExpandOpen" class="collapse show notification-body">
+            <p class="mb-0 small">Callback confirmed for 3:00 PM today.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- ------------------------------------------------------------------ -->
     <!-- SubNav                                                               -->
     <!-- ------------------------------------------------------------------ -->
     <section class="mb-5">

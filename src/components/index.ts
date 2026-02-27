@@ -28,3 +28,4 @@ export * from './sidenav/index';
 export * from './navbar/index';
 export * from './member-header/index';
 export * from './subnav/index';
+export * from './notification/index';

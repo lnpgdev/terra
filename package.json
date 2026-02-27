@@ -1,6 +1,6 @@
 {
   "name": "@lnpg/terra",
-  "version": "0.33.0",
+  "version": "0.34.0",
   "description": "UI Kit for LNPG internal applications, built with Bootstrap compatibility.",
   "homepage": "https://github.com/lnpgdev/terra#readme",
   "bugs": {
@@ -187,6 +187,11 @@
       "types": "./dist/types/components/subnav/index.d.ts",
       "import": "./dist/components/subnav/index.es.js",
       "require": "./dist/components/subnav/index.cjs.js"
+    },
+    "./components/notification": {
+      "types": "./dist/types/components/notification/index.d.ts",
+      "import": "./dist/components/notification/index.es.js",
+      "require": "./dist/components/notification/index.cjs.js"
     }
   },
   "scripts": {
