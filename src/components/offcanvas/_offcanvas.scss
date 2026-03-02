@@ -4,12 +4,12 @@
  * Panel that slides in from the edge of the screen. Used for navigation,
  * filters, secondary panels, and mobile menus.
  *
- * Built on Bootstrap's .offcanvas — overrides and LNPG-specific extensions only.
+ * Built on Bootstrap's .offcanvas - overrides and LNPG-specific extensions only.
  * Terra-specific overrides will be added once Sol tokens are available.
  */
 
 .offcanvas {
-  // Footer is a Terra extension — Bootstrap only ships header + body.
+  // Footer is a Terra extension - Bootstrap only ships header + body.
   .offcanvas-footer {
     padding: var(--bs-offcanvas-padding-y) var(--bs-offcanvas-padding-x);
     border-top: var(--bs-offcanvas-border-width) solid var(--bs-offcanvas-border-color);

@@ -9,7 +9,7 @@
  * Usage:
  * ```html
  * <select class="form-select">
- *   <option value="">Choose…</option>
+ *   <option value="">Choose...</option>
  *   <option value="sales">Sales</option>
  *   <option value="support">Support</option>
  * </select>

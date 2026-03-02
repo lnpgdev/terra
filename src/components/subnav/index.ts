@@ -3,8 +3,8 @@
  *
  * @remarks
  * A contextual secondary navigation bar that sits flush beneath the main
- * Navbar with no gap. Renders up to two navigation links — one on the left
- * and one on the right — whose content changes per page.
+ * Navbar with no gap. Renders up to two navigation links - one on the left
+ * and one on the right - whose content changes per page.
  *
  * Typical use: "← Back to search" on the left, "All members →" on the right.
  * Either slot is optional; the bar collapses gracefully if only one is provided.

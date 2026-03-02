@@ -15,7 +15,7 @@
 
   .sidenav-tab {
     position: fixed;
-    z-index: 1030; // Same level as Bootstrap's sticky navbar — below offcanvas backdrop.
+    z-index: 1030; // Same level as Bootstrap's sticky navbar - below offcanvas backdrop.
     display: inline-flex;
     padding: 0;
     background-color: var(--bs-dark);
@@ -29,7 +29,7 @@
     }
   }
 
-  // Inner content wrapper — handles rotation and flex layout of icon + label.
+  // Inner content wrapper - handles rotation and flex layout of icon + label.
   .sidenav-tab-content {
     display: flex;
     flex-direction: column;
@@ -47,7 +47,7 @@
   }
 
   // -------------------------------------------------------------------------
-  // Placement — left side (tab on left edge, text reads upward)
+  // Placement - left side (tab on left edge, text reads upward)
   // -------------------------------------------------------------------------
 
   &.sidenav-left-top,
@@ -64,7 +64,7 @@
   }
 
   // -------------------------------------------------------------------------
-  // Placement — right side (tab on right edge, text reads downward)
+  // Placement - right side (tab on right edge, text reads downward)
   // -------------------------------------------------------------------------
 
   &.sidenav-right-top,
@@ -106,7 +106,7 @@
   }
 
   // -------------------------------------------------------------------------
-  // Rounded modifier — adds corner radius on the outward-facing corners only.
+  // Rounded modifier - adds corner radius on the outward-facing corners only.
   // Default is square (matching the kit's design language).
   // -------------------------------------------------------------------------
 

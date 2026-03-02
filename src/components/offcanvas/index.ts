@@ -252,7 +252,7 @@ export function createOffcanvasHeader(options: OffcanvasHeaderOptions): HTMLElem
 }
 
 /**
- * Creates an offcanvas body — the main scrollable content region.
+ * Creates an offcanvas body - the main scrollable content region.
  *
  * Append your content as children of the returned element.
  *
@@ -266,7 +266,7 @@ export function createOffcanvasBody(): HTMLElement {
 }
 
 /**
- * Creates an offcanvas footer — an optional action area pinned to the bottom.
+ * Creates an offcanvas footer - an optional action area pinned to the bottom.
  *
  * This is a Terra extension; Bootstrap does not ship a footer sub-component.
  *

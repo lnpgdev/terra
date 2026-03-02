@@ -90,7 +90,10 @@ describe('createCarousel', () => {
   });
 
   it('renders correct number of slides', () => {
-    const el = createCarousel({ id: 'c', slides: [{ content: 'A', active: true }, { content: 'B' }, { content: 'C' }] });
+    const el = createCarousel({
+      id: 'c',
+      slides: [{ content: 'A', active: true }, { content: 'B' }, { content: 'C' }],
+    });
     expect(el.querySelectorAll('.carousel-item').length).toBe(3);
   });
 });

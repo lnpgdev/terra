@@ -33,7 +33,11 @@ describe('createBreadcrumb', () => {
 
   it('renders correct number of items', () => {
     const el = createBreadcrumb({
-      items: [{ label: 'Home', href: '/' }, { label: 'Members', href: '/m' }, { label: 'Em', active: true }],
+      items: [
+        { label: 'Home', href: '/' },
+        { label: 'Members', href: '/m' },
+        { label: 'Em', active: true },
+      ],
     });
     expect(el.querySelectorAll('li.breadcrumb-item').length).toBe(3);
   });

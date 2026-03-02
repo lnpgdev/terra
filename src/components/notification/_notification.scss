@@ -16,7 +16,7 @@
   }
 }
 
-// Header — plain div for non-expandable, button for expandable.
+// Header - plain div for non-expandable, button for expandable.
 .notification-header {
   display: flex;
   align-items: center;
@@ -47,7 +47,7 @@
   background-color: var(--bs-primary);
 }
 
-// Content block — title + subtitle.
+// Content block - title + subtitle.
 .notification-content {
   flex: 1;
   min-width: 0; // prevent text overflow breaking layout
@@ -77,20 +77,20 @@
   white-space: nowrap;
 }
 
-// CSS-only chevron — no icon library required.
+// CSS-only chevron - no icon library required.
 .notification-chevron {
   flex-shrink: 0;
   display: inline-block;
   width: 0.5rem;
   height: 0.5rem;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
+  border-right: 1.5px solid currentcolor;
+  border-bottom: 1.5px solid currentcolor;
   transform: rotate(45deg); // points downward
   transition: transform 0.2s ease-in-out;
   margin-top: -0.25rem; // optical vertical centering
 }
 
-// Unread state — bold title.
+// Unread state - bold title.
 .notification-unread {
   .notification-title {
     font-weight: 600;
@@ -105,7 +105,7 @@
   }
 }
 
-// Expandable body — consumer appends timeline/detail content here.
+// Expandable body - consumer appends timeline/detail content here.
 .notification-body {
   padding: 0 1rem 0.75rem;
 }

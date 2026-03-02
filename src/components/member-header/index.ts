@@ -2,7 +2,7 @@
  * Terra UI Kit: MemberHeader
  *
  * @remarks
- * Three-slot header layout — left, center, right. The center slot is
+ * Three-slot header layout - left, center, right. The center slot is
  * absolutely positioned so it remains truly centred relative to the full
  * header width regardless of the content in the left and right slots.
  *

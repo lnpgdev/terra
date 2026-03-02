@@ -121,18 +121,16 @@ export interface NavbarLinkOptions {
  * @category Initialiser
  */
 export function initNavbars(): void {
-  document
-    .querySelectorAll<HTMLElement>('[data-lnpg-toggle="collapse"]')
-    .forEach((toggler) => {
-      const target = toggler.getAttribute('data-lnpg-target');
-      if (!target) return;
+  document.querySelectorAll<HTMLElement>('[data-lnpg-toggle="collapse"]').forEach((toggler) => {
+    const target = toggler.getAttribute('data-lnpg-target');
+    if (!target) return;
 
-      toggler.setAttribute('data-bs-toggle', 'collapse');
-      toggler.setAttribute('data-bs-target', `#${target}`);
+    toggler.setAttribute('data-bs-toggle', 'collapse');
+    toggler.setAttribute('data-bs-target', `#${target}`);
 
-      const collapseEl = document.getElementById(target);
-      if (collapseEl) BsCollapse.getOrCreateInstance(collapseEl, { toggle: false });
-    });
+    const collapseEl = document.getElementById(target);
+    if (collapseEl) BsCollapse.getOrCreateInstance(collapseEl, { toggle: false });
+  });
 }
 
 if (typeof document !== 'undefined') {
@@ -147,7 +145,7 @@ if (typeof document !== 'undefined') {
  * Creates a `<nav>` navbar container.
  *
  * @param options - Configuration for the navbar.
- * @returns A configured `HTMLElement` (`<nav class="navbar …">`).
+ * @returns A configured `HTMLElement` (`<nav class="navbar ...">`).
  * @category Factory
  */
 export function createNavbar(options: NavbarOptions = {}): HTMLElement {
@@ -165,7 +163,7 @@ export function createNavbar(options: NavbarOptions = {}): HTMLElement {
 }
 
 /**
- * Creates a navbar brand link — typically wraps a logo.
+ * Creates a navbar brand link - typically wraps a logo.
  *
  * @param href - The link destination. Defaults to `'/'`.
  * @returns An `HTMLAnchorElement` with the `navbar-brand` class.
@@ -270,7 +268,7 @@ export function createNavbarLink(options: NavbarLinkOptions): HTMLAnchorElement 
 }
 
 /**
- * Creates the `navbar-actions` slot — a right-aligned flex container for
+ * Creates the `navbar-actions` slot - a right-aligned flex container for
  * utility content such as search bars, buttons, or user avatars.
  *
  * @returns An `HTMLElement` (`<div class="navbar-actions">`).

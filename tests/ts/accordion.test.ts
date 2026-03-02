@@ -81,7 +81,9 @@ describe('createAccordion', () => {
   it('applies tone class to item', () => {
     const toneItems = [{ id: 'i1', label: 'L', body: 'B', tone: 'success' as const }];
     const el = createAccordion({ id: 'a', items: toneItems });
-    expect(el.querySelector('.accordion-item')?.classList.contains('accordion-item-success')).toBe(true);
+    expect(el.querySelector('.accordion-item')?.classList.contains('accordion-item-success')).toBe(
+      true,
+    );
   });
 
   it('disables button when item is disabled', () => {

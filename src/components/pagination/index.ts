@@ -41,7 +41,7 @@ export type PaginationAlign = 'start' | 'center' | 'end';
 
 /** Options for a single pagination item. */
 export interface PaginationItemOptions {
-  /** Visible label (e.g. `'1'`, `'Next'`, `'…'`). */
+  /** Visible label (e.g. `'1'`, `'Next'`, `'...'`). */
   label: string;
   /** When provided, the item renders as an `<a>` link. */
   href?: string;

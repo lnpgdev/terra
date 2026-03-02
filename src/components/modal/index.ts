@@ -4,7 +4,7 @@
  * @remarks
  * Wraps Bootstrap's Modal plugin. Vertically centred and body-scrollable by
  * default. Supports a Terra-specific **switchable pages** extension for
- * multi-step content — consumers embed `.modal-page` elements inside
+ * multi-step content - consumers embed `.modal-page` elements inside
  * `.modal-pages` and use `data-lnpg-modal-page` buttons to navigate between
  * them without closing the modal.
  *
@@ -197,7 +197,7 @@ function _updatePageNav(parentModal: HTMLElement, currentIndex: number, total: n
  * @category Initialiser
  */
 export function initModals(): void {
-  // Wire triggers — only target elements that are modals (.modal class).
+  // Wire triggers - only target elements that are modals (.modal class).
   document.querySelectorAll<HTMLElement>('[data-lnpg-target]').forEach((trigger) => {
     const target = trigger.getAttribute('data-lnpg-target');
     if (!target) return;
@@ -230,7 +230,7 @@ export function initModals(): void {
   });
 }
 
-// Delegated click handlers — listen on document so they work for dynamically
+// Delegated click handlers - listen on document so they work for dynamically
 // inserted modals too.
 if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
@@ -343,7 +343,7 @@ export function createModal(options: ModalOptions): HTMLElement {
  * Creates the modal dialog layout container.
  *
  * @param options - Configuration for the dialog.
- * @returns A configured `HTMLElement` (`<div class="modal-dialog …">`).
+ * @returns A configured `HTMLElement` (`<div class="modal-dialog ...">`).
  * @category Factory
  */
 export function createModalDialog(options: ModalDialogOptions = {}): HTMLElement {
@@ -402,7 +402,7 @@ export function createModalHeader(options: ModalHeaderOptions): HTMLElement {
 }
 
 /**
- * Creates the modal body — the main scrollable content region.
+ * Creates the modal body - the main scrollable content region.
  *
  * @returns A `HTMLElement` (`<div class="modal-body">`).
  * @category Factory
@@ -414,7 +414,7 @@ export function createModalBody(): HTMLElement {
 }
 
 /**
- * Creates the modal footer — an optional action region at the bottom.
+ * Creates the modal footer - an optional action region at the bottom.
  *
  * @returns A `HTMLElement` (`<div class="modal-footer">`).
  * @category Factory
@@ -440,7 +440,7 @@ export function createModalPages(): HTMLElement {
 }
 
 /**
- * Creates a single modal page — one step in a multi-step modal.
+ * Creates a single modal page - one step in a multi-step modal.
  *
  * Only the page with `active: true` is visible at a time. Use
  * `data-lnpg-modal-page` buttons (or {@link switchModalPage}) to navigate.

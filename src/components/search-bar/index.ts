@@ -4,9 +4,9 @@
  * @remarks
  * Custom search input component with two modes:
  *
- * - `'single'` — the entire input value is submitted as a string on Enter or
+ * - `'single'` - the entire input value is submitted as a string on Enter or
  *   submit button click.
- * - `'multi'` — pressing Enter commits the current term as a removable token
+ * - `'multi'` - pressing Enter commits the current term as a removable token
  *   chip. Submitting sends the full array of tokens.
  *
  * Usage:
@@ -14,7 +14,7 @@
  * <!-- Single mode -->
  * <div class="search-bar search-bar-rounded">
  *   <span class="search-bar-icon"><!-- SVG --></span>
- *   <input class="search-bar-input" type="search" placeholder="Search…" />
+ *   <input class="search-bar-input" type="search" placeholder="Search..." />
  * </div>
  *
  * <!-- Multi mode -->
@@ -25,7 +25,7 @@
  *       <button class="search-bar-token-remove" aria-label="Remove call centre">×</button>
  *     </span>
  *   </div>
- *   <input class="search-bar-input" type="text" placeholder="Add term…" />
+ *   <input class="search-bar-input" type="text" placeholder="Add term..." />
  * </div>
  * ```
  *
@@ -47,7 +47,7 @@ export type SearchBarSize = 'sm' | 'md' | 'lg';
 export interface SearchBarOptions {
   /** Initial input value. Defaults to `''`. */
   value?: string;
-  /** Placeholder text. Defaults to `'Search…'`. */
+  /** Placeholder text. Defaults to `'Search...'`. */
   placeholder?: string;
   /**
    * Visible label text. Rendered as a `<label>` element above the search bar
@@ -111,7 +111,7 @@ const DEFAULT_ICON =
  * ```ts
  * document.body.appendChild(
  *   createSearchBar({
- *     placeholder: 'Search members…',
+ *     placeholder: 'Search members...',
  *     mode: 'multi',
  *     onSubmit: (tokens) => console.log(tokens),
  *     onTokenAdd: (t) => console.log('Added', t),
@@ -212,10 +212,10 @@ export function createSearchBar(options: SearchBarOptions = {}): HTMLElement {
       return;
     }
 
-    // Multi mode — commit the current term as a token
+    // Multi mode - commit the current term as a token
     const term = input.value.trim();
     if (!term || tokens.includes(term)) {
-      // Empty or duplicate — submit the existing token list instead
+      // Empty or duplicate - submit the existing token list instead
       if (!term && tokens.length) onSubmit?.(tokens.slice());
       return;
     }

@@ -6,10 +6,10 @@
  * nav link as the user scrolls through a scrollable content area.
  *
  * Activate via HTML attributes on the scrollable element:
- * - `data-bs-spy="scroll"` — enables scrollspy
- * - `data-bs-target="#navId"` — the nav whose links should be activated
- * - `data-bs-smooth-scroll="true"` — enables smooth scrolling (optional)
- * - `data-bs-root-margin` — IntersectionObserver root margin (optional)
+ * - `data-bs-spy="scroll"` - enables scrollspy
+ * - `data-bs-target="#navId"` - the nav whose links should be activated
+ * - `data-bs-smooth-scroll="true"` - enables smooth scrolling (optional)
+ * - `data-bs-root-margin` - IntersectionObserver root margin (optional)
  *
  * Usage:
  * ```html
@@ -27,9 +27,9 @@
  *   tabindex="0"
  * >
  *   <h4 id="section1">One</h4>
- *   <p>Content…</p>
+ *   <p>Content...</p>
  *   <h4 id="section2">Two</h4>
- *   <p>Content…</p>
+ *   <p>Content...</p>
  * </div>
  * ```
  *

@@ -1,11 +1,11 @@
 /**
  * Terra UI Kit: Table
  *
- * Built on Bootstrap's .table — adds a muted variant, sticky-header scroll
+ * Built on Bootstrap's .table - adds a muted variant, sticky-header scroll
  * wrapper, disabled row styling, and table section header/footer helpers.
  */
 
-// Muted variant — subtle secondary background.
+// Muted variant - subtle secondary background.
 .table-muted {
   --bs-table-bg: var(--bs-secondary-bg);
 }
@@ -25,7 +25,7 @@
   }
 }
 
-// Disabled row — fades and blocks interaction.
+// Disabled row - fades and blocks interaction.
 .table > :not(caption) > tr.table-row-disabled > * {
   opacity: 0.5;
   pointer-events: none;

@@ -49,7 +49,9 @@ describe('createButtonGroup', () => {
   it('applies sm size to group and buttons', () => {
     const el = createButtonGroup({ buttons: twoButtons, size: 'sm' });
     expect(el.classList.contains('btn-group-sm')).toBe(true);
-    el.querySelectorAll('button').forEach((btn) => expect(btn.classList.contains('btn-sm')).toBe(true));
+    el.querySelectorAll('button').forEach((btn) =>
+      expect(btn.classList.contains('btn-sm')).toBe(true),
+    );
   });
 
   it('disables individual buttons', () => {
@@ -67,11 +69,13 @@ describe('createButtonGroup', () => {
   it('applies lg size to group and buttons', () => {
     const el = createButtonGroup({ buttons: twoButtons, size: 'lg' });
     expect(el.classList.contains('btn-group-lg')).toBe(true);
-    el.querySelectorAll('button').forEach((btn) => expect(btn.classList.contains('btn-lg')).toBe(true));
+    el.querySelectorAll('button').forEach((btn) =>
+      expect(btn.classList.contains('btn-lg')).toBe(true),
+    );
   });
 
   it('uses default aria-label when none is provided', () => {
     const el = createButtonGroup({ buttons: twoButtons });
     expect(el.getAttribute('aria-label')).toBe('Button group');
   });
-});;
+});

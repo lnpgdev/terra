@@ -7,7 +7,7 @@
  * a left accent bar to each item using a CSS custom property tone system.
  */
 
-// Square corners — override Bootstrap's CSS custom properties rather than
+// Square corners - override Bootstrap's CSS custom properties rather than
 // the computed property directly, so Bootstrap's border-radius transitions
 // and JS state detection are not disrupted.
 .accordion {

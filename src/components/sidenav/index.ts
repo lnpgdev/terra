@@ -7,8 +7,8 @@
  * trigger styled as a vertical strip with an optional icon and rotated label.
  *
  * Two common uses:
- * - **Left side** — page navigation drawer
- * - **Right side** — call queue or secondary content panel
+ * - **Left side** - page navigation drawer
+ * - **Right side** - call queue or secondary content panel
  *
  * The factory returns `{ element, body }`. Append your content to `body`,
  * then insert `element` anywhere in the DOM (the tab is `position: fixed`
@@ -48,9 +48,9 @@ export { BsOffcanvas as BsSideNavOffcanvas };
 /**
  * Viewport edge and vertical position for the SideNav trigger tab.
  *
- * - `left-top` / `right-top` — pinned near the top of the viewport.
- * - `left` / `right` — vertically centred.
- * - `left-bottom` / `right-bottom` — pinned near the bottom.
+ * - `left-top` / `right-top` - pinned near the top of the viewport.
+ * - `left` / `right` - vertically centred.
+ * - `left-bottom` / `right-bottom` - pinned near the bottom.
  */
 export type SideNavPlacement =
   | 'left-top'
@@ -88,7 +88,7 @@ export interface SideNavOptions {
 export interface SideNavElements {
   /** The SideNav wrapper element containing the trigger tab and the offcanvas panel. */
   element: HTMLElement;
-  /** The offcanvas body element — append your panel content here. */
+  /** The offcanvas body element - append your panel content here. */
   body: HTMLElement;
 }
 
@@ -123,7 +123,7 @@ export function initSideNavs(): void {
 // ---------------------------------------------------------------------------
 
 /**
- * Creates a SideNav — a fixed trigger tab and an Offcanvas panel — as a
+ * Creates a SideNav - a fixed trigger tab and an Offcanvas panel - as a
  * single wrapper element.
  *
  * Append your content to the returned `body` element, then insert `element`
@@ -131,19 +131,11 @@ export function initSideNavs(): void {
  * document tree does not affect its visual position.
  *
  * @param options - Configuration for the SideNav.
- * @returns `{ element, body }` — the wrapper and the offcanvas body element.
+ * @returns `{ element, body }` - the wrapper and the offcanvas body element.
  * @category Factory
  */
 export function createSideNav(options: SideNavOptions): SideNavElements {
-  const {
-    id,
-    placement = 'right',
-    icon,
-    label,
-    rounded = false,
-    title,
-    titleId,
-  } = options;
+  const { id, placement = 'right', icon, label, rounded = false, title, titleId } = options;
 
   const panelId = `${id}-panel`;
   const resolvedTitleId = titleId ?? `${id}-title`;

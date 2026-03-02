@@ -256,7 +256,7 @@ export function createTableHeadCell(
 }
 
 /**
- * Creates a section header element rendered above a table — shows a title
+ * Creates a section header element rendered above a table - shows a title
  * and optional metadata such as a row count or last-updated timestamp.
  *
  * @param options - Section header configuration.
@@ -268,7 +268,7 @@ export function createTableHeader(options: TableSectionOptions): HTMLElement {
 }
 
 /**
- * Creates a section footer element rendered below a table — shows a title
+ * Creates a section footer element rendered below a table - shows a title
  * and optional metadata such as a summary or pagination note.
  *
  * @param options - Section footer configuration.

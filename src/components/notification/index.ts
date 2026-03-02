@@ -51,14 +51,14 @@ export interface NotificationOptions {
    * `expandable` is `true` (panel ID becomes `${id}-body`).
    */
   id: string;
-  /** Primary text — the caller name, event title, etc. */
+  /** Primary text - the caller name, event title, etc. */
   title: string;
-  /** Secondary text — call type, duration, description, etc. */
+  /** Secondary text - call type, duration, description, etc. */
   subtitle: string;
   /** Timestamp or relative time string displayed on the right. */
   time: string;
   /**
-   * Marks the notification as unread — renders an indicator dot and bolds
+   * Marks the notification as unread - renders an indicator dot and bolds
    * the title. Defaults to `false`.
    */
   unread?: boolean;
@@ -79,7 +79,7 @@ export interface NotificationElements {
   /** The notification row wrapper element. */
   element: HTMLElement;
   /**
-   * The collapsible body element — only present when `expandable` is `true`.
+   * The collapsible body element - only present when `expandable` is `true`.
    * Append your timeline or detail content here.
    */
   body?: HTMLElement;
@@ -93,19 +93,11 @@ export interface NotificationElements {
  * Creates a notification row.
  *
  * @param options - Configuration for the notification.
- * @returns `{ element, body? }` — the row and the optional collapse panel.
+ * @returns `{ element, body? }` - the row and the optional collapse panel.
  * @category Factory
  */
 export function createNotification(options: NotificationOptions): NotificationElements {
-  const {
-    id,
-    title,
-    subtitle,
-    time,
-    unread = false,
-    expandable = false,
-    open = false,
-  } = options;
+  const { id, title, subtitle, time, unread = false, expandable = false, open = false } = options;
 
   const bodyId = `${id}-body`;
 

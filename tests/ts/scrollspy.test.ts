@@ -22,7 +22,10 @@ describe('initScrollspy', () => {
   it('calls BsScrollSpy.getOrCreateInstance with the element', () => {
     const el = document.createElement('div');
     initScrollspy(el, { target: '#nav' });
-    expect(BsScrollSpy.getOrCreateInstance).toHaveBeenCalledWith(el, expect.objectContaining({ target: '#nav' }));
+    expect(BsScrollSpy.getOrCreateInstance).toHaveBeenCalledWith(
+      el,
+      expect.objectContaining({ target: '#nav' }),
+    );
   });
 
   it('defaults rootMargin to 0px 0px -25%', () => {

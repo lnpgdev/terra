@@ -21,10 +21,7 @@ describe('dropdown constants', () => {
   });
 });
 
-const items = [
-  { label: 'Edit' },
-  { label: 'Delete', dividerBefore: true },
-];
+const items = [{ label: 'Edit' }, { label: 'Delete', dividerBefore: true }];
 
 describe('createDropdown', () => {
   it('returns wrapper with dropdown class by default', () => {

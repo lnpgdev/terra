@@ -1,8 +1,6 @@
-// Bootstrap - compiled as the foundation layer.
-@use 'bootstrap/scss/bootstrap';
-
-// Tokens - Sol overrides applied on top of Bootstrap. Uncomment when Sol is available.
-@use './tokens/index' as *;
+// Sol Bootstrap adapter - maps Sol design tokens to Bootstrap variables,
+// compiles Bootstrap, and applies Sol's core baseline (Montserrat font faces and reboot).
+@use '@lnpg/sol/scss/adapters/bootstrap/v5';
 
 // Component overrides
 @use '../components/toast/toast';

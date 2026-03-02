@@ -7,7 +7,12 @@ vi.mock('bootstrap/js/dist/collapse', () => ({
 }));
 
 import BsCollapse from 'bootstrap/js/dist/collapse';
-import { createCollapseToggle, createCollapse, collapse, initCollapses } from '../../src/components/collapse/index';
+import {
+  createCollapseToggle,
+  createCollapse,
+  collapse,
+  initCollapses,
+} from '../../src/components/collapse/index';
 
 describe('collapse constants', () => {
   it('exports expected class names', () => {

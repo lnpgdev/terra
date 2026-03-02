@@ -92,8 +92,8 @@ export { BsCarousel };
  */
 export function initCarousels(): void {
   document.querySelectorAll<HTMLElement>(carousel.selector).forEach((el) => {
-    const autoplay = el.getAttribute('data-lnpg-autoplay') !== 'false' &&
-      el.hasAttribute('data-lnpg-autoplay');
+    const autoplay =
+      el.getAttribute('data-lnpg-autoplay') !== 'false' && el.hasAttribute('data-lnpg-autoplay');
     const interval = el.hasAttribute('data-lnpg-interval')
       ? parseInt(el.getAttribute('data-lnpg-interval')!, 10)
       : 5000;
@@ -208,11 +208,7 @@ export function createCarouselSlide(options: CarouselSlideOptions): HTMLElement 
   return item;
 }
 
-function _createControl(
-  targetId: string,
-  direction: 'prev' | 'next',
-  label: string,
-): HTMLElement {
+function _createControl(targetId: string, direction: 'prev' | 'next', label: string): HTMLElement {
   const btn = document.createElement('button');
   btn.type = 'button';
   btn.className = direction === 'prev' ? carousel.controlPrev : carousel.controlNext;
@@ -220,8 +216,7 @@ function _createControl(
   btn.setAttribute('data-bs-slide', direction);
 
   const icon = document.createElement('span');
-  icon.className =
-    direction === 'prev' ? carousel.controlPrevIcon : carousel.controlNextIcon;
+  icon.className = direction === 'prev' ? carousel.controlPrevIcon : carousel.controlNextIcon;
   icon.setAttribute('aria-hidden', 'true');
 
   const srText = document.createElement('span');
@@ -258,5 +253,6 @@ export const carousel = {
   /** Icon inside the next control. */
   controlNextIcon: 'carousel-control-next-icon',
   /** Selector used by {@link initCarousels} to find carousel containers. */
-  selector: '.carousel[data-lnpg-autoplay], .carousel[data-lnpg-interval], .carousel[data-lnpg-pause-on-hover]',
+  selector:
+    '.carousel[data-lnpg-autoplay], .carousel[data-lnpg-interval], .carousel[data-lnpg-pause-on-hover]',
 } as const;
