@@ -53,6 +53,10 @@
  */
 
 import BsModal from 'bootstrap/js/dist/modal';
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createButton } from '@lnpg/sol/elements/form/button';
+import { createA } from '@lnpg/sol/elements/inline/a';
+import { createH1 } from '@lnpg/sol/elements/heading/h1';
 
 // Re-export Bootstrap Modal for consumers who need programmatic control.
 export { BsModal };
@@ -302,19 +306,17 @@ export function createModalTrigger(
   const { target, label, variant = 'button' } = options;
 
   if (variant === 'anchor') {
-    const el = document.createElement('a');
-    el.href = `#${target}`;
-    el.setAttribute('data-bs-toggle', 'modal');
-    el.setAttribute('data-bs-target', `#${target}`);
-    el.textContent = label;
+    const el = createA(label, {
+      href: `#${target}`,
+      dataset: { bsToggle: 'modal', bsTarget: `#${target}` },
+    });
     return el;
   }
 
-  const el = document.createElement('button');
-  el.type = 'button';
-  el.setAttribute('data-bs-toggle', 'modal');
-  el.setAttribute('data-bs-target', `#${target}`);
-  el.textContent = label;
+  const el = createButton(label, {
+    type: 'button',
+    dataset: { bsToggle: 'modal', bsTarget: `#${target}` },
+  });
   return el;
 }
 
@@ -330,11 +332,12 @@ export function createModalTrigger(
 export function createModal(options: ModalOptions): HTMLElement {
   const { id, labelledBy, fade = false } = options;
 
-  const el = document.createElement('div');
-  el.id = id;
-  el.className = fade ? `${modal.base} fade` : modal.base;
-  el.tabIndex = -1;
-  if (labelledBy) el.setAttribute('aria-labelledby', labelledBy);
+  const el = createDiv(undefined, {
+    id,
+    className: fade ? `${modal.base} fade` : modal.base,
+    tabIndex: -1,
+    aria: labelledBy ? { labelledby: labelledBy } : undefined,
+  });
 
   return el;
 }
@@ -354,8 +357,7 @@ export function createModalDialog(options: ModalDialogOptions = {}): HTMLElement
   if (scrollable) classes.push(modal.scrollable);
   if (size) classes.push(modal.sizes[size]);
 
-  const el = document.createElement('div');
-  el.className = classes.join(' ');
+  const el = createDiv(undefined, { className: classes.join(' ') });
   return el;
 }
 
@@ -366,8 +368,7 @@ export function createModalDialog(options: ModalDialogOptions = {}): HTMLElement
  * @category Factory
  */
 export function createModalContent(): HTMLElement {
-  const el = document.createElement('div');
-  el.className = modal.content;
+  const el = createDiv(undefined, { className: modal.content });
   return el;
 }
 
@@ -381,19 +382,16 @@ export function createModalContent(): HTMLElement {
 export function createModalHeader(options: ModalHeaderOptions): HTMLElement {
   const { title, titleId, closeLabel = 'Close' } = options;
 
-  const header = document.createElement('div');
-  header.className = modal.header;
+  const header = createDiv(undefined, { className: modal.header });
 
-  const titleEl = document.createElement('h1');
-  titleEl.className = modal.title;
-  if (titleId) titleEl.id = titleId;
-  titleEl.textContent = title;
+  const titleEl = createH1(title, { className: modal.title, id: titleId });
 
-  const closeBtn = document.createElement('button');
-  closeBtn.type = 'button';
-  closeBtn.className = 'btn-close';
-  closeBtn.setAttribute('data-bs-dismiss', 'modal');
-  closeBtn.setAttribute('aria-label', closeLabel);
+  const closeBtn = createButton(undefined, {
+    type: 'button',
+    className: 'btn-close',
+    aria: { label: closeLabel },
+    dataset: { bsDismiss: 'modal' },
+  });
 
   header.appendChild(titleEl);
   header.appendChild(closeBtn);
@@ -408,8 +406,7 @@ export function createModalHeader(options: ModalHeaderOptions): HTMLElement {
  * @category Factory
  */
 export function createModalBody(): HTMLElement {
-  const el = document.createElement('div');
-  el.className = modal.body;
+  const el = createDiv(undefined, { className: modal.body });
   return el;
 }
 
@@ -420,8 +417,7 @@ export function createModalBody(): HTMLElement {
  * @category Factory
  */
 export function createModalFooter(): HTMLElement {
-  const el = document.createElement('div');
-  el.className = modal.footer;
+  const el = createDiv(undefined, { className: modal.footer });
   return el;
 }
 
@@ -434,8 +430,7 @@ export function createModalFooter(): HTMLElement {
  * @category Factory
  */
 export function createModalPages(): HTMLElement {
-  const el = document.createElement('div');
-  el.className = modal.pages;
+  const el = createDiv(undefined, { className: modal.pages });
   return el;
 }
 
@@ -452,9 +447,10 @@ export function createModalPages(): HTMLElement {
 export function createModalPage(options: ModalPageOptions): HTMLElement {
   const { id, active = false } = options;
 
-  const el = document.createElement('div');
-  el.id = id;
-  el.className = active ? `${modal.page} active` : modal.page;
+  const el = createDiv(undefined, {
+    id,
+    className: active ? `${modal.page} active` : modal.page,
+  });
   return el;
 }
 

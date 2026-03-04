@@ -21,6 +21,9 @@
  * @category Components
  */
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createSpan } from '@lnpg/sol/elements/container/span';
+
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 /** Visual style of the spinner. */
@@ -49,17 +52,13 @@ export interface SpinnerOptions {
 export function createSpinner(options: SpinnerOptions = {}): HTMLElement {
   const { variant = 'border', size, color, label = 'Loading...' } = options;
 
-  const el = document.createElement('div');
-
   const classes: string[] = [variant === 'border' ? spinner.border : spinner.grow];
   if (size === 'sm') classes.push(variant === 'border' ? spinner.borderSm : spinner.growSm);
   if (color) classes.push(color);
-  el.className = classes.join(' ');
-  el.setAttribute('role', 'status');
 
-  const hidden = document.createElement('span');
-  hidden.className = 'visually-hidden';
-  hidden.textContent = label;
+  const el = createDiv(undefined, { className: classes.join(' '), role: 'status' });
+
+  const hidden = createSpan(label, { className: 'visually-hidden' });
   el.appendChild(hidden);
 
   return el;

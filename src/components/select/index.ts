@@ -22,6 +22,11 @@
  * @category Components
  */
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createSelect as createSolSelect } from '@lnpg/sol/elements/form/select';
+import { createOption } from '@lnpg/sol/elements/form/option';
+import { createLabel as createSolLabel } from '@lnpg/sol/elements/form/label';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -104,21 +109,22 @@ export function createSelect(options: SelectOptions): HTMLElement {
     onChange,
   } = options;
 
-  const selectEl = document.createElement('select');
   const classes: string[] = [select.base];
   if (size !== 'md') classes.push(select.sizes[size]);
-  selectEl.className = classes.join(' ');
 
-  if (multiple) selectEl.multiple = true;
-  if (disabled) selectEl.disabled = true;
-  if (ariaLabel && !label) selectEl.setAttribute('aria-label', ariaLabel);
+  const selectEl = createSolSelect({
+    className: classes.join(' '),
+    multiple: multiple || undefined,
+    disabled: disabled || undefined,
+    aria: ariaLabel && !label ? { label: ariaLabel } : undefined,
+  });
 
   for (const item of items) {
-    const opt = document.createElement('option');
-    opt.value = item.value;
-    opt.textContent = item.label;
-    if (item.disabled) opt.disabled = true;
-    if (value !== undefined && item.value === value) opt.selected = true;
+    const opt = createOption(item.label, {
+      value: item.value,
+      disabled: item.disabled || undefined,
+      selected: (value !== undefined && item.value === value) || undefined,
+    });
     selectEl.appendChild(opt);
   }
 
@@ -129,14 +135,14 @@ export function createSelect(options: SelectOptions): HTMLElement {
   }
 
   if (label) {
-    const wrapper = document.createElement('div');
+    const wrapper = createDiv();
     const id = `select-${Math.random().toString(36).slice(2, 9)}`;
     selectEl.id = id;
 
-    const labelEl = document.createElement('label');
-    labelEl.htmlFor = id;
-    labelEl.className = 'form-label';
-    labelEl.textContent = label;
+    const labelEl = createSolLabel(label, {
+      htmlFor: id,
+      className: 'form-label',
+    });
 
     wrapper.appendChild(labelEl);
     wrapper.appendChild(selectEl);

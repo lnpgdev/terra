@@ -28,6 +28,9 @@
  * @category Components
  */
 
+import { createSpan } from '@lnpg/sol/elements/container/span';
+import { createI } from '@lnpg/sol/elements/inline/i';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -107,7 +110,6 @@ export function createLabel(options: LabelOptions): HTMLSpanElement {
     tooltipPosition,
   } = options;
 
-  const el = document.createElement('span');
   const classes: string[] = [labelComponent.base];
 
   // Shape
@@ -124,12 +126,11 @@ export function createLabel(options: LabelOptions): HTMLSpanElement {
     else classes.push(labelComponent.solid[tone]);
   }
 
-  el.className = classes.join(' ');
+  const el = createSpan(undefined, { className: classes.join(' ') });
 
   // Icon
   if (icon) {
-    const iconEl = document.createElement('i');
-    iconEl.className = icon;
+    const iconEl = createI(undefined, { className: icon });
     el.appendChild(iconEl);
   }
 

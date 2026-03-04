@@ -31,6 +31,11 @@
  * @category Components
  */
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createA } from '@lnpg/sol/elements/inline/a';
+import { createUl } from '@lnpg/sol/elements/list/ul';
+import { createLi } from '@lnpg/sol/elements/list/li';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -94,34 +99,41 @@ export function createListGroup(options: ListGroupOptions): HTMLElement {
 
   const hasLinks = items.some((item) => item.href !== undefined);
 
-  const container = document.createElement(hasLinks ? 'div' : 'ul');
   const containerClasses: string[] = [listGroup.base];
   if (flush) containerClasses.push(listGroup.flush);
   if (horizontal) containerClasses.push(listGroup.horizontal);
-  container.className = containerClasses.join(' ');
+
+  const container: HTMLElement = hasLinks
+    ? createDiv(undefined, { className: containerClasses.join(' ') })
+    : createUl(undefined, { className: containerClasses.join(' ') });
 
   for (const item of items) {
     const isAction = item.action || item.href !== undefined;
-
-    let el: HTMLElement;
-
-    if (item.href) {
-      el = document.createElement('a');
-      (el as HTMLAnchorElement).href = item.href;
-    } else {
-      el = document.createElement('li');
-    }
 
     const elClasses: string[] = [listGroup.item];
     if (isAction) elClasses.push(listGroup.action);
     if (item.active) elClasses.push(listGroup.active);
     if (item.disabled) elClasses.push(listGroup.disabled);
-    el.className = elClasses.join(' ');
 
-    if (item.active) el.setAttribute('aria-current', 'true');
-    if (item.disabled) el.setAttribute('aria-disabled', 'true');
+    const extraAttrs: Record<string, string> = {};
+    if (item.active) extraAttrs['aria-current'] = 'true';
+    if (item.disabled) extraAttrs['aria-disabled'] = 'true';
 
-    el.textContent = item.label;
+    let el: HTMLElement;
+
+    if (item.href) {
+      el = createA(item.label, {
+        href: item.href,
+        className: elClasses.join(' '),
+        attrs: extraAttrs,
+      });
+    } else {
+      el = createLi(item.label, {
+        className: elClasses.join(' '),
+        attrs: extraAttrs,
+      });
+    }
+
     container.appendChild(el);
   }
 

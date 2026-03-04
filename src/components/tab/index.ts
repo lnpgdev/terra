@@ -37,6 +37,13 @@
 
 import BsTab from 'bootstrap/js/dist/tab';
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createButton } from '@lnpg/sol/elements/form/button';
+import { createA } from '@lnpg/sol/elements/inline/a';
+import { createI } from '@lnpg/sol/elements/inline/i';
+import { createUl } from '@lnpg/sol/elements/list/ul';
+import { createLi } from '@lnpg/sol/elements/list/li';
+
 import { createBadge, type BadgeOptions } from '../badge/index';
 
 // ---------------------------------------------------------------------------
@@ -168,10 +175,6 @@ export function createTabs(options: TabsOptions): HTMLElement {
     id,
   } = options;
 
-  const ul = document.createElement('ul');
-  if (id) ul.id = id;
-  ul.setAttribute('role', 'tablist');
-
   const classes: string[] = [tab.nav, tab.variants[variant]];
 
   if (align === 'centre') classes.push(tab.align.centre);
@@ -183,31 +186,37 @@ export function createTabs(options: TabsOptions): HTMLElement {
 
   if (!wrap || scroll) classes.push('flex-nowrap');
 
-  ul.className = classes.join(' ');
+  const ul = createUl(undefined, {
+    id,
+    className: classes.join(' '),
+    attrs: { role: 'tablist' },
+  });
 
   for (const item of tabs) {
-    const li = document.createElement('li');
-    li.className = tab.item;
-    li.setAttribute('role', 'presentation');
+    const li = createLi(undefined, {
+      className: tab.item,
+      attrs: { role: 'presentation' },
+    });
 
     const isLink = mode === 'links' || !!item.href;
     let trigger: HTMLAnchorElement | HTMLButtonElement;
 
     if (isLink) {
-      const a = document.createElement('a');
-      a.href = item.href ?? `#${item.target ?? item.id}`;
-      a.className = tab.link;
-      trigger = a;
+      trigger = createA(undefined, {
+        href: item.href ?? `#${item.target ?? item.id}`,
+        className: tab.link,
+      });
     } else {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.id = item.id;
-      btn.className = tab.link;
-      btn.setAttribute('data-bs-toggle', 'tab');
-      btn.setAttribute('data-bs-target', `#${item.target ?? item.id}`);
-      btn.setAttribute('aria-controls', item.target ?? item.id);
-      btn.setAttribute('aria-selected', String(!!item.active));
-      trigger = btn;
+      trigger = createButton(undefined, {
+        type: 'button',
+        id: item.id,
+        className: tab.link,
+        dataset: { bsToggle: 'tab', bsTarget: `#${item.target ?? item.id}` },
+        attrs: {
+          'aria-controls': item.target ?? item.id,
+          'aria-selected': String(!!item.active),
+        },
+      });
     }
 
     if (item.active) trigger.classList.add('active');
@@ -220,8 +229,7 @@ export function createTabs(options: TabsOptions): HTMLElement {
 
     // Icon
     if (item.icon) {
-      const iconEl = document.createElement('i');
-      iconEl.className = item.icon;
+      const iconEl = createI(undefined, { className: item.icon });
       trigger.appendChild(iconEl);
       trigger.appendChild(document.createTextNode('\u00a0'));
     }
@@ -248,8 +256,7 @@ export function createTabs(options: TabsOptions): HTMLElement {
   }
 
   if (scroll) {
-    const wrapper = document.createElement('div');
-    wrapper.className = tab.scroll;
+    const wrapper = createDiv(undefined, { className: tab.scroll });
     wrapper.appendChild(ul);
     return wrapper;
   }
@@ -273,19 +280,17 @@ export function createTabs(options: TabsOptions): HTMLElement {
  * ```
  */
 export function createTabContent(tabs: TabItemOptions[]): HTMLElement {
-  const container = document.createElement('div');
-  container.className = tab.content;
+  const container = createDiv(undefined, { className: tab.content });
 
   for (const item of tabs) {
-    const pane = document.createElement('div');
-    pane.id = item.target ?? item.id;
-    pane.setAttribute('role', 'tabpanel');
-    pane.setAttribute('aria-labelledby', item.id);
-    pane.setAttribute('tabindex', '0');
-
     const paneClasses: string[] = [tab.pane, 'fade'];
     if (item.active) paneClasses.push('show', 'active');
-    pane.className = paneClasses.join(' ');
+
+    const pane = createDiv(undefined, {
+      id: item.target ?? item.id,
+      className: paneClasses.join(' '),
+      attrs: { role: 'tabpanel', 'aria-labelledby': item.id, tabindex: '0' },
+    });
 
     container.appendChild(pane);
   }

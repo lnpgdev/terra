@@ -43,6 +43,10 @@
 
 import BsCarousel from 'bootstrap/js/dist/carousel';
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createSpan } from '@lnpg/sol/elements/container/span';
+import { createButton } from '@lnpg/sol/elements/form/button';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -153,16 +157,16 @@ export function createCarousel(options: CarouselOptions): HTMLElement {
     controls = true,
   } = options;
 
-  const wrapper = document.createElement('div');
-  wrapper.id = id;
-  wrapper.className = `${carousel.base} ${carousel.slide}`;
-  if (autoplay) wrapper.setAttribute('data-lnpg-autoplay', 'true');
-  if (interval !== 5000) wrapper.setAttribute('data-lnpg-interval', String(interval));
-  if (!pauseOnHover) wrapper.setAttribute('data-lnpg-pause-on-hover', 'false');
+  const wrapper = createDiv(undefined, {
+    id,
+    className: `${carousel.base} ${carousel.slide}`,
+  });
+  if (autoplay) wrapper.dataset.lnpgAutoplay = 'true';
+  if (interval !== 5000) wrapper.dataset.lnpgInterval = String(interval);
+  if (!pauseOnHover) wrapper.dataset.lnpgPauseOnHover = 'false';
 
   // Inner track
-  const inner = document.createElement('div');
-  inner.className = carousel.inner;
+  const inner = createDiv(undefined, { className: carousel.inner });
 
   for (const slide of slides) {
     inner.appendChild(createCarouselSlide(slide));
@@ -196,8 +200,9 @@ export function createCarousel(options: CarouselOptions): HTMLElement {
 export function createCarouselSlide(options: CarouselSlideOptions): HTMLElement {
   const { active = false, content } = options;
 
-  const item = document.createElement('div');
-  item.className = active ? `${carousel.item} ${carousel.active}` : carousel.item;
+  const item = createDiv(undefined, {
+    className: active ? `${carousel.item} ${carousel.active}` : carousel.item,
+  });
 
   if (typeof content === 'string') {
     item.textContent = content;
@@ -209,19 +214,18 @@ export function createCarouselSlide(options: CarouselSlideOptions): HTMLElement 
 }
 
 function _createControl(targetId: string, direction: 'prev' | 'next', label: string): HTMLElement {
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = direction === 'prev' ? carousel.controlPrev : carousel.controlNext;
-  btn.setAttribute('data-bs-target', `#${targetId}`);
-  btn.setAttribute('data-bs-slide', direction);
+  const btn = createButton(undefined, {
+    type: 'button',
+    className: direction === 'prev' ? carousel.controlPrev : carousel.controlNext,
+    dataset: { bsTarget: `#${targetId}`, bsSlide: direction },
+  });
 
-  const icon = document.createElement('span');
-  icon.className = direction === 'prev' ? carousel.controlPrevIcon : carousel.controlNextIcon;
-  icon.setAttribute('aria-hidden', 'true');
+  const icon = createSpan(undefined, {
+    className: direction === 'prev' ? carousel.controlPrevIcon : carousel.controlNextIcon,
+    aria: { hidden: true },
+  });
 
-  const srText = document.createElement('span');
-  srText.className = 'visually-hidden';
-  srText.textContent = label;
+  const srText = createSpan(label, { className: 'visually-hidden' });
 
   btn.appendChild(icon);
   btn.appendChild(srText);

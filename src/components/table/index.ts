@@ -33,6 +33,14 @@
  * @category Components
  */
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createSpan } from '@lnpg/sol/elements/container/span';
+import { createStrong } from '@lnpg/sol/elements/inline/strong';
+import { createTable as createTableElement } from '@lnpg/sol/elements/table/table';
+import { createTr } from '@lnpg/sol/elements/table/tr';
+import { createTd } from '@lnpg/sol/elements/table/td';
+import { createTh } from '@lnpg/sol/elements/table/th';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -161,12 +169,12 @@ export function createTable(options: TableOptions = {}): HTMLElement {
   if (borderless) tableClasses.push(table.borderless);
   if (variant === 'muted') tableClasses.push(table.variants.muted);
 
-  const tableEl = document.createElement('table');
-  tableEl.className = tableClasses.join(' ');
+  const tableEl = createTableElement(undefined, { className: tableClasses.join(' ') });
 
   if (stickyHeader || responsive) {
-    const wrapper = document.createElement('div');
-    wrapper.className = stickyHeader ? table.scrollable : table.responsive;
+    const wrapper = createDiv(undefined, {
+      className: stickyHeader ? table.scrollable : table.responsive,
+    });
     wrapper.appendChild(tableEl);
     return wrapper;
   }
@@ -184,12 +192,12 @@ export function createTable(options: TableOptions = {}): HTMLElement {
 export function createTableRow(options: TableRowOptions = {}): HTMLTableRowElement {
   const { tone, selected = false, disabled = false } = options;
 
-  const tr = document.createElement('tr');
   const classes: string[] = [];
   if (tone) classes.push(table.rowTones[tone]);
   if (selected) classes.push(table.rowSelected);
   if (disabled) classes.push(table.rowDisabled);
-  if (classes.length) tr.className = classes.join(' ');
+
+  const tr = createTr(undefined, classes.length ? { className: classes.join(' ') } : undefined);
 
   return tr;
 }
@@ -208,7 +216,6 @@ export function createTableCell(
 ): HTMLTableCellElement {
   const { align, truncate = false, numeric = false, nowrap = false, isEditable = false } = options;
 
-  const td = document.createElement('td');
   const classes: string[] = [];
 
   const effectiveAlign = numeric ? 'right' : align;
@@ -217,10 +224,11 @@ export function createTableCell(
   if (effectiveAlign === 'left') classes.push('text-start');
   if (truncate) classes.push('text-truncate');
   if (nowrap) classes.push('text-nowrap');
-  if (classes.length) td.className = classes.join(' ');
 
-  if (isEditable) td.setAttribute('contenteditable', 'true');
-  td.textContent = content;
+  const td = createTd(content, {
+    className: classes.length ? classes.join(' ') : undefined,
+    attrs: isEditable ? { contenteditable: 'true' } : undefined,
+  });
 
   return td;
 }
@@ -239,8 +247,6 @@ export function createTableHeadCell(
 ): HTMLTableCellElement {
   const { align, truncate = false, numeric = false, nowrap = false } = options;
 
-  const th = document.createElement('th');
-  th.scope = 'col';
   const classes: string[] = [];
 
   const effectiveAlign = numeric ? 'right' : align;
@@ -249,9 +255,12 @@ export function createTableHeadCell(
   if (effectiveAlign === 'left') classes.push('text-start');
   if (truncate) classes.push('text-truncate');
   if (nowrap) classes.push('text-nowrap');
-  if (classes.length) th.className = classes.join(' ');
 
-  th.textContent = content;
+  const th = createTh(content, {
+    scope: 'col',
+    className: classes.length ? classes.join(' ') : undefined,
+  });
+
   return th;
 }
 
@@ -282,17 +291,13 @@ export function createTableFooter(options: TableSectionOptions): HTMLElement {
 function _createTableSection(className: string, options: TableSectionOptions): HTMLElement {
   const { title, meta } = options;
 
-  const el = document.createElement('div');
-  el.className = className;
+  const el = createDiv(undefined, { className });
 
-  const titleEl = document.createElement('strong');
-  titleEl.textContent = title;
+  const titleEl = createStrong(title);
   el.appendChild(titleEl);
 
   if (meta !== undefined) {
-    const metaEl = document.createElement('span');
-    metaEl.className = table.sectionMeta;
-    metaEl.textContent = meta;
+    const metaEl = createSpan(meta, { className: table.sectionMeta });
     el.appendChild(metaEl);
   }
 

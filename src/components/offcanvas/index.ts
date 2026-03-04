@@ -33,6 +33,11 @@
 
 import BsOffcanvas from 'bootstrap/js/dist/offcanvas';
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createButton } from '@lnpg/sol/elements/form/button';
+import { createA } from '@lnpg/sol/elements/inline/a';
+import { createH5 } from '@lnpg/sol/elements/heading/h5';
+
 // Re-export Bootstrap Offcanvas for consumers who need programmatic control.
 export { BsOffcanvas };
 
@@ -164,21 +169,19 @@ export function createOffcanvasTrigger(
   const { target, label, variant = 'button' } = options;
 
   if (variant === 'anchor') {
-    const el = document.createElement('a');
-    el.href = `#${target}`;
-    el.setAttribute('data-bs-toggle', offcanvas.toggle);
-    el.setAttribute('data-bs-target', `#${target}`);
-    el.setAttribute('aria-controls', target);
-    el.textContent = label;
+    const el = createA(label, {
+      href: `#${target}`,
+      dataset: { bsToggle: offcanvas.toggle, bsTarget: `#${target}` },
+      attrs: { 'aria-controls': target },
+    });
     return el;
   }
 
-  const el = document.createElement('button');
-  el.type = 'button';
-  el.setAttribute('data-bs-toggle', offcanvas.toggle);
-  el.setAttribute('data-bs-target', `#${target}`);
-  el.setAttribute('aria-controls', target);
-  el.textContent = label;
+  const el = createButton(label, {
+    type: 'button',
+    dataset: { bsToggle: offcanvas.toggle, bsTarget: `#${target}` },
+    attrs: { 'aria-controls': target },
+  });
   return el;
 }
 
@@ -203,14 +206,13 @@ export function createOffcanvasTrigger(
 export function createOffcanvas(options: OffcanvasOptions): HTMLElement {
   const { id, placement = 'start', backdrop = true, scroll = false, labelledBy } = options;
 
-  const el = document.createElement('div');
-  el.id = id;
-  el.className = `${offcanvas.base} ${offcanvas.placements[placement]}`;
+  const el = createDiv(undefined, {
+    id,
+    className: `${offcanvas.base} ${offcanvas.placements[placement]}`,
+    dataset: { bsBackdrop: String(backdrop), bsScroll: String(scroll) },
+    attrs: labelledBy ? { 'aria-labelledby': labelledBy } : undefined,
+  });
   el.tabIndex = -1;
-  el.setAttribute('data-bs-backdrop', String(backdrop));
-  el.setAttribute('data-bs-scroll', String(scroll));
-  if (labelledBy) el.setAttribute('aria-labelledby', labelledBy);
-
   return el;
 }
 
@@ -231,19 +233,19 @@ export function createOffcanvas(options: OffcanvasOptions): HTMLElement {
 export function createOffcanvasHeader(options: OffcanvasHeaderOptions): HTMLElement {
   const { title, titleId, closeLabel = 'Close' } = options;
 
-  const header = document.createElement('div');
-  header.className = offcanvas.header;
+  const header = createDiv(undefined, { className: offcanvas.header });
 
-  const titleEl = document.createElement('h5');
-  titleEl.className = offcanvas.title;
-  if (titleId) titleEl.id = titleId;
-  titleEl.textContent = title;
+  const titleEl = createH5(title, {
+    className: offcanvas.title,
+    id: titleId,
+  });
 
-  const closeBtn = document.createElement('button');
-  closeBtn.type = 'button';
-  closeBtn.className = 'btn-close';
-  closeBtn.setAttribute('data-bs-dismiss', 'offcanvas');
-  closeBtn.setAttribute('aria-label', closeLabel);
+  const closeBtn = createButton(undefined, {
+    type: 'button',
+    className: 'btn-close',
+    dataset: { bsDismiss: 'offcanvas' },
+    aria: { label: closeLabel },
+  });
 
   header.appendChild(titleEl);
   header.appendChild(closeBtn);
@@ -260,8 +262,7 @@ export function createOffcanvasHeader(options: OffcanvasHeaderOptions): HTMLElem
  * @category Factory
  */
 export function createOffcanvasBody(): HTMLElement {
-  const el = document.createElement('div');
-  el.className = offcanvas.body;
+  const el = createDiv(undefined, { className: offcanvas.body });
   return el;
 }
 
@@ -274,8 +275,7 @@ export function createOffcanvasBody(): HTMLElement {
  * @category Factory
  */
 export function createOffcanvasFooter(): HTMLElement {
-  const el = document.createElement('div');
-  el.className = offcanvas.footer;
+  const el = createDiv(undefined, { className: offcanvas.footer });
   return el;
 }
 

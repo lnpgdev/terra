@@ -33,6 +33,12 @@
  * @category Components
  */
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createSpan } from '@lnpg/sol/elements/container/span';
+import { createButton } from '@lnpg/sol/elements/form/button';
+import { createInput } from '@lnpg/sol/elements/form/input';
+import { createLabel } from '@lnpg/sol/elements/form/label';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -144,19 +150,18 @@ export function createSearchBar(options: SearchBarOptions = {}): HTMLElement {
   // Build wrapper
   // -------------------------------------------------------------------------
 
-  const bar = document.createElement('div');
   const barClasses: string[] = [searchBar.base];
   if (rounded) barClasses.push(searchBar.rounded);
   if (size !== 'md') barClasses.push(searchBar.sizes[size]);
-  bar.className = barClasses.join(' ');
+
+  const bar = createDiv(undefined, { className: barClasses.join(' ') });
 
   // -------------------------------------------------------------------------
   // Leading icon
   // -------------------------------------------------------------------------
 
   if (icon !== null) {
-    const iconEl = document.createElement('span');
-    iconEl.className = searchBar.icon;
+    const iconEl = createSpan(undefined, { className: searchBar.icon });
     iconEl.innerHTML = icon;
     bar.appendChild(iconEl);
   }
@@ -167,8 +172,7 @@ export function createSearchBar(options: SearchBarOptions = {}): HTMLElement {
 
   let tokensContainer: HTMLElement | null = null;
   if (mode === 'multi') {
-    tokensContainer = document.createElement('div');
-    tokensContainer.className = searchBar.tokens;
+    tokensContainer = createDiv(undefined, { className: searchBar.tokens });
     bar.appendChild(tokensContainer);
   }
 
@@ -176,20 +180,18 @@ export function createSearchBar(options: SearchBarOptions = {}): HTMLElement {
   // Input
   // -------------------------------------------------------------------------
 
-  const input = document.createElement('input');
-  input.type = mode === 'single' ? 'search' : 'text';
-  input.className = searchBar.input;
-  input.placeholder = placeholder;
-  input.value = value;
-  if (disabled) input.disabled = true;
-  if (autofocus) input.autofocus = true;
+  const inputId = label ? `search-bar-${Math.random().toString(36).slice(2, 9)}` : undefined;
 
-  if (label) {
-    // aria-label handled by the <label> element's implicit association
-    input.id = `search-bar-${Math.random().toString(36).slice(2, 9)}`;
-  } else if (ariaLabel) {
-    input.setAttribute('aria-label', ariaLabel);
-  }
+  const input = createInput({
+    type: mode === 'single' ? 'search' : 'text',
+    className: searchBar.input,
+    placeholder,
+    value,
+    disabled: disabled || undefined,
+    autofocus: autofocus || undefined,
+    id: inputId,
+    aria: ariaLabel && !label ? { label: ariaLabel } : undefined,
+  });
 
   // -------------------------------------------------------------------------
   // Event: input change
@@ -234,15 +236,13 @@ export function createSearchBar(options: SearchBarOptions = {}): HTMLElement {
   function addToken(term: string): void {
     tokens.push(term);
 
-    const chip = document.createElement('span');
-    chip.className = searchBar.token;
-    chip.textContent = term;
+    const chip = createSpan(term, { className: searchBar.token });
 
-    const removeBtn = document.createElement('button');
-    removeBtn.type = 'button';
-    removeBtn.className = searchBar.tokenRemove;
-    removeBtn.setAttribute('aria-label', `Remove ${term}`);
-    removeBtn.textContent = '\u00d7'; // ×
+    const removeBtn = createButton('\u00d7', {
+      type: 'button',
+      className: searchBar.tokenRemove,
+      aria: { label: `Remove ${term}` },
+    });
     removeBtn.addEventListener('click', () => {
       removeToken(term, chip);
     });
@@ -265,12 +265,12 @@ export function createSearchBar(options: SearchBarOptions = {}): HTMLElement {
   // -------------------------------------------------------------------------
 
   if (label) {
-    const wrapper = document.createElement('div');
+    const wrapper = createDiv();
 
-    const labelEl = document.createElement('label');
-    labelEl.htmlFor = input.id;
-    labelEl.className = 'form-label';
-    labelEl.textContent = label;
+    const labelEl = createLabel(label, {
+      htmlFor: input.id,
+      className: 'form-label',
+    });
 
     wrapper.appendChild(labelEl);
     wrapper.appendChild(bar);

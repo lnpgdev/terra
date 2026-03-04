@@ -40,6 +40,10 @@
  * @category Components
  */
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createSpan } from '@lnpg/sol/elements/container/span';
+import { createButton } from '@lnpg/sol/elements/form/button';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -105,63 +109,53 @@ export function createNotification(options: NotificationOptions): NotificationEl
   // Wrapper
   // -------------------------------------------------------------------------
 
-  const wrapper = document.createElement('div');
-  wrapper.id = id;
   const wrapperClasses: string[] = [notification.base];
   if (unread) wrapperClasses.push(notification.unread);
   if (expandable) wrapperClasses.push(notification.expandable);
-  wrapper.className = wrapperClasses.join(' ');
+
+  const wrapper = createDiv(undefined, {
+    id,
+    className: wrapperClasses.join(' '),
+  });
 
   // -------------------------------------------------------------------------
   // Header (div for static, button for expandable)
   // -------------------------------------------------------------------------
 
-  const header = document.createElement(expandable ? 'button' : 'div');
-  header.className = notification.header;
-
-  if (expandable) {
-    (header as HTMLButtonElement).type = 'button';
-    header.setAttribute('data-bs-toggle', 'collapse');
-    header.setAttribute('data-bs-target', `#${bodyId}`);
-    header.setAttribute('aria-expanded', String(open));
-    header.setAttribute('aria-controls', bodyId);
-  }
+  const header: HTMLElement = expandable
+    ? createButton(undefined, {
+        type: 'button',
+        className: notification.header,
+        dataset: { bsToggle: 'collapse', bsTarget: `#${bodyId}` },
+        attrs: { 'aria-expanded': String(open), 'aria-controls': bodyId },
+      })
+    : createDiv(undefined, { className: notification.header });
 
   // Unread dot
   if (unread) {
-    const dot = document.createElement('span');
-    dot.className = notification.unreadDot;
+    const dot = createSpan(undefined, { className: notification.unreadDot });
     header.appendChild(dot);
   }
 
   // Content block (title + subtitle)
-  const content = document.createElement('div');
-  content.className = notification.content;
+  const content = createDiv(undefined, { className: notification.content });
 
-  const titleEl = document.createElement('span');
-  titleEl.className = notification.title;
-  titleEl.textContent = title;
+  const titleEl = createSpan(title, { className: notification.title });
 
-  const subtitleEl = document.createElement('span');
-  subtitleEl.className = notification.subtitle;
-  subtitleEl.textContent = subtitle;
+  const subtitleEl = createSpan(subtitle, { className: notification.subtitle });
 
   content.appendChild(titleEl);
   content.appendChild(subtitleEl);
 
   // Time
-  const timeEl = document.createElement('span');
-  timeEl.className = notification.time;
-  timeEl.textContent = time;
+  const timeEl = createSpan(time, { className: notification.time });
 
   header.appendChild(content);
   header.appendChild(timeEl);
 
   // Chevron (expandable only)
   if (expandable) {
-    const chevron = document.createElement('span');
-    chevron.className = notification.chevron;
-    chevron.setAttribute('aria-hidden', 'true');
+    const chevron = createSpan(undefined, { className: notification.chevron, aria: { hidden: true } });
     header.appendChild(chevron);
   }
 
@@ -173,11 +167,12 @@ export function createNotification(options: NotificationOptions): NotificationEl
 
   if (!expandable) return { element: wrapper };
 
-  const collapsePanel = document.createElement('div');
-  collapsePanel.id = bodyId;
-  collapsePanel.className = open
-    ? `collapse show ${notification.body}`
-    : `collapse ${notification.body}`;
+  const collapsePanel = createDiv(undefined, {
+    id: bodyId,
+    className: open
+      ? `collapse show ${notification.body}`
+      : `collapse ${notification.body}`,
+  });
 
   wrapper.appendChild(collapsePanel);
 

@@ -31,6 +31,9 @@
  */
 
 import BsAlert from 'bootstrap/js/dist/alert';
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createA } from '@lnpg/sol/elements/inline/a';
+import { createButton } from '@lnpg/sol/elements/form/button';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -96,28 +99,27 @@ if (document.readyState === 'loading') {
 export function createAlert(options: AlertOptions): HTMLElement {
   const { variant, message, href, timeout, dismissible = false, bordered = false } = options;
 
-  const el = document.createElement('div');
-
   const classes = ['alert', `alert-${variant}`];
   if (dismissible) classes.push('alert-dismissible');
   if (bordered) classes.push('alert-bordered');
-  el.className = classes.join(' ');
-  el.setAttribute('role', 'alert');
+
+  const el = createDiv(undefined, {
+    className: classes.join(' '),
+    role: 'alert',
+  });
 
   el.appendChild(document.createTextNode(message));
 
-  const link = document.createElement('a');
-  link.href = href;
-  link.className = 'alert-link';
-  link.textContent = 'Read more.';
+  const link = createA('Read more.', { href, className: 'alert-link' });
   el.appendChild(link);
 
   if (dismissible) {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'btn-close';
-    btn.setAttribute('data-bs-dismiss', 'alert');
-    btn.setAttribute('aria-label', 'Close');
+    const btn = createButton(undefined, {
+      type: 'button',
+      className: 'btn-close',
+      aria: { label: 'Close' },
+      dataset: { bsDismiss: 'alert' },
+    });
     el.appendChild(btn);
   }
 

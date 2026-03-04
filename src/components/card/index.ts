@@ -35,6 +35,8 @@
  * @category Components
  */
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -99,19 +101,15 @@ export interface CardOptions {
 export function createCardAccent(options: CardAccentOptions): HTMLElement {
   const { position, tone, thickness = 'sm', ariaLabel } = options;
 
-  const el = document.createElement('div');
-  el.className = [
-    card.accent.base,
-    card.accent.positions[position],
-    card.accent.tones[tone],
-    card.accent.thickness[thickness],
-  ].join(' ');
-
-  if (ariaLabel) {
-    el.setAttribute('aria-label', ariaLabel);
-  } else {
-    el.setAttribute('aria-hidden', 'true');
-  }
+  const el = createDiv(undefined, {
+    className: [
+      card.accent.base,
+      card.accent.positions[position],
+      card.accent.tones[tone],
+      card.accent.thickness[thickness],
+    ].join(' '),
+    aria: ariaLabel ? { label: ariaLabel } : { hidden: true },
+  });
 
   return el;
 }
@@ -156,8 +154,7 @@ export function createCard(options: CardOptions = {}): HTMLElement {
   if (radius !== 'none') classes.push(card.radius[radius]);
   if (accent) classes.push(card.hasAccent);
 
-  const el = document.createElement('div');
-  el.className = classes.join(' ');
+  const el = createDiv(undefined, { className: classes.join(' ') });
 
   if (accent) {
     el.appendChild(createCardAccent(accent));

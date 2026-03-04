@@ -25,6 +25,8 @@
  * @category Components
  */
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+
 // ---------------------------------------------------------------------------
 // Factories
 // ---------------------------------------------------------------------------
@@ -39,8 +41,7 @@
  * @category Factory
  */
 export function createMemberHeader(): HTMLElement {
-  const el = document.createElement('div');
-  el.className = memberHeader.base;
+  const el = createDiv(undefined, { className: memberHeader.base });
   return el;
 }
 
@@ -51,8 +52,7 @@ export function createMemberHeader(): HTMLElement {
  * @category Factory
  */
 export function createMemberHeaderLeft(): HTMLElement {
-  const el = document.createElement('div');
-  el.className = memberHeader.left;
+  const el = createDiv(undefined, { className: memberHeader.left });
   return el;
 }
 
@@ -67,8 +67,7 @@ export function createMemberHeaderLeft(): HTMLElement {
  * @category Factory
  */
 export function createMemberHeaderCenter(): HTMLElement {
-  const el = document.createElement('div');
-  el.className = memberHeader.center;
+  const el = createDiv(undefined, { className: memberHeader.center });
   return el;
 }
 
@@ -79,8 +78,7 @@ export function createMemberHeaderCenter(): HTMLElement {
  * @category Factory
  */
 export function createMemberHeaderRight(): HTMLElement {
-  const el = document.createElement('div');
-  el.className = memberHeader.right;
+  const el = createDiv(undefined, { className: memberHeader.right });
   return el;
 }
 

@@ -21,6 +21,10 @@
  * @category Components
  */
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createSpan } from '@lnpg/sol/elements/container/span';
+import { createA } from '@lnpg/sol/elements/inline/a';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -73,8 +77,7 @@ export interface SubNavOptions {
 export function createSubNav(options: SubNavOptions = {}): HTMLElement {
   const { left, right } = options;
 
-  const el = document.createElement('div');
-  el.className = subnav.base;
+  const el = createDiv(undefined, { className: subnav.base });
 
   if (left) el.appendChild(createSubNavLink(left, 'left'));
   if (right) el.appendChild(createSubNavLink(right, 'right'));
@@ -96,22 +99,19 @@ export function createSubNav(options: SubNavOptions = {}): HTMLElement {
 export function createSubNavLink(option: SubNavOption, side: 'left' | 'right'): HTMLAnchorElement {
   const { label, href, icon } = option;
 
-  const el = document.createElement('a');
-  el.className = subnav.link;
-  el.href = href;
+  const el = createA(undefined, { className: subnav.link, href });
 
   if (icon && side === 'left') {
-    const iconEl = document.createElement('span');
+    const iconEl = createSpan(undefined);
     iconEl.innerHTML = icon;
     el.appendChild(iconEl);
   }
 
-  const labelEl = document.createElement('span');
-  labelEl.textContent = label;
+  const labelEl = createSpan(label);
   el.appendChild(labelEl);
 
   if (icon && side === 'right') {
-    const iconEl = document.createElement('span');
+    const iconEl = createSpan(undefined);
     iconEl.innerHTML = icon;
     el.appendChild(iconEl);
   }

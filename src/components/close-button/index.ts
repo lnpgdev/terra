@@ -21,6 +21,8 @@
  * @category Components
  */
 
+import { createButton } from '@lnpg/sol/elements/form/button';
+
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 /** Options for {@link createCloseButton}. */
@@ -46,15 +48,13 @@ export interface CloseButtonOptions {
 export function createCloseButton(options: CloseButtonOptions = {}): HTMLButtonElement {
   const { white = false, disabled = false, label = 'Close', onClick } = options;
 
-  const btn = document.createElement('button');
-  btn.type = 'button';
+  const btn = createButton(undefined, {
+    type: 'button',
+    className: white ? `${closeButton.base} ${closeButton.white}` : closeButton.base,
+    aria: { label },
+    disabled: disabled || undefined,
+  });
 
-  const classes: string[] = [closeButton.base];
-  if (white) classes.push(closeButton.white);
-  btn.className = classes.join(' ');
-
-  btn.setAttribute('aria-label', label);
-  if (disabled) btn.disabled = true;
   if (onClick) btn.addEventListener('click', onClick);
 
   return btn;

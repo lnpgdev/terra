@@ -26,6 +26,11 @@
  * @category Components
  */
 
+import { createNav } from '@lnpg/sol/elements/layout/nav';
+import { createOl } from '@lnpg/sol/elements/list/ol';
+import { createLi } from '@lnpg/sol/elements/list/li';
+import { createA } from '@lnpg/sol/elements/inline/a';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -83,34 +88,29 @@ export interface BreadcrumbOptions {
 export function createBreadcrumb(options: BreadcrumbOptions): HTMLElement {
   const { items, divider, label = 'breadcrumb' } = options;
 
-  const nav = document.createElement('nav');
-  nav.setAttribute('aria-label', label);
+  const nav = createNav(undefined, { aria: { label } });
   if (divider !== undefined) {
     nav.style.setProperty('--bs-breadcrumb-divider', `'${divider}'`);
   }
 
-  const ol = document.createElement('ol');
-  ol.className = breadcrumb.base;
+  const ol = createOl({ className: breadcrumb.base });
 
   for (const item of items) {
-    const li = document.createElement('li');
     const liClasses: string[] = [breadcrumb.item];
     if (item.active) liClasses.push(breadcrumb.active);
-    li.className = liClasses.join(' ');
 
-    if (item.active) {
-      li.setAttribute('aria-current', 'page');
-    }
+    const li = createLi(undefined, {
+      className: liClasses.join(' '),
+      ...(item.active ? { attrs: { 'aria-current': 'page' } } : {}),
+    });
 
     if (item.href && !item.active) {
-      const a = document.createElement('a');
-      a.href = item.href;
-      a.textContent = item.label;
-      if (item.disabled) {
-        a.classList.add(breadcrumb.disabled);
-        a.setAttribute('aria-disabled', 'true');
-        a.setAttribute('tabindex', '-1');
-      }
+      const a = createA(item.label, {
+        href: item.href,
+        className: item.disabled ? breadcrumb.disabled : undefined,
+        tabIndex: item.disabled ? -1 : undefined,
+        attrs: item.disabled ? { 'aria-disabled': 'true' } : undefined,
+      });
       li.appendChild(a);
     } else {
       li.textContent = item.label;

@@ -34,6 +34,9 @@
  */
 
 import BsCollapse from 'bootstrap/js/dist/collapse';
+import { createA } from '@lnpg/sol/elements/inline/a';
+import { createButton } from '@lnpg/sol/elements/form/button';
+import { createDiv } from '@lnpg/sol/elements/container/div';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -113,23 +116,20 @@ export function createCollapseToggle(
   const { variant = 'button', target, expanded = false, label } = options;
 
   if (variant === 'anchor') {
-    const el = document.createElement('a');
-    el.href = `#${target}`;
-    el.setAttribute('data-bs-toggle', collapse.toggle);
-    el.setAttribute('role', 'button');
-    el.setAttribute('aria-expanded', String(expanded));
-    el.setAttribute('aria-controls', target);
-    el.textContent = label;
+    const el = createA(label, {
+      href: `#${target}`,
+      role: 'button',
+      dataset: { bsToggle: collapse.toggle },
+      attrs: { 'aria-expanded': String(expanded), 'aria-controls': target },
+    });
     return el;
   }
 
-  const el = document.createElement('button');
-  el.type = 'button';
-  el.setAttribute('data-bs-toggle', collapse.toggle);
-  el.setAttribute('data-bs-target', `#${target}`);
-  el.setAttribute('aria-expanded', String(expanded));
-  el.setAttribute('aria-controls', target);
-  el.textContent = label;
+  const el = createButton(label, {
+    type: 'button',
+    dataset: { bsToggle: collapse.toggle, bsTarget: `#${target}` },
+    attrs: { 'aria-expanded': String(expanded), 'aria-controls': target },
+  });
   return el;
 }
 
@@ -150,12 +150,10 @@ export function createCollapseToggle(
 export function createCollapse(options: CollapseOptions): HTMLElement {
   const { id, open = false } = options;
 
-  const el = document.createElement('div');
-  el.id = id;
-
-  const classes: string[] = [collapse.base];
-  if (open) classes.push(collapse.show);
-  el.className = classes.join(' ');
+  const el = createDiv(undefined, {
+    id,
+    className: [collapse.base, ...(open ? [collapse.show] : [])].join(' '),
+  });
 
   return el;
 }

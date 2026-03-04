@@ -29,6 +29,12 @@
  * @category Components
  */
 
+import { createSpan } from '@lnpg/sol/elements/container/span';
+import { createA } from '@lnpg/sol/elements/inline/a';
+import { createUl } from '@lnpg/sol/elements/list/ul';
+import { createLi } from '@lnpg/sol/elements/list/li';
+import { createNav } from '@lnpg/sol/elements/layout/nav';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -95,41 +101,38 @@ export interface PaginationOptions {
 export function createPagination(options: PaginationOptions): HTMLElement {
   const { items, size = 'md', align = 'start', ariaLabel = 'Pagination' } = options;
 
-  const nav = document.createElement('nav');
-  nav.setAttribute('aria-label', ariaLabel);
+  const nav = createNav(undefined, { attrs: { 'aria-label': ariaLabel } });
 
-  const ul = document.createElement('ul');
   const ulClasses: string[] = [pagination.base];
   if (size !== 'md') ulClasses.push(pagination.sizes[size]);
   if (align !== 'start') ulClasses.push(pagination.align[align]);
-  ul.className = ulClasses.join(' ');
+  const ul = createUl(undefined, { className: ulClasses.join(' ') });
 
   for (const item of items) {
-    const li = document.createElement('li');
     const liClasses: string[] = [pagination.item];
     if (item.active) liClasses.push(pagination.active);
     if (item.disabled) liClasses.push(pagination.disabled);
-    li.className = liClasses.join(' ');
 
-    if (item.active) {
-      li.setAttribute('aria-current', 'page');
-    }
+    const li = createLi(undefined, {
+      className: liClasses.join(' '),
+      attrs: item.active ? { 'aria-current': 'page' } : undefined,
+    });
 
     if (item.href) {
-      const a = document.createElement('a');
-      a.className = pagination.link;
-      a.href = item.href;
-      a.textContent = item.label;
-      if (item.rel) a.setAttribute('rel', item.rel);
+      const linkAttrs: Record<string, string> = {};
+      if (item.rel) linkAttrs.rel = item.rel;
       if (item.disabled) {
-        a.setAttribute('aria-disabled', 'true');
-        a.setAttribute('tabindex', '-1');
+        linkAttrs['aria-disabled'] = 'true';
+        linkAttrs.tabindex = '-1';
       }
+      const a = createA(item.label, {
+        className: pagination.link,
+        href: item.href,
+        attrs: linkAttrs,
+      });
       li.appendChild(a);
     } else {
-      const span = document.createElement('span');
-      span.className = pagination.link;
-      span.textContent = item.label;
+      const span = createSpan(item.label, { className: pagination.link });
       li.appendChild(span);
     }
 

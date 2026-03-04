@@ -19,6 +19,8 @@
  * @category Components
  */
 
+import { createButton as solButton } from '@lnpg/sol/elements/form/button';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -82,9 +84,6 @@ export function createButton(options: ButtonOptions = {}): HTMLButtonElement {
     onClick,
   } = options;
 
-  const el = document.createElement('button');
-  el.type = type;
-
   const classes: string[] = [button.base];
 
   if (variant === 'link') {
@@ -96,10 +95,12 @@ export function createButton(options: ButtonOptions = {}): HTMLButtonElement {
   if (size === 'sm') classes.push(button.sizes.sm);
   else if (size === 'lg') classes.push(button.sizes.lg);
 
-  el.className = classes.join(' ');
-  el.textContent = label;
+  const el = solButton(label, {
+    type,
+    className: classes.join(' '),
+    disabled: disabled || undefined,
+  });
 
-  if (disabled) el.disabled = true;
   if (onClick) el.addEventListener('click', onClick);
 
   return el;

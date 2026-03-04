@@ -33,6 +33,10 @@
  * @category Components
  */
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createH2 } from '@lnpg/sol/elements/heading/h2';
+import { createButton } from '@lnpg/sol/elements/form/button';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -111,49 +115,43 @@ export interface AccordionOptions {
 export function createAccordion(options: AccordionOptions): HTMLElement {
   const { id, items, mode = 'single', variant = 'default', flush = false } = options;
 
-  const wrapper = document.createElement('div');
   const wrapperClasses: string[] = [accordion.base];
   if (flush) wrapperClasses.push(accordion.flush);
   if (variant === 'notification') wrapperClasses.push(accordion.variants.notification);
-  wrapper.className = wrapperClasses.join(' ');
-  wrapper.id = id;
+
+  const wrapper = createDiv(undefined, {
+    id,
+    className: wrapperClasses.join(' '),
+  });
 
   for (const item of items) {
-    const itemEl = document.createElement('div');
     const itemClasses: string[] = [accordion.item];
     if (item.tone) itemClasses.push(accordion.tones[item.tone]);
-    itemEl.className = itemClasses.join(' ');
+
+    const itemEl = createDiv(undefined, { className: itemClasses.join(' ') });
 
     // Header
-    const header = document.createElement('h2');
-    header.className = accordion.header;
+    const header = createH2(undefined, { className: accordion.header });
 
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = item.open ? accordion.button : `${accordion.button} collapsed`;
-    btn.setAttribute('data-bs-toggle', 'collapse');
-    btn.setAttribute('data-bs-target', `#${item.id}`);
-    btn.setAttribute('aria-expanded', item.open ? 'true' : 'false');
-    btn.setAttribute('aria-controls', item.id);
-    btn.textContent = item.label;
-    if (item.disabled) {
-      btn.disabled = true;
-    }
+    const btn = createButton(item.label, {
+      type: 'button',
+      className: item.open ? accordion.button : `${accordion.button} collapsed`,
+      disabled: item.disabled || undefined,
+      dataset: { bsToggle: 'collapse', bsTarget: `#${item.id}` },
+      attrs: { 'aria-expanded': item.open ? 'true' : 'false', 'aria-controls': item.id },
+    });
 
     header.appendChild(btn);
     itemEl.appendChild(header);
 
     // Panel
-    const panel = document.createElement('div');
-    panel.id = item.id;
-    panel.className = `accordion-collapse collapse${item.open ? ' show' : ''}`;
-    if (mode === 'single') {
-      panel.setAttribute('data-bs-parent', `#${id}`);
-    }
+    const panelAttrs = mode === 'single' 
+      ? { id: item.id, className: `accordion-collapse collapse${item.open ? ' show' : ''}`, dataset: { bsParent: `#${id}` } }
+      : { id: item.id, className: `accordion-collapse collapse${item.open ? ' show' : ''}` };
 
-    const body = document.createElement('div');
-    body.className = accordion.body;
-    body.textContent = item.body;
+    const panel = createDiv(undefined, panelAttrs);
+
+    const body = createDiv(item.body, { className: accordion.body });
 
     panel.appendChild(body);
     itemEl.appendChild(panel);

@@ -28,6 +28,10 @@
  * @category Components
  */
 
+import { createSpan } from '@lnpg/sol/elements/container/span';
+import { createA } from '@lnpg/sol/elements/inline/a';
+import { createI } from '@lnpg/sol/elements/inline/i';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -155,8 +159,6 @@ export function createBadge(options: BadgeOptions = {}): HTMLElement {
     tooltipPosition,
   } = options;
 
-  const el = document.createElement(href ? 'a' : 'span');
-  if (href) (el as HTMLAnchorElement).href = href;
   const classes: string[] = [];
 
   if (shape === 'dot') {
@@ -188,7 +190,12 @@ export function createBadge(options: BadgeOptions = {}): HTMLElement {
   // Direction
   if (direction) classes.push(badge.directions[direction]);
 
-  el.className = classes.join(' ');
+  let el: HTMLAnchorElement | HTMLSpanElement;
+  if (href) {
+    el = createA(undefined, { className: classes.join(' '), href });
+  } else {
+    el = createSpan(undefined, { className: classes.join(' ') });
+  }
 
   // Label (pill and numeric badges only)
   if (shape === 'pill' && label != null) {
@@ -208,8 +215,7 @@ export function createBadge(options: BadgeOptions = {}): HTMLElement {
 
   // Icon
   if (icon) {
-    const iconEl = document.createElement('i');
-    iconEl.className = icon;
+    const iconEl = createI(undefined, { className: icon });
     el.prepend(iconEl);
   }
 

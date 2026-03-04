@@ -54,6 +54,14 @@
 
 import BsCollapse from 'bootstrap/js/dist/collapse';
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createSpan } from '@lnpg/sol/elements/container/span';
+import { createButton } from '@lnpg/sol/elements/form/button';
+import { createA } from '@lnpg/sol/elements/inline/a';
+import { createUl } from '@lnpg/sol/elements/list/ul';
+import { createLi } from '@lnpg/sol/elements/list/li';
+import { createNav } from '@lnpg/sol/elements/layout/nav';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -151,14 +159,13 @@ if (typeof document !== 'undefined') {
 export function createNavbar(options: NavbarOptions = {}): HTMLElement {
   const { variant = 'default', expand = 'lg', sticky } = options;
 
-  const el = document.createElement('nav');
   const classes: string[] = [navbar.base];
 
   if (expand !== false) classes.push(navbar.expand[expand]);
   if (variant !== 'default') classes.push(navbar.variants[variant]);
   if (sticky) classes.push(navbar.sticky[sticky]);
 
-  el.className = classes.join(' ');
+  const el = createNav(undefined, { className: classes.join(' ') });
   return el;
 }
 
@@ -170,9 +177,7 @@ export function createNavbar(options: NavbarOptions = {}): HTMLElement {
  * @category Factory
  */
 export function createNavbarBrand(href = '/'): HTMLAnchorElement {
-  const el = document.createElement('a');
-  el.className = navbar.brand;
-  el.href = href;
+  const el = createA(undefined, { className: navbar.brand, href });
   return el;
 }
 
@@ -188,17 +193,14 @@ export function createNavbarBrand(href = '/'): HTMLAnchorElement {
 export function createNavbarToggler(options: NavbarTogglerOptions): HTMLButtonElement {
   const { target, ariaLabel = 'Toggle navigation' } = options;
 
-  const el = document.createElement('button');
-  el.type = 'button';
-  el.className = navbar.toggler;
-  el.setAttribute('data-lnpg-toggle', 'collapse');
-  el.setAttribute('data-lnpg-target', target);
-  el.setAttribute('aria-controls', target);
-  el.setAttribute('aria-expanded', 'false');
-  el.setAttribute('aria-label', ariaLabel);
+  const el = createButton(undefined, {
+    type: 'button',
+    className: navbar.toggler,
+    dataset: { lnpgToggle: 'collapse', lnpgTarget: target },
+    attrs: { 'aria-controls': target, 'aria-expanded': 'false', 'aria-label': ariaLabel },
+  });
 
-  const icon = document.createElement('span');
-  icon.className = navbar.togglerIcon;
+  const icon = createSpan(undefined, { className: navbar.togglerIcon });
   el.appendChild(icon);
 
   return el;
@@ -212,9 +214,10 @@ export function createNavbarToggler(options: NavbarTogglerOptions): HTMLButtonEl
  * @category Factory
  */
 export function createNavbarCollapse(options: NavbarCollapseOptions): HTMLElement {
-  const el = document.createElement('div');
-  el.id = options.id;
-  el.className = `${navbar.collapse} collapse`;
+  const el = createDiv(undefined, {
+    id: options.id,
+    className: `${navbar.collapse} collapse`,
+  });
   return el;
 }
 
@@ -225,8 +228,7 @@ export function createNavbarCollapse(options: NavbarCollapseOptions): HTMLElemen
  * @category Factory
  */
 export function createNavbarNav(): HTMLUListElement {
-  const el = document.createElement('ul');
-  el.className = navbar.nav;
+  const el = createUl(undefined, { className: navbar.nav });
   return el;
 }
 
@@ -237,8 +239,7 @@ export function createNavbarNav(): HTMLUListElement {
  * @category Factory
  */
 export function createNavbarItem(): HTMLLIElement {
-  const el = document.createElement('li');
-  el.className = navbar.item;
+  const el = createLi(undefined, { className: navbar.item });
   return el;
 }
 
@@ -252,17 +253,19 @@ export function createNavbarItem(): HTMLLIElement {
 export function createNavbarLink(options: NavbarLinkOptions): HTMLAnchorElement {
   const { href = '#', label, active = false, disabled = false } = options;
 
-  const el = document.createElement('a');
-  el.href = href;
-  el.textContent = label;
-
   const classes: string[] = [navbar.link];
   if (active) classes.push('active');
   if (disabled) classes.push('disabled');
-  el.className = classes.join(' ');
 
-  if (active) el.setAttribute('aria-current', 'page');
-  if (disabled) el.setAttribute('aria-disabled', 'true');
+  const extraAttrs: Record<string, string> = {};
+  if (active) extraAttrs['aria-current'] = 'page';
+  if (disabled) extraAttrs['aria-disabled'] = 'true';
+
+  const el = createA(label, {
+    href,
+    className: classes.join(' '),
+    attrs: extraAttrs,
+  });
 
   return el;
 }
@@ -275,8 +278,7 @@ export function createNavbarLink(options: NavbarLinkOptions): HTMLAnchorElement 
  * @category Factory
  */
 export function createNavbarActions(): HTMLElement {
-  const el = document.createElement('div');
-  el.className = navbar.actions;
+  const el = createDiv(undefined, { className: navbar.actions });
   return el;
 }
 

@@ -21,6 +21,8 @@
  * @category Components
  */
 
+import { createHr as solHr } from '@lnpg/sol/elements/text/hr';
+
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 /** Semantic colour tone for the horizontal rule. */
@@ -48,12 +50,11 @@ export interface HrOptions {
 export function createHr(options: HrOptions = {}): HTMLHRElement {
   const { tone, size } = options;
 
-  const el = document.createElement('hr');
-
   const classes: string[] = [];
   if (tone) classes.push(hr.tones[tone]);
   if (size) classes.push(hr.sizes[size]);
-  if (classes.length) el.className = classes.join(' ');
+
+  const el = solHr({ className: classes.length ? classes.join(' ') : undefined });
 
   return el;
 }

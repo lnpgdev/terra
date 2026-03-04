@@ -30,6 +30,14 @@
 
 import BsDropdown from 'bootstrap/js/dist/dropdown';
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createButton } from '@lnpg/sol/elements/form/button';
+import { createA } from '@lnpg/sol/elements/inline/a';
+import { createI } from '@lnpg/sol/elements/inline/i';
+import { createUl } from '@lnpg/sol/elements/list/ul';
+import { createLi } from '@lnpg/sol/elements/list/li';
+import { createHr } from '@lnpg/sol/elements/text/hr';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -149,26 +157,26 @@ export function createDropdown(options: DropdownOptions): HTMLElement {
   } = options;
 
   // Wrapper
-  const wrapper = document.createElement('div');
-  wrapper.className = DIRECTION_CLASS[direction];
+  const wrapper = createDiv(undefined, { className: DIRECTION_CLASS[direction] });
 
-  // Toggle button
-  const toggle = document.createElement('button');
-  toggle.type = 'button';
-  toggle.setAttribute('data-bs-toggle', 'dropdown');
-  toggle.setAttribute('aria-expanded', 'false');
-
+  // Toggle button classes
   const btnClasses = ['btn', 'dropdown-toggle'];
   if (variant === 'link') {
     btnClasses.push('btn-link');
   } else if (tone) {
     btnClasses.push(variant === 'outline' ? `btn-outline-${tone}` : `btn-${tone}`);
   }
-  toggle.className = btnClasses.join(' ');
+
+  // Toggle button
+  const toggle = createButton(undefined, {
+    type: 'button',
+    className: btnClasses.join(' '),
+    dataset: { bsToggle: 'dropdown' },
+    attrs: { 'aria-expanded': 'false' },
+  });
 
   if (icon) {
-    const iconEl = document.createElement('i');
-    iconEl.className = icon;
+    const iconEl = createI(undefined, { className: icon });
     toggle.appendChild(iconEl);
   }
 
@@ -181,38 +189,29 @@ export function createDropdown(options: DropdownOptions): HTMLElement {
   wrapper.appendChild(toggle);
 
   // Menu
-  const menu = document.createElement('ul');
-  menu.className = 'dropdown-menu';
+  const menu = createUl(undefined, { className: 'dropdown-menu' });
 
   for (const item of items) {
     if (item.dividerBefore) {
-      const dividerLi = document.createElement('li');
-      const hr = document.createElement('hr');
-      hr.className = 'dropdown-divider';
+      const dividerLi = createLi();
+      const hr = createHr({ className: 'dropdown-divider' });
       dividerLi.appendChild(hr);
       menu.appendChild(dividerLi);
     }
 
-    const li = document.createElement('li');
-    const el =
-      item.type === 'anchor' ? document.createElement('a') : document.createElement('button');
+    const li = createLi();
+    const itemEl: HTMLAnchorElement | HTMLButtonElement =
+      item.type === 'anchor'
+        ? createA(item.label, { className: 'dropdown-item', href: item.href ?? '#' })
+        : createButton(item.label, { type: 'button', className: 'dropdown-item' });
 
-    el.className = 'dropdown-item';
-    el.textContent = item.label;
-
-    if (el instanceof HTMLAnchorElement) {
-      el.href = item.href ?? '#';
-    } else {
-      el.type = 'button';
-    }
-
-    if (item.active) el.classList.add('active');
+    if (item.active) itemEl.classList.add('active');
     if (item.disabled) {
-      el.classList.add('disabled');
-      el.setAttribute('aria-disabled', 'true');
+      itemEl.classList.add('disabled');
+      itemEl.setAttribute('aria-disabled', 'true');
     }
 
-    li.appendChild(el);
+    li.appendChild(itemEl);
     menu.appendChild(li);
   }
 

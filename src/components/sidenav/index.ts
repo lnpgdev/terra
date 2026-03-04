@@ -37,6 +37,10 @@
  */
 
 import BsOffcanvas from 'bootstrap/js/dist/offcanvas';
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createSpan } from '@lnpg/sol/elements/container/span';
+import { createButton } from '@lnpg/sol/elements/form/button';
+import { createH5 } from '@lnpg/sol/elements/heading/h5';
 
 // Re-export Bootstrap Offcanvas for consumers who need programmatic control.
 export { BsOffcanvas as BsSideNavOffcanvas };
@@ -145,37 +149,32 @@ export function createSideNav(options: SideNavOptions): SideNavElements {
   // Wrapper
   // -------------------------------------------------------------------------
 
-  const wrapper = document.createElement('div');
-  wrapper.id = id;
   const wrapperClasses: string[] = [sidenav.base, sidenav.placements[placement]];
   if (rounded) wrapperClasses.push(sidenav.rounded);
-  wrapper.className = wrapperClasses.join(' ');
+
+  const wrapper = createDiv(undefined, { id, className: wrapperClasses.join(' ') });
 
   // -------------------------------------------------------------------------
   // Trigger tab
   // -------------------------------------------------------------------------
 
-  const tab = document.createElement('button');
-  tab.type = 'button';
-  tab.className = sidenav.tab;
-  tab.setAttribute('data-bs-toggle', 'offcanvas');
-  tab.setAttribute('data-bs-target', `#${panelId}`);
-  tab.setAttribute('aria-controls', panelId);
+  const tab = createButton(undefined, {
+    type: 'button',
+    className: sidenav.tab,
+    dataset: { bsToggle: 'offcanvas', bsTarget: `#${panelId}` },
+    attrs: { 'aria-controls': panelId },
+  });
 
-  const tabContent = document.createElement('span');
-  tabContent.className = sidenav.tabContent;
+  const tabContent = createSpan(undefined, { className: sidenav.tabContent });
 
   if (icon) {
-    const iconEl = document.createElement('span');
-    iconEl.className = sidenav.tabIcon;
+    const iconEl = createSpan(undefined, { className: sidenav.tabIcon });
     iconEl.innerHTML = icon;
     tabContent.appendChild(iconEl);
   }
 
   if (label) {
-    const labelEl = document.createElement('span');
-    labelEl.className = sidenav.tabLabel;
-    labelEl.textContent = label;
+    const labelEl = createSpan(label, { className: sidenav.tabLabel });
     tabContent.appendChild(labelEl);
   }
 
@@ -185,31 +184,31 @@ export function createSideNav(options: SideNavOptions): SideNavElements {
   // Offcanvas panel
   // -------------------------------------------------------------------------
 
-  const panel = document.createElement('div');
-  panel.id = panelId;
-  panel.className = `offcanvas offcanvas-${offcanvasSide}`;
+  const panel = createDiv(undefined, {
+    id: panelId,
+    className: `offcanvas offcanvas-${offcanvasSide}`,
+    attrs: { 'aria-labelledby': resolvedTitleId },
+  });
   panel.tabIndex = -1;
-  panel.setAttribute('aria-labelledby', resolvedTitleId);
 
-  const header = document.createElement('div');
-  header.className = 'offcanvas-header';
+  const header = createDiv(undefined, { className: 'offcanvas-header' });
 
-  const titleEl = document.createElement('h5');
-  titleEl.className = 'offcanvas-title';
-  titleEl.id = resolvedTitleId;
-  titleEl.textContent = title ?? label ?? '';
+  const titleEl = createH5(title ?? label ?? '', {
+    className: 'offcanvas-title',
+    id: resolvedTitleId,
+  });
 
-  const closeBtn = document.createElement('button');
-  closeBtn.type = 'button';
-  closeBtn.className = 'btn-close';
-  closeBtn.setAttribute('data-bs-dismiss', 'offcanvas');
-  closeBtn.setAttribute('aria-label', 'Close');
+  const closeBtn = createButton(undefined, {
+    type: 'button',
+    className: 'btn-close',
+    dataset: { bsDismiss: 'offcanvas' },
+    aria: { label: 'Close' },
+  });
 
   header.appendChild(titleEl);
   header.appendChild(closeBtn);
 
-  const body = document.createElement('div');
-  body.className = 'offcanvas-body';
+  const body = createDiv(undefined, { className: 'offcanvas-body' });
 
   panel.appendChild(header);
   panel.appendChild(body);

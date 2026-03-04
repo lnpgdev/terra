@@ -31,6 +31,8 @@
 import logoBlack from '../../assets/logo-black.png';
 import logoColour from '../../assets/logo-colour.png';
 import logoWhite from '../../assets/logo-white.png';
+import { createImg } from '@lnpg/sol/elements/media/img';
+import { createA } from '@lnpg/sol/elements/inline/a';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -91,15 +93,15 @@ export function createLogo(options: LogoOptions = {}): HTMLElement {
     throw new Error('[Terra] Logo: `href` and `to` must not be used together.');
   }
 
-  const img = document.createElement('img');
-  img.src = src ?? VARIANT_ASSETS[variant];
-  img.alt = alt;
-  img.className = [logo.base, logo.sizes[size]].join(' ');
+  const img = createImg({
+    src: src ?? VARIANT_ASSETS[variant],
+    alt,
+    className: [logo.base, logo.sizes[size]].join(' '),
+  });
 
   const linkTarget = href ?? to;
   if (linkTarget) {
-    const anchor = document.createElement('a');
-    anchor.href = linkTarget;
+    const anchor = createA(undefined, { href: linkTarget });
     anchor.appendChild(img);
     return anchor;
   }

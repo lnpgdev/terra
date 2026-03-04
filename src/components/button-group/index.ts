@@ -29,6 +29,9 @@
  * @category Components
  */
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createButton } from '@lnpg/sol/elements/form/button';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -107,10 +110,6 @@ export function createButtonGroup(options: ButtonGroupOptions): HTMLElement {
     ariaLabel = 'Button group',
   } = options;
 
-  const group = document.createElement('div');
-  group.setAttribute('role', 'group');
-  group.setAttribute('aria-label', ariaLabel);
-
   const groupClasses: string[] = [
     direction === 'vertical' ? buttonGroup.vertical : buttonGroup.base,
   ];
@@ -118,12 +117,13 @@ export function createButtonGroup(options: ButtonGroupOptions): HTMLElement {
   if (size === 'sm') groupClasses.push(buttonGroup.sizes.sm);
   else if (size === 'lg') groupClasses.push(buttonGroup.sizes.lg);
 
-  group.className = groupClasses.join(' ');
+  const group = createDiv(undefined, {
+    role: 'group',
+    aria: { label: ariaLabel },
+    className: groupClasses.join(' '),
+  });
 
   for (const item of buttons) {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-
     const btnClasses: string[] = ['btn'];
 
     if (variant === 'link') {
@@ -135,10 +135,11 @@ export function createButtonGroup(options: ButtonGroupOptions): HTMLElement {
     if (size === 'sm') btnClasses.push('btn-sm');
     else if (size === 'lg') btnClasses.push('btn-lg');
 
-    btn.className = btnClasses.join(' ');
-    btn.textContent = item.label;
-
-    if (item.disabled) btn.disabled = true;
+    const btn = createButton(item.label, {
+      type: 'button',
+      className: btnClasses.join(' '),
+      disabled: item.disabled || undefined,
+    });
 
     group.appendChild(btn);
   }

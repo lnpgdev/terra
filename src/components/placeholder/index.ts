@@ -20,6 +20,8 @@
  * @category Components
  */
 
+import { createSpan } from '@lnpg/sol/elements/container/span';
+
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 /** Animation style applied to the placeholder wrapper. */
@@ -51,20 +53,21 @@ export interface PlaceholderOptions {
 export function createPlaceholder(options: PlaceholderOptions = {}): HTMLElement {
   const { cols, animation, shape, width } = options;
 
-  const span = document.createElement('span');
-
   const classes: string[] = [placeholder.base];
   if (cols) classes.push(`col-${cols}`);
   if (shape === 'circle') classes.push(placeholder.circle);
   else if (shape === 'square') classes.push(placeholder.square);
   else if (shape === 'triangle') classes.push(placeholder.triangle);
-  span.className = classes.join(' ');
 
-  if (width) span.style.width = width;
+  const span = createSpan(undefined, {
+    className: classes.join(' '),
+    style: width ? { width } : undefined,
+  });
 
   if (animation) {
-    const wrapper = document.createElement('span');
-    wrapper.className = animation === 'glow' ? placeholder.glow : placeholder.wave;
+    const wrapper = createSpan(undefined, {
+      className: animation === 'glow' ? placeholder.glow : placeholder.wave,
+    });
     wrapper.appendChild(span);
     return wrapper;
   }

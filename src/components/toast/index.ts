@@ -45,6 +45,11 @@
 
 import BsToast from 'bootstrap/js/dist/toast';
 
+import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createButton } from '@lnpg/sol/elements/form/button';
+import { createStrong } from '@lnpg/sol/elements/inline/strong';
+import { createSmall } from '@lnpg/sol/elements/inline/small';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -310,9 +315,10 @@ if (document.readyState === 'loading') {
 export function createToastContainer(options: ToastContainerOptions = {}): HTMLElement {
   const { placement = 'top-end', gap = 'md' } = options;
 
-  const el = document.createElement('div');
-  el.className = 'toast-container p-3';
-  el.setAttribute('data-lnpg-placement', placement);
+  const el = createDiv(undefined, {
+    className: 'toast-container p-3',
+    dataset: { lnpgPlacement: placement },
+  });
 
   el.classList.add(...PLACEMENT_CLASSES[placement]);
   el.classList.add('d-flex', 'flex-column');
@@ -351,52 +357,44 @@ export function createToast(options: ToastOptions): HTMLElement {
     dismissible = true,
   } = options;
 
-  const el = document.createElement('div');
   const classes = ['toast'];
   if (variant) classes.push(`toast-${variant}`);
-  el.className = classes.join(' ');
-  el.setAttribute('role', 'status');
-  el.setAttribute('aria-live', 'polite');
-  el.setAttribute('aria-atomic', 'true');
+  const el = createDiv(undefined, {
+    className: classes.join(' '),
+    attrs: { role: 'status', 'aria-live': 'polite', 'aria-atomic': 'true' },
+  });
 
   if (!autohide) el.dataset.lnpgAutohide = 'false';
   if (delay !== 5000) el.dataset.lnpgDelay = String(delay);
   if (!animation) el.dataset.lnpgAnimation = 'false';
 
-  // Header - rendered when a title or dismiss button is needed.
   if (title !== undefined || dismissible) {
-    const header = document.createElement('div');
-    header.className = 'toast-header';
+    const header = createDiv(undefined, { className: 'toast-header' });
 
     if (title !== undefined) {
-      const titleEl = document.createElement('strong');
-      titleEl.className = 'toast-title me-auto';
-      titleEl.textContent = title;
+      const titleEl = createStrong(title, { className: 'toast-title me-auto' });
       header.appendChild(titleEl);
     }
 
     if (meta !== undefined) {
-      const metaEl = document.createElement('small');
-      metaEl.className = 'toast-meta';
-      metaEl.textContent = meta;
+      const metaEl = createSmall(meta, { className: 'toast-meta' });
       header.appendChild(metaEl);
     }
 
     if (dismissible) {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'btn-close';
-      btn.setAttribute('aria-label', 'Close');
-      btn.setAttribute('data-lnpg-dismiss', 'toast');
+      const btn = createButton(undefined, {
+        type: 'button',
+        className: 'btn-close',
+        aria: { label: 'Close' },
+        dataset: { lnpgDismiss: 'toast' },
+      });
       header.appendChild(btn);
     }
 
     el.appendChild(header);
   }
 
-  const bodyEl = document.createElement('div');
-  bodyEl.className = 'toast-body';
-  bodyEl.textContent = body;
+  const bodyEl = createDiv(body, { className: 'toast-body' });
   el.appendChild(bodyEl);
 
   return el;
