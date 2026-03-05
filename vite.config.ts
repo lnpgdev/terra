@@ -19,6 +19,8 @@ function getEntries(): Record<string, string> {
   const componentsDir = resolve(__dirname, 'src/components');
 
   if (existsSync(componentsDir)) {
+    entries['components/index'] = resolve(componentsDir, 'index.ts');
+
     readdirSync(componentsDir, { withFileTypes: true })
       .filter((entry) => entry.isDirectory())
       .map((entry) => entry.name)
@@ -39,19 +41,15 @@ export default defineConfig({
       formats: ['es', 'cjs'],
       fileName: (format, entryAlias) => `${entryAlias}.${format}.js`,
     },
-    rollupOptions: {
-      external: ['@lnpg/sol'],
-      output: {
-        globals: {
-          '@lnpg/sol': 'Sol',
-        },
-      },
-    },
   },
   css: {
     preprocessorOptions: {
       scss: {
         api: 'modern-compiler',
+        // Bootstrap 5 uses deprecated Sass APIs internally. These warnings are
+        // not actionable by us and will be resolved when Bootstrap upgrades to
+        // Sass-modern-compatible syntax in a future major release.
+        silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function'],
       },
     },
   },

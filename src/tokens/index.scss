@@ -1,0 +1,16 @@
+/**
+ * Terra UI Kit: Token Layer
+ *
+ * Forwards Sol's public SCSS token surface.
+ *
+ * Terra component SCSS files can import this module to access Sol's
+ * Sass-level token variables (colours, typography, spacing, etc.)
+ * without depending on Sol's internal paths directly.
+ *
+ * Usage:
+ *   @use '../../tokens' as tokens;
+ *   .my-class { color: tokens.$primary-colour; }
+ */
+
+@forward '@lnpg/sol/scss/tokens';
+@forward './tones';

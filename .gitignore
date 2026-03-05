@@ -48,6 +48,11 @@ tsconfig.tsbuildinfo
 *.sw?
 .DS_Store
 Thumbs.db
+
+#--
+# AI / Coders
+#
+.claude/
  
 #--
 # TESTING / VITEST

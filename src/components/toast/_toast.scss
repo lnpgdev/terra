@@ -1,0 +1,64 @@
+/**
+ * Terra UI Kit: Toast
+ *
+ * Variant classes apply tinted backgrounds using Bootstrap 5.3's
+ * --bs-*-bg-subtle / --bs-*-text-emphasis / --bs-*-border-subtle tokens,
+ * consistent with Alert and Badge link styles.
+ *
+ * Built on Bootstrap's .toast -- overrides and LNPG-specific extensions only.
+ */
+
+// Square corners
+.toast {
+  --bs-toast-border-radius: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Variants
+// ---------------------------------------------------------------------------
+
+.toast-info {
+  --bs-toast-bg: var(--bs-info-bg-subtle);
+  --bs-toast-color: var(--bs-info-text-emphasis);
+  --bs-toast-border-color: var(--bs-info-border-subtle);
+  --bs-toast-header-bg: var(--bs-info-bg-subtle);
+  --bs-toast-header-color: var(--bs-info-text-emphasis);
+  --bs-toast-header-border-color: var(--bs-info-border-subtle);
+}
+
+.toast-success {
+  --bs-toast-bg: var(--bs-success-bg-subtle);
+  --bs-toast-color: var(--bs-success-text-emphasis);
+  --bs-toast-border-color: var(--bs-success-border-subtle);
+  --bs-toast-header-bg: var(--bs-success-bg-subtle);
+  --bs-toast-header-color: var(--bs-success-text-emphasis);
+  --bs-toast-header-border-color: var(--bs-success-border-subtle);
+}
+
+.toast-warning {
+  --bs-toast-bg: var(--bs-warning-bg-subtle);
+  --bs-toast-color: var(--bs-warning-text-emphasis);
+  --bs-toast-border-color: var(--bs-warning-border-subtle);
+  --bs-toast-header-bg: var(--bs-warning-bg-subtle);
+  --bs-toast-header-color: var(--bs-warning-text-emphasis);
+  --bs-toast-header-border-color: var(--bs-warning-border-subtle);
+}
+
+.toast-danger {
+  --bs-toast-bg: var(--bs-danger-bg-subtle);
+  --bs-toast-color: var(--bs-danger-text-emphasis);
+  --bs-toast-border-color: var(--bs-danger-border-subtle);
+  --bs-toast-header-bg: var(--bs-danger-bg-subtle);
+  --bs-toast-header-color: var(--bs-danger-text-emphasis);
+  --bs-toast-header-border-color: var(--bs-danger-border-subtle);
+}
+
+// ---------------------------------------------------------------------------
+// Container
+// ---------------------------------------------------------------------------
+
+// Terra's JS initialises containers with d-flex + gap utilities.
+// Reset Bootstrap's built-in margin-bottom spacing so gap takes over.
+.toast-container[data-lnpg-placement] > :not(:last-child) {
+  margin-bottom: 0;
+}

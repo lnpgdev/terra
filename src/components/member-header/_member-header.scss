@@ -1,0 +1,30 @@
+/**
+ * Terra UI Kit: MemberHeader
+ *
+ * Three-slot header layout (left, center, right). The center slot is
+ * absolutely positioned so it is always truly centred relative to the
+ * full header width, regardless of the size of the left and right slots.
+ */
+
+.member-header {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .member-header-left,
+  .member-header-right {
+    flex: 0 0 auto;
+  }
+
+  .member-header-right {
+    margin-left: auto;
+  }
+
+  // Absolutely positioned so it is always centred relative to the full
+  // header width, not just the space between the left and right slots.
+  .member-header-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
