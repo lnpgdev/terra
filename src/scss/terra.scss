@@ -1,0 +1,39 @@
+// Sol Bootstrap adapter - maps Sol design tokens to Bootstrap variables,
+// compiles Bootstrap, and applies Sol's core baseline (Montserrat font faces and reboot).
+@use '@lnpg/sol/scss/adapters/bootstrap/v5' with (
+  $sol-bootstrap-baseline: main
+);
+
+// Component overrides
+@use '../components/accordion/accordion';
+@use '../components/alert/alert';
+@use '../components/badge/badge';
+@use '../components/breadcrumb/breadcrumb';
+@use '../components/button/button';
+@use '../components/button-group/button-group';
+@use '../components/card/card';
+@use '../components/carousel/carousel';
+@use '../components/close-button/close-button';
+@use '../components/collapse/collapse';
+@use '../components/dropdown/dropdown';
+@use '../components/horizontal-rule/horizontal-rule';
+@use '../components/label/label';
+@use '../components/list-group/list-group';
+@use '../components/logo/logo';
+@use '../components/member-header/member-header';
+@use '../components/modal/modal';
+@use '../components/navbar/navbar';
+@use '../components/notification/notification';
+@use '../components/offcanvas/offcanvas';
+@use '../components/pagination/pagination';
+@use '../components/placeholder/placeholder';
+@use '../components/scrollspy/scrollspy';
+@use '../components/search-bar/search-bar';
+@use '../components/select/select';
+@use '../components/sidenav/sidenav';
+@use '../components/spinner/spinner';
+@use '../components/subnav/subnav';
+@use '../components/tab/tab';
+@use '../components/table/table';
+@use '../components/toast/toast';
+@use '../components/tooltip/tooltip';

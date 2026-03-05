@@ -1,0 +1,12 @@
+/**
+ * Terra UI Kit: Button
+ *
+ * Square corners, supporting solid, outline, and link variants
+ * across success, warning, and danger tones.
+ *
+ * Built on Bootstrap's .btn -- overrides and LNPG-specific extensions only.
+ */
+
+.btn {
+  --bs-btn-border-radius: 0;
+}

@@ -1,0 +1,109 @@
+/**
+ * Terra UI Kit: Notification
+ *
+ * A single notification row with title, subtitle, time, and an optional
+ * unread indicator. Can optionally expand to show a details/timeline panel
+ * via Bootstrap Collapse.
+ */
+
+.notification {
+  border-bottom: 1px solid var(--bs-border-color);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+// Header - plain div for non-expandable, button for expandable.
+.notification-header {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  background: none;
+  border: 0;
+  text-align: left;
+  color: var(--bs-body-color);
+  text-decoration: none;
+
+  .notification-expandable & {
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--bs-secondary-bg);
+    }
+  }
+}
+
+// Unread indicator dot.
+.notification-unread-dot {
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--bs-primary);
+}
+
+// Content block - title + subtitle.
+.notification-content {
+  flex: 1;
+  min-width: 0; // prevent text overflow breaking layout
+}
+
+.notification-title {
+  display: block;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notification-subtitle {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--bs-secondary-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notification-time {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--bs-secondary-color);
+  white-space: nowrap;
+}
+
+// CSS-only chevron - no icon library required.
+.notification-chevron {
+  flex-shrink: 0;
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 1.5px solid currentcolor;
+  border-bottom: 1.5px solid currentcolor;
+  transform: rotate(45deg); // points downward
+  transition: transform 0.2s ease-in-out;
+  margin-top: -0.25rem; // optical vertical centering
+}
+
+// Unread state - bold title.
+.notification-unread {
+  .notification-title {
+    font-weight: 600;
+  }
+}
+
+// Rotate chevron when expanded.
+.notification-header[aria-expanded='true'] {
+  .notification-chevron {
+    transform: rotate(-135deg); // points upward
+    margin-top: 0.125rem;
+  }
+}
+
+// Expandable body - consumer appends timeline/detail content here.
+.notification-body {
+  padding: 0 1rem 0.75rem;
+}

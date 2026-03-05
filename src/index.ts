@@ -1,3 +1,3 @@
-import './terra.scss';
+import './scss/terra.scss';
 
-export * from './components/spinner/index';
+export * from './components/index';
