@@ -1,0 +1,70 @@
+/**
+ * Terra UI Kit: Table
+ *
+ * Built on Bootstrap's .table - adds a muted variant, sticky-header scroll
+ * wrapper, disabled row styling, and table section header/footer helpers.
+ */
+
+// ---------------------------------------------------------------------------
+// Muted variant
+// ---------------------------------------------------------------------------
+
+// Subtle secondary background.
+.table-muted {
+  --bs-table-bg: var(--bs-secondary-bg);
+}
+
+// ---------------------------------------------------------------------------
+// Scrollable wrapper
+// ---------------------------------------------------------------------------
+
+// Wrap the <table> in a <div class="table-scrollable"> and add
+// stickyHeader: true to enable a sticky column header.
+.table-scrollable {
+  max-height: 400px;
+  overflow-y: auto;
+
+  thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: var(--bs-table-bg, var(--bs-body-bg));
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Disabled row
+// ---------------------------------------------------------------------------
+
+// Fades and blocks interaction.
+.table > :not(caption) > tr.table-row-disabled > * {
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
+}
+
+// ---------------------------------------------------------------------------
+// Table section header and footer
+// ---------------------------------------------------------------------------
+
+// Rendered as a <div> above/below the table element to show a title and
+// optional metadata (e.g. row count, last updated).
+
+.table-section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.table-section-footer {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.table-section-meta {
+  font-size: 0.875em;
+  color: var(--bs-secondary-color);
+}

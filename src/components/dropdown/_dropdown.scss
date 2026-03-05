@@ -1,0 +1,14 @@
+/**
+ * Terra UI Kit: Dropdown
+ *
+ * Built on Bootstrap's .dropdown -- square corners applied to menu and items.
+ * Hover-open behaviour is handled in JS (CSS-only is unreliable with Popper).
+ */
+
+.dropdown-menu {
+  border-radius: 0;
+}
+
+.dropdown-item {
+  border-radius: 0;
+}

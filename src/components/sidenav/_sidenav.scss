@@ -1,0 +1,128 @@
+/**
+ * Terra UI Kit: SideNav
+ *
+ * A fixed trigger tab anchored to the viewport edge that opens an Offcanvas
+ * panel. Used for page navigation (left) and call queues or secondary panels
+ * (right). Built on top of Bootstrap's Offcanvas plugin.
+ */
+
+.sidenav {
+  // -------------------------------------------------------------------------
+  // Trigger tab
+  // -------------------------------------------------------------------------
+
+  .sidenav-tab {
+    position: fixed;
+    z-index: 1030; // Same level as Bootstrap's sticky navbar - below offcanvas backdrop.
+    display: inline-flex;
+    padding: 0;
+    background-color: var(--bs-dark);
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid var(--bs-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  // Inner content wrapper - handles rotation and flex layout of icon + label.
+  .sidenav-tab-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 0.5rem;
+  }
+
+  .sidenav-tab-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  // -------------------------------------------------------------------------
+  // Placement - left side (tab on left edge, text reads upward)
+  // -------------------------------------------------------------------------
+
+  &.sidenav-left-top,
+  &.sidenav-left,
+  &.sidenav-left-bottom {
+    .sidenav-tab {
+      left: 0;
+    }
+
+    .sidenav-tab-content {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg); // Flips vertical-rl so text reads bottom-to-top.
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Placement - right side (tab on right edge, text reads downward)
+  // -------------------------------------------------------------------------
+
+  &.sidenav-right-top,
+  &.sidenav-right,
+  &.sidenav-right-bottom {
+    .sidenav-tab {
+      right: 0;
+    }
+
+    .sidenav-tab-content {
+      writing-mode: vertical-rl;
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Vertical position
+  // -------------------------------------------------------------------------
+
+  &.sidenav-left-top,
+  &.sidenav-right-top {
+    .sidenav-tab {
+      top: 4rem;
+    }
+  }
+
+  &.sidenav-left,
+  &.sidenav-right {
+    .sidenav-tab {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &.sidenav-left-bottom,
+  &.sidenav-right-bottom {
+    .sidenav-tab {
+      bottom: 4rem;
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Rounded modifier - adds corner radius on the outward-facing corners only.
+  // Default is square (matching the kit's design language).
+  // -------------------------------------------------------------------------
+
+  &.sidenav-rounded {
+    &.sidenav-left-top,
+    &.sidenav-left,
+    &.sidenav-left-bottom {
+      .sidenav-tab {
+        border-radius: 0 var(--bs-border-radius) var(--bs-border-radius) 0;
+      }
+    }
+
+    &.sidenav-right-top,
+    &.sidenav-right,
+    &.sidenav-right-bottom {
+      .sidenav-tab {
+        border-radius: var(--bs-border-radius) 0 0 var(--bs-border-radius);
+      }
+    }
+  }
+}

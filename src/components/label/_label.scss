@@ -1,0 +1,92 @@
+/**
+ * Terra UI Kit: Label
+ *
+ * Custom component -- not a Bootstrap wrapper. Built from scratch.
+ *
+ * Variants: solid (tinted bg + emphasis text), outline (border + text),
+ * ghost (text only).
+ * Shapes: pill, rounded, square.
+ * Sizes: sm, md (default), lg.
+ * Supports an optional leading icon via an <i> element.
+ *
+ * Tone classes are generated dynamically via @each over $component-tones,
+ * so adding a new tone to src/tokens/_tones.scss propagates here automatically.
+ */
+
+@use '../../tokens/tones' as tokens;
+
+// ---------------------------------------------------------------------------
+// Base
+// ---------------------------------------------------------------------------
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.25em 1em;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+// ---------------------------------------------------------------------------
+// Shapes
+// ---------------------------------------------------------------------------
+
+.label-square {
+  border-radius: 0;
+}
+
+.label-rounded {
+  border-radius: 0.25rem;
+}
+
+.label-pill {
+  border-radius: 50rem;
+}
+
+// ---------------------------------------------------------------------------
+// Sizes
+// ---------------------------------------------------------------------------
+
+.label-sm {
+  padding: 0.15em 0.45em;
+  font-size: 0.75rem;
+}
+
+.label-lg {
+  padding: 0.4em 0.85em;
+  font-size: 1rem;
+}
+
+// ---------------------------------------------------------------------------
+// Tone variants -- generated from $component-tones
+// ---------------------------------------------------------------------------
+
+// Tone classes are generated dynamically via @each over $component-tones,
+// so adding a new tone to src/tokens/_tones.scss propagates here automatically.
+
+@each $tone in tokens.$component-tones {
+  // Solid variant -- tinted bg, emphasis text
+  .label-solid-#{$tone} {
+    background-color: var(--bs-#{$tone});
+    color: var(--bs-#{$tone}-text-emphasis);
+    border-color: transparent;
+  }
+
+  // Outline variant -- transparent bg, coloured border + text
+  .label-outline-#{$tone} {
+    background-color: transparent;
+    border-color: var(--bs-#{$tone});
+    color: var(--bs-#{$tone});
+  }
+
+  // Ghost variant -- no bg, no border, coloured text only
+  .label-ghost-#{$tone} {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--bs-#{$tone}-text-emphasis);
+  }
+}
