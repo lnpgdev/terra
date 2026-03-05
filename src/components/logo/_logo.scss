@@ -1,0 +1,30 @@
+/**
+ * Terra UI Kit: Logo
+ *
+ * LNPG icon asset with size modifier classes. Intended for use on an <img>
+ * element - swap the src attribute to use a custom logo while retaining
+ * Terra's sizing classes.
+ *
+ * Built on Bootstrap's display utilities - no Bootstrap component base.
+ */
+
+.logo {
+  display: block;
+  height: auto;
+}
+
+// ---------------------------------------------------------------------------
+// Sizes
+// ---------------------------------------------------------------------------
+
+.logo-sm {
+  width: 2rem;
+}
+
+.logo-md {
+  width: 4rem;
+}
+
+.logo-lg {
+  width: 8rem;
+}

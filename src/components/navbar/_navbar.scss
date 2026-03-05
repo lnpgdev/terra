@@ -1,0 +1,86 @@
+/**
+ * Terra UI Kit: Navbar
+ *
+ * Top-level navigation wrapper. Built on Bootstrap's .navbar with Terra-specific
+ * class aliases (.navbar-item, .navbar-link) and an .navbar-actions slot for
+ * right-side content (search, buttons, etc.).
+ *
+ * Default surface: dark (matches Orbit wireframe).
+ * Use .navbar-light for a light surface with dark text.
+ */
+
+.navbar {
+  // Dark surface is the Terra default — no modifier class needed.
+  background-color: var(--bs-dark);
+  --bs-navbar-color: rgba(255, 255, 255, 0.75);
+  --bs-navbar-hover-color: #fff;
+  --bs-navbar-active-color: #fff;
+  --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25);
+  --bs-navbar-brand-color: #fff;
+  --bs-navbar-brand-hover-color: #fff;
+  --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1);
+  // stylelint-disable-next-line value-no-vendor-prefix
+  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255%2c 255%2c 255%2c 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+  // .navbar-nav contains the list of navigation items.
+  // We add a gap to ensure spacing between items, relative to the font size.
+  .navbar-nav {
+    gap: 1em;
+  }
+
+  // .navbar-item is the Terra alias for Bootstrap's .nav-item.
+  .navbar-item {
+    list-style: none;
+  }
+
+  // .navbar-link is the Terra alias for Bootstrap's .nav-link.
+  .navbar-link {
+    display: block;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
+    color: var(--bs-navbar-color);
+    text-decoration: none;
+    background: none;
+    border: 0;
+    transition: color 0.15s ease-in-out;
+
+    &:hover,
+    &:focus {
+      color: var(--bs-navbar-hover-color);
+    }
+
+    &.active {
+      color: var(--bs-navbar-active-color);
+    }
+
+    &.disabled {
+      color: var(--bs-navbar-disabled-color);
+      pointer-events: none;
+      cursor: default;
+    }
+  }
+
+  // .navbar-actions is a Terra slot for right-aligned utility content
+  // (search bar, buttons, user avatar, etc.).
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+  }
+}
+
+// Light variant — inverts the default dark surface.
+.navbar-light {
+  background-color: var(--bs-light);
+  --bs-navbar-color: rgba(0, 0, 0, 0.55);
+  --bs-navbar-hover-color: rgba(0, 0, 0, 0.7);
+  --bs-navbar-active-color: rgba(0, 0, 0, 0.9);
+  --bs-navbar-disabled-color: rgba(0, 0, 0, 0.3);
+  --bs-navbar-brand-color: rgba(0, 0, 0, 0.9);
+  --bs-navbar-brand-hover-color: rgba(0, 0, 0, 0.9);
+  --bs-navbar-toggler-border-color: rgba(0, 0, 0, 0.1);
+  // stylelint-disable-next-line value-no-vendor-prefix
+  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280%2c 0%2c 0%2c 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}

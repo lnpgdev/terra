@@ -1,0 +1,21 @@
+/**
+ * Terra UI Kit: Modal
+ *
+ * Vertically centred by default, scrollable inside the body. Built on
+ * Bootstrap's .modal with a Terra-specific switchable pages extension
+ * (.modal-pages / .modal-page) for multi-step modal content.
+ */
+
+// Switchable modal pages - Terra extension.
+// Only one .modal-page is visible at a time (controlled via the .active class).
+.modal-pages {
+  // Takes up full body space; no extra layout of its own.
+}
+
+.modal-page {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}

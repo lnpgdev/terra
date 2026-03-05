@@ -1,7 +1,7 @@
 {
   "name": "@lnpg/terra",
-  "version": "0.7.0",
-  "description": "Framework-agnostic UI Kit for LNPG internal applications.",
+  "version": "1.0.0",
+  "description": "UI Kit for LNPG internal applications, built with Bootstrap compatibility.",
   "homepage": "https://github.com/lnpgdev/terra#readme",
   "bugs": {
     "url": "https://github.com/lnpgdev/terra/issues"
@@ -12,6 +12,9 @@
   },
   "license": "ISC",
   "author": "LNPG Development Team",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "type": "module",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
@@ -23,7 +26,8 @@
   ],
   "sideEffects": [
     "**/*.css",
-    "**/*.scss"
+    "**/*.scss",
+    "**/*.js"
   ],
   "exports": {
     ".": {
@@ -32,32 +36,179 @@
       "require": "./dist/index.cjs.js"
     },
     "./styles": "./dist/terra.css",
+    "./components": {
+      "types": "./dist/types/components/index.d.ts",
+      "import": "./dist/components/index.es.js",
+      "require": "./dist/components/index.cjs.js"
+    },
+    "./components/accordion": {
+      "types": "./dist/types/components/accordion/index.d.ts",
+      "import": "./dist/components/accordion/index.es.js",
+      "require": "./dist/components/accordion/index.cjs.js"
+    },
+    "./components/alert": {
+      "types": "./dist/types/components/alert/index.d.ts",
+      "import": "./dist/components/alert/index.es.js",
+      "require": "./dist/components/alert/index.cjs.js"
+    },
+    "./components/badge": {
+      "types": "./dist/types/components/badge/index.d.ts",
+      "import": "./dist/components/badge/index.es.js",
+      "require": "./dist/components/badge/index.cjs.js"
+    },
+    "./components/breadcrumb": {
+      "types": "./dist/types/components/breadcrumb/index.d.ts",
+      "import": "./dist/components/breadcrumb/index.es.js",
+      "require": "./dist/components/breadcrumb/index.cjs.js"
+    },
+    "./components/button": {
+      "types": "./dist/types/components/button/index.d.ts",
+      "import": "./dist/components/button/index.es.js",
+      "require": "./dist/components/button/index.cjs.js"
+    },
+    "./components/button-group": {
+      "types": "./dist/types/components/button-group/index.d.ts",
+      "import": "./dist/components/button-group/index.es.js",
+      "require": "./dist/components/button-group/index.cjs.js"
+    },
+    "./components/card": {
+      "types": "./dist/types/components/card/index.d.ts",
+      "import": "./dist/components/card/index.es.js",
+      "require": "./dist/components/card/index.cjs.js"
+    },
+    "./components/carousel": {
+      "types": "./dist/types/components/carousel/index.d.ts",
+      "import": "./dist/components/carousel/index.es.js",
+      "require": "./dist/components/carousel/index.cjs.js"
+    },
     "./components/close-button": {
       "types": "./dist/types/components/close-button/index.d.ts",
       "import": "./dist/components/close-button/index.es.js",
       "require": "./dist/components/close-button/index.cjs.js"
+    },
+    "./components/collapse": {
+      "types": "./dist/types/components/collapse/index.d.ts",
+      "import": "./dist/components/collapse/index.es.js",
+      "require": "./dist/components/collapse/index.cjs.js"
+    },
+    "./components/dropdown": {
+      "types": "./dist/types/components/dropdown/index.d.ts",
+      "import": "./dist/components/dropdown/index.es.js",
+      "require": "./dist/components/dropdown/index.cjs.js"
     },
     "./components/horizontal-rule": {
       "types": "./dist/types/components/horizontal-rule/index.d.ts",
       "import": "./dist/components/horizontal-rule/index.es.js",
       "require": "./dist/components/horizontal-rule/index.cjs.js"
     },
+    "./components/label": {
+      "types": "./dist/types/components/label/index.d.ts",
+      "import": "./dist/components/label/index.es.js",
+      "require": "./dist/components/label/index.cjs.js"
+    },
+    "./components/list-group": {
+      "types": "./dist/types/components/list-group/index.d.ts",
+      "import": "./dist/components/list-group/index.es.js",
+      "require": "./dist/components/list-group/index.cjs.js"
+    },
+    "./components/logo": {
+      "types": "./dist/types/components/logo/index.d.ts",
+      "import": "./dist/components/logo/index.es.js",
+      "require": "./dist/components/logo/index.cjs.js"
+    },
+    "./components/member-header": {
+      "types": "./dist/types/components/member-header/index.d.ts",
+      "import": "./dist/components/member-header/index.es.js",
+      "require": "./dist/components/member-header/index.cjs.js"
+    },
+    "./components/modal": {
+      "types": "./dist/types/components/modal/index.d.ts",
+      "import": "./dist/components/modal/index.es.js",
+      "require": "./dist/components/modal/index.cjs.js"
+    },
+    "./components/navbar": {
+      "types": "./dist/types/components/navbar/index.d.ts",
+      "import": "./dist/components/navbar/index.es.js",
+      "require": "./dist/components/navbar/index.cjs.js"
+    },
+    "./components/notification": {
+      "types": "./dist/types/components/notification/index.d.ts",
+      "import": "./dist/components/notification/index.es.js",
+      "require": "./dist/components/notification/index.cjs.js"
+    },
+    "./components/offcanvas": {
+      "types": "./dist/types/components/offcanvas/index.d.ts",
+      "import": "./dist/components/offcanvas/index.es.js",
+      "require": "./dist/components/offcanvas/index.cjs.js"
+    },
+    "./components/pagination": {
+      "types": "./dist/types/components/pagination/index.d.ts",
+      "import": "./dist/components/pagination/index.es.js",
+      "require": "./dist/components/pagination/index.cjs.js"
+    },
     "./components/placeholder": {
       "types": "./dist/types/components/placeholder/index.d.ts",
       "import": "./dist/components/placeholder/index.es.js",
       "require": "./dist/components/placeholder/index.cjs.js"
     },
+    "./components/scrollspy": {
+      "types": "./dist/types/components/scrollspy/index.d.ts",
+      "import": "./dist/components/scrollspy/index.es.js",
+      "require": "./dist/components/scrollspy/index.cjs.js"
+    },
+    "./components/search-bar": {
+      "types": "./dist/types/components/search-bar/index.d.ts",
+      "import": "./dist/components/search-bar/index.es.js",
+      "require": "./dist/components/search-bar/index.cjs.js"
+    },
+    "./components/select": {
+      "types": "./dist/types/components/select/index.d.ts",
+      "import": "./dist/components/select/index.es.js",
+      "require": "./dist/components/select/index.cjs.js"
+    },
+    "./components/sidenav": {
+      "types": "./dist/types/components/sidenav/index.d.ts",
+      "import": "./dist/components/sidenav/index.es.js",
+      "require": "./dist/components/sidenav/index.cjs.js"
+    },
     "./components/spinner": {
       "types": "./dist/types/components/spinner/index.d.ts",
       "import": "./dist/components/spinner/index.es.js",
       "require": "./dist/components/spinner/index.cjs.js"
+    },
+    "./components/subnav": {
+      "types": "./dist/types/components/subnav/index.d.ts",
+      "import": "./dist/components/subnav/index.es.js",
+      "require": "./dist/components/subnav/index.cjs.js"
+    },
+    "./components/tab": {
+      "types": "./dist/types/components/tab/index.d.ts",
+      "import": "./dist/components/tab/index.es.js",
+      "require": "./dist/components/tab/index.cjs.js"
+    },
+    "./components/table": {
+      "types": "./dist/types/components/table/index.d.ts",
+      "import": "./dist/components/table/index.es.js",
+      "require": "./dist/components/table/index.cjs.js"
+    },
+    "./components/toast": {
+      "types": "./dist/types/components/toast/index.d.ts",
+      "import": "./dist/components/toast/index.es.js",
+      "require": "./dist/components/toast/index.cjs.js"
+    },
+    "./components/tooltip": {
+      "types": "./dist/types/components/tooltip/index.d.ts",
+      "import": "./dist/components/tooltip/index.es.js",
+      "require": "./dist/components/tooltip/index.cjs.js"
     }
   },
   "scripts": {
     "dev": "vite",
     "clean": "rm -rf dist",
-    "prebuild": "npm run clean && npm run typecheck && npm run lint && npm run lint:styles && npm run format:check",
+    "prebuild": "npm run clean && npm run format && npm run scrub:fix && npm run typecheck && npm run lint && npm run lint:styles && npm run format:check",
     "build": "vite build && tsc --emitDeclarationOnly",
+    "scrub": "unicode-scrub \"src/**/*\"",
+    "scrub:fix": "unicode-scrub --fix \"src/**/*\"",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
@@ -68,10 +219,18 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "npm audit && npm run test && npm run build",
     "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "@lnpg/sol": "^1.0.0",
+    "bootstrap": "^5.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
+    "@lnpg/sol": "^1.0.0",
+    "@lnpg/unicode-scrub": "^1.0.0",
+    "@types/bootstrap": "^5.2.10",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "@vitest/coverage-v8": "^4.0.0",
@@ -80,6 +239,7 @@
     "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-import": "^2.31.0",
     "globals": "^15.0.0",
+    "happy-dom": "^20.7.0",
     "postcss-scss": "^4.0.0",
     "prettier": "^3.0.0",
     "sass": "^1.83.0",
