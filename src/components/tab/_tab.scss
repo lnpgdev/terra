@@ -1,0 +1,41 @@
+/**
+ * Terra UI Kit: Tab
+ *
+ * Overrides Bootstrap's default border-radius on nav links and adds
+ * size helpers (.nav-sm / .nav-lg) and a horizontal-scroll wrapper
+ * (.nav-scroll) for overflow nav bars.
+ *
+ * Built on Bootstrap's .nav -- overrides and LNPG-specific extensions only.
+ */
+
+// ---------------------------------------------------------------------------
+// Shape override -- remove Bootstrap's default border-radius on nav links
+// ---------------------------------------------------------------------------
+
+.nav-tabs .nav-link,
+.nav-pills .nav-link {
+  border-radius: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Sizes
+// ---------------------------------------------------------------------------
+
+.nav-sm .nav-link {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.6rem;
+}
+
+.nav-lg .nav-link {
+  font-size: 1rem;
+  padding: 0.6rem 1.1rem;
+}
+
+// ---------------------------------------------------------------------------
+// Scroll helper -- horizontal overflow without wrapping
+// ---------------------------------------------------------------------------
+
+.nav-scroll {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}

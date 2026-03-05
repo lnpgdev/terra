@@ -19,6 +19,8 @@ function getEntries(): Record<string, string> {
   const componentsDir = resolve(__dirname, 'src/components');
 
   if (existsSync(componentsDir)) {
+    entries['components/index'] = resolve(componentsDir, 'index.ts');
+
     readdirSync(componentsDir, { withFileTypes: true })
       .filter((entry) => entry.isDirectory())
       .map((entry) => entry.name)

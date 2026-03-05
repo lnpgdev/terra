@@ -1,0 +1,22 @@
+/**
+ * Terra UI Kit: Component Tones
+ *
+ * Canonical tone list that mirrors Bootstrap's $theme-colors keys,
+ * which are themselves driven by Sol's theme tokens via the Sol Bootstrap
+ * adapter.
+ *
+ * Components use this list with Sass @each to generate tone-specific CSS
+ * classes dynamically -- adding a new tone here automatically propagates to
+ * every component that follows the @each pattern, without manual updates.
+ *
+ * Omitting 'light' intentionally: a light-coloured badge/label/etc. would
+ * be invisible against a light page background (the default).
+ *
+ * @module
+ */
+
+/// Canonical component tone list.
+/// Mirrors Bootstrap's $theme-colors keys (primary, secondary, success,
+/// info, warning, danger, dark).
+/// @type list
+$component-tones: ('primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark') !default;
