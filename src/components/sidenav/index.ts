@@ -36,11 +36,11 @@
  * @category Components
  */
 
-import BsOffcanvas from 'bootstrap/js/dist/offcanvas';
 import { createDiv } from '@lnpg/sol/elements/container/div';
 import { createSpan } from '@lnpg/sol/elements/container/span';
 import { createButton } from '@lnpg/sol/elements/form/button';
 import { createH5 } from '@lnpg/sol/elements/heading/h5';
+import BsOffcanvas from 'bootstrap/js/dist/offcanvas';
 
 // Re-export Bootstrap Offcanvas for consumers who need programmatic control.
 export { BsOffcanvas as BsSideNavOffcanvas };
@@ -52,9 +52,12 @@ export { BsOffcanvas as BsSideNavOffcanvas };
 /**
  * Viewport edge and vertical position for the SideNav trigger tab.
  *
- * - `left-top` / `right-top` - pinned near the top of the viewport.
- * - `left` / `right` - vertically centred.
- * - `left-bottom` / `right-bottom` - pinned near the bottom.
+ * @remarks
+ * `'left-top'` / `'right-top'`: pinned near the top of the viewport.
+ * `'left'` / `'right'`: vertically centred.
+ * `'left-bottom'` / `'right-bottom'`: pinned near the bottom.
+ *
+ * @category Attributes
  */
 export type SideNavPlacement =
   | 'left-top'
@@ -64,35 +67,64 @@ export type SideNavPlacement =
   | 'right'
   | 'right-bottom';
 
-/** Options for {@link createSideNav}. */
+/**
+ * Options for {@link createSideNav}.
+ *
+ * @category Interfaces
+ */
 export interface SideNavOptions {
   /**
    * Base ID for the component. The offcanvas panel ID is derived as
    * `${id}-panel` and the title element ID as `${id}-title`.
    */
   id: string;
-  /** Which edge and vertical position the trigger tab occupies. Defaults to `'right'`. */
+
+  /**
+   * Which edge and vertical position the trigger tab occupies. Defaults to `'right'`.
+   */
   placement?: SideNavPlacement;
-  /** HTML string rendered inside the trigger tab as an icon (e.g. a Bootstrap Icon `<i>` element). */
+
+  /**
+   * HTML string rendered inside the trigger tab as an icon (e.g. a Bootstrap Icon `<i>` element).
+   */
   icon?: string;
-  /** Text label rendered on the trigger tab, rotated to read along the tab. */
+
+  /**
+   * Text label rendered on the trigger tab, rotated to read along the tab.
+   */
   label?: string;
+
   /**
    * Whether the trigger tab has rounded corners on its outward-facing side.
    * Defaults to `false` (square, matching the kit's design language).
    */
   rounded?: boolean;
-  /** Title text displayed in the offcanvas panel header. Defaults to `label` if omitted. */
+
+  /**
+   * Title text displayed in the offcanvas panel header. Defaults to `label` if omitted.
+   */
   title?: string;
-  /** Override the auto-generated title element ID. */
+
+  /**
+   * Override the auto-generated title element ID.
+   */
   titleId?: string;
 }
 
-/** Elements returned by {@link createSideNav}. */
+/**
+ * Elements returned by {@link createSideNav}.
+ *
+ * @category Interfaces
+ */
 export interface SideNavElements {
-  /** The SideNav wrapper element containing the trigger tab and the offcanvas panel. */
+  /**
+   * The SideNav wrapper element containing the trigger tab and the offcanvas panel.
+   */
   element: HTMLElement;
-  /** The offcanvas body element - append your panel content here. */
+
+  /**
+   * The offcanvas body element - append your panel content here.
+   */
   body: HTMLElement;
 }
 
@@ -227,27 +259,74 @@ export function createSideNav(options: SideNavOptions): SideNavElements {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the SideNav component. @category Constants */
+/**
+ * CSS class references for the SideNav component.
+ *
+ * @category Constants
+ */
 export const sidenav = {
-  /** Wrapper element class. */
+  /**
+   * Wrapper element class.
+   */
   base: 'sidenav',
-  /** Trigger tab button class. */
+
+  /**
+   * Trigger tab button class.
+   */
   tab: 'sidenav-tab',
-  /** Inner content wrapper class (handles rotation). */
+
+  /**
+   * Inner content wrapper class (handles rotation).
+   */
   tabContent: 'sidenav-tab-content',
-  /** Icon element class within the tab. */
+
+  /**
+   * Icon element class within the tab.
+   */
   tabIcon: 'sidenav-tab-icon',
-  /** Label element class within the tab. */
+
+  /**
+   * Label element class within the tab.
+   */
   tabLabel: 'sidenav-tab-label',
-  /** Modifier class that rounds the outward-facing corners of the trigger tab. */
+
+  /**
+   * Modifier class that rounds the outward-facing corners of the trigger tab.
+   */
   rounded: 'sidenav-rounded',
-  /** Placement modifier classes keyed by placement value. */
+
+  /**
+   * Placement modifier classes keyed by placement value.
+   */
   placements: {
+    /**
+     * Pinned near the top of the left edge.
+     */
     'left-top': 'sidenav-left-top',
+
+    /**
+     * Vertically centred on the left edge.
+     */
     left: 'sidenav-left',
+
+    /**
+     * Pinned near the bottom of the left edge.
+     */
     'left-bottom': 'sidenav-left-bottom',
+
+    /**
+     * Pinned near the top of the right edge.
+     */
     'right-top': 'sidenav-right-top',
+
+    /**
+     * Vertically centred on the right edge.
+     */
     right: 'sidenav-right',
+
+    /**
+     * Pinned near the bottom of the right edge.
+     */
     'right-bottom': 'sidenav-right-bottom',
   },
 } as const;

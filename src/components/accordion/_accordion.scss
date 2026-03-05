@@ -5,11 +5,18 @@
  * and --bs-accordion-inner-border-radius overrides (avoids disrupting Bootstrap's
  * border-radius transitions and JS state detection). The notification variant adds
  * a left accent bar to each item using a CSS custom property tone system.
+ *
+ * Tone classes are generated dynamically via @each over $component-tones,
+ * so adding a new tone to src/tokens/_tones.scss propagates here automatically.
  */
 
-// Square corners - override Bootstrap's CSS custom properties rather than
-// the computed property directly, so Bootstrap's border-radius transitions
-// and JS state detection are not disrupted.
+@use '../../tokens/tones' as tokens;
+
+/**
+ * Square corners - override Bootstrap's CSS custom properties rather than
+ * the computed property directly, so Bootstrap's border-radius transitions
+ * and JS state detection are not disrupted.
+ */
 .accordion {
   --bs-accordion-border-radius: 0;
   --bs-accordion-inner-border-radius: 0;
@@ -28,18 +35,8 @@
   border-left: 4px solid var(--accordion-accent-color);
 }
 
-.accordion-item-info {
-  --accordion-accent-color: var(--bs-info);
-}
-
-.accordion-item-success {
-  --accordion-accent-color: var(--bs-success);
-}
-
-.accordion-item-warning {
-  --accordion-accent-color: var(--bs-warning);
-}
-
-.accordion-item-danger {
-  --accordion-accent-color: var(--bs-danger);
+@each $tone in tokens.$component-tones {
+  .accordion-item-#{$tone} {
+    --accordion-accent-color: var(--bs-#{$tone});
+  }
 }

@@ -12,7 +12,7 @@
  *
  * Usage (HTML-authored):
  * ```html
- * <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ * <nav class="navbar navbar-expand-lg">
  *   <div class="container">
  *     <a class="navbar-brand" href="/">Brand</a>
  *
@@ -52,65 +52,127 @@
  * @category Components
  */
 
-import BsCollapse from 'bootstrap/js/dist/collapse';
-
 import { createDiv } from '@lnpg/sol/elements/container/div';
 import { createSpan } from '@lnpg/sol/elements/container/span';
 import { createButton } from '@lnpg/sol/elements/form/button';
 import { createA } from '@lnpg/sol/elements/inline/a';
-import { createUl } from '@lnpg/sol/elements/list/ul';
-import { createLi } from '@lnpg/sol/elements/list/li';
 import { createNav } from '@lnpg/sol/elements/layout/nav';
+import { createLi } from '@lnpg/sol/elements/list/li';
+import { createUl } from '@lnpg/sol/elements/list/ul';
+import BsCollapse from 'bootstrap/js/dist/collapse';
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
-/** Visual theme variant for the navbar. */
-export type NavbarVariant = 'default' | 'dark' | 'light';
+/**
+ * Visual theme variant for the navbar.
+ *
+ * @remarks
+ * `'dark'`: dark background with light text (default — matches Orbit wireframe).
+ * `'light'`: light background with dark text.
+ *
+ * @category Attributes
+ */
+export type NavbarVariant = 'dark' | 'light';
 
-/** Breakpoint at which the navbar expands from stacked to horizontal. */
+/**
+ * Breakpoint at which the navbar expands from stacked to horizontal.
+ *
+ * @remarks
+ * `'sm'` / `'md'` / `'lg'` / `'xl'` / `'xxl'`: Bootstrap responsive breakpoints.
+ *
+ * @category Attributes
+ */
 export type NavbarExpand = 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
-/** Sticky positioning for the navbar. */
+/**
+ * Sticky positioning for the navbar.
+ *
+ * @remarks
+ * `'top'`: sticks to the top of the viewport.
+ * `'bottom'`: sticks to the bottom of the viewport.
+ *
+ * @category Attributes
+ */
 export type NavbarSticky = 'top' | 'bottom';
 
-/** Options for {@link createNavbar}. */
+/**
+ * Options for {@link createNavbar}.
+ *
+ * @category Interfaces
+ */
 export interface NavbarOptions {
-  /** Visual colour scheme. Defaults to `'default'` (Bootstrap default styling). */
+  /**
+   * Visual colour scheme. Defaults to `'dark'` (dark surface, matches Orbit wireframe).
+   */
   variant?: NavbarVariant;
+
   /**
    * Breakpoint at which the navbar expands. Defaults to `'lg'`.
    * Pass `false` to never collapse (always expanded).
    */
   expand?: NavbarExpand | false;
-  /** Stick the navbar to the top or bottom of the viewport. */
+
+  /**
+   * Stick the navbar to the top or bottom of the viewport.
+   */
   sticky?: NavbarSticky;
 }
 
-/** Options for {@link createNavbarToggler}. */
+/**
+ * Options for {@link createNavbarToggler}.
+ *
+ * @category Interfaces
+ */
 export interface NavbarTogglerOptions {
-  /** ID of the `NavbarCollapse` region this toggler controls (without `#`). */
+  /**
+   * ID of the `NavbarCollapse` region this toggler controls (without `#`).
+   */
   target: string;
-  /** Accessible label for the toggler button. Defaults to `'Toggle navigation'`. */
+
+  /**
+   * Accessible label for the toggler button. Defaults to `'Toggle navigation'`.
+   */
   ariaLabel?: string;
 }
 
-/** Options for {@link createNavbarCollapse}. */
+/**
+ * Options for {@link createNavbarCollapse}.
+ *
+ * @category Interfaces
+ */
 export interface NavbarCollapseOptions {
-  /** ID applied to the collapse region. Used by the toggler's `aria-controls`. */
+  /**
+   * ID applied to the collapse region. Used by the toggler's `aria-controls`.
+   */
   id: string;
 }
 
-/** Options for {@link createNavbarLink}. */
+/**
+ * Options for {@link createNavbarLink}.
+ *
+ * @category Interfaces
+ */
 export interface NavbarLinkOptions {
-  /** Link destination. */
+  /**
+   * Link destination.
+   */
   href?: string;
-  /** Visible label text. */
+
+  /**
+   * Visible label text.
+   */
   label: string;
-  /** Marks the link as the currently active page. */
+
+  /**
+   * Marks the link as the currently active page.
+   */
   active?: boolean;
-  /** Prevents interaction. */
+
+  /**
+   * Prevents interaction.
+   */
   disabled?: boolean;
 }
 
@@ -157,12 +219,12 @@ if (typeof document !== 'undefined') {
  * @category Factory
  */
 export function createNavbar(options: NavbarOptions = {}): HTMLElement {
-  const { variant = 'default', expand = 'lg', sticky } = options;
+  const { variant = 'dark', expand = 'lg', sticky } = options;
 
   const classes: string[] = [navbar.base];
 
   if (expand !== false) classes.push(navbar.expand[expand]);
-  if (variant !== 'default') classes.push(navbar.variants[variant]);
+  if (variant === 'light') classes.push(navbar.variants.light);
   if (sticky) classes.push(navbar.sticky[sticky]);
 
   const el = createNav(undefined, { className: classes.join(' ') });
@@ -286,42 +348,109 @@ export function createNavbarActions(): HTMLElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the Navbar component. @category Constants */
+/**
+ * CSS class references for the Navbar component.
+ *
+ * @category Constants
+ */
 export const navbar = {
-  /** Base navbar class. */
+  /**
+   * Base navbar class.
+   */
   base: 'navbar',
-  /** Brand/logo link class. */
+
+  /**
+   * Brand/logo link class.
+   */
   brand: 'navbar-brand',
-  /** Collapse toggle button class. */
+
+  /**
+   * Collapse toggle button class.
+   */
   toggler: 'navbar-toggler',
-  /** Icon inside the toggler button. */
+
+  /**
+   * Icon inside the toggler button.
+   */
   togglerIcon: 'navbar-toggler-icon',
-  /** Collapsible nav region class. */
+
+  /**
+   * Collapsible nav region class.
+   */
   collapse: 'navbar-collapse',
-  /** Nav item list class. */
+
+  /**
+   * Nav item list class.
+   */
   nav: 'navbar-nav',
-  /** Individual nav item (Terra alias for Bootstrap's nav-item). */
+
+  /**
+   * Individual nav item (Terra alias for Bootstrap's nav-item).
+   */
   item: 'navbar-item',
-  /** Nav link (Terra alias for Bootstrap's nav-link). */
+
+  /**
+   * Nav link (Terra alias for Bootstrap's nav-link).
+   */
   link: 'navbar-link',
-  /** Right-side actions slot class. */
+
+  /**
+   * Right-side actions slot class.
+   */
   actions: 'navbar-actions',
-  /** Variant modifier classes. */
+
+  /**
+   * Variant modifier classes. Dark is the Terra base — only light needs a class.
+   */
   variants: {
-    dark: 'navbar-dark',
+    /**
+     * Light background with dark text.
+     */
     light: 'navbar-light',
   },
-  /** Expand breakpoint modifier classes. */
+
+  /**
+   * Expand breakpoint modifier classes.
+   */
   expand: {
+    /**
+     * Expand at sm breakpoint.
+     */
     sm: 'navbar-expand-sm',
+
+    /**
+     * Expand at md breakpoint.
+     */
     md: 'navbar-expand-md',
+
+    /**
+     * Expand at lg breakpoint.
+     */
     lg: 'navbar-expand-lg',
+
+    /**
+     * Expand at xl breakpoint.
+     */
     xl: 'navbar-expand-xl',
+
+    /**
+     * Expand at xxl breakpoint.
+     */
     xxl: 'navbar-expand-xxl',
   },
-  /** Sticky positioning modifier classes. */
+
+  /**
+   * Sticky positioning modifier classes.
+   */
   sticky: {
+    /**
+     * Sticks to the top of the viewport.
+     */
     top: 'sticky-top',
+
+    /**
+     * Sticks to the bottom of the viewport.
+     */
     bottom: 'sticky-bottom',
   },
 } as const;

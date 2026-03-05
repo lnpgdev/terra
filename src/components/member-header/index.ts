@@ -86,14 +86,29 @@ export function createMemberHeaderRight(): HTMLElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the MemberHeader component. @category Constants */
+/**
+ * CSS class references for the MemberHeader component.
+ *
+ * @category Constants
+ */
 export const memberHeader = {
-  /** Wrapper element class. */
+  /**
+   * Wrapper element class.
+   */
   base: 'member-header',
-  /** Left slot class. */
+
+  /**
+   * Left slot class.
+   */
   left: 'member-header-left',
-  /** Center slot class (absolutely positioned, always truly centred). */
+
+  /**
+   * Center slot class (absolutely positioned, always truly centred).
+   */
   center: 'member-header-center',
-  /** Right slot class. */
+
+  /**
+   * Right slot class.
+   */
   right: 'member-header-right',
 } as const;

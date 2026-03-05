@@ -39,14 +39,33 @@ import BsTooltip from 'bootstrap/js/dist/tooltip';
 // Types
 // ---------------------------------------------------------------------------
 
-/** Placement of the tooltip relative to its target element. */
+/**
+ * Placement of the tooltip relative to its target element.
+ *
+ * @remarks
+ * `'top'`: above the element (default).
+ * `'right'`: to the right.
+ * `'bottom'`: below.
+ * `'left'`: to the left.
+ *
+ * @category Attributes
+ */
 export type TooltipPlacement = 'top' | 'right' | 'bottom' | 'left';
 
-/** Options for {@link addTooltip}. */
+/**
+ * Options for {@link addTooltip}.
+ *
+ * @category Interfaces
+ */
 export interface TooltipOptions {
-  /** Tooltip text content. */
+  /**
+   * Tooltip text content.
+   */
   title: string;
-  /** Where the tooltip appears relative to the element. Defaults to `'top'`. */
+
+  /**
+   * Where the tooltip appears relative to the element. Defaults to `'top'`.
+   */
   placement?: TooltipPlacement;
 }
 
@@ -106,10 +125,19 @@ export function addTooltip(el: HTMLElement, options: TooltipOptions): void {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** Data attribute references for the Tooltip component. @category Constants */
+/**
+ * Data attribute references for the Tooltip component.
+ *
+ * @category Constants
+ */
 export const tooltip = {
-  /** Value of the `data-bs-toggle` attribute that marks a tooltip target. */
+  /**
+   * Value of the `data-bs-toggle` attribute that marks a tooltip target.
+   */
   toggle: 'tooltip',
-  /** Selector that matches all tooltip-enabled elements in the DOM. */
+
+  /**
+   * Selector that matches all tooltip-enabled elements in the DOM.
+   */
   selector: '[data-bs-toggle="tooltip"]',
 } as const;

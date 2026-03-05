@@ -28,68 +28,155 @@
  * @category Components
  */
 
-import BsDropdown from 'bootstrap/js/dist/dropdown';
-
 import { createDiv } from '@lnpg/sol/elements/container/div';
 import { createButton } from '@lnpg/sol/elements/form/button';
 import { createA } from '@lnpg/sol/elements/inline/a';
 import { createI } from '@lnpg/sol/elements/inline/i';
-import { createUl } from '@lnpg/sol/elements/list/ul';
 import { createLi } from '@lnpg/sol/elements/list/li';
+import { createUl } from '@lnpg/sol/elements/list/ul';
 import { createHr } from '@lnpg/sol/elements/text/hr';
+import BsDropdown from 'bootstrap/js/dist/dropdown';
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
-/** Direction the dropdown menu opens relative to its toggle. */
+/**
+ * Direction the dropdown menu opens relative to its toggle.
+ *
+ * @remarks
+ * `'down'`: opens below (default).
+ * `'up'`: opens above.
+ * `'right'`: opens to the right.
+ * `'left'`: opens to the left.
+ *
+ * @category Attributes
+ */
 export type DropdownDirection = 'down' | 'up' | 'right' | 'left';
 
-/** Whether a dropdown item renders as an anchor or a button. */
+/**
+ * Whether a dropdown item renders as an anchor or a button.
+ *
+ * @remarks
+ * `'anchor'`: renders as an `<a>` element.
+ * `'button'`: renders as a `<button>` element (default).
+ *
+ * @category Attributes
+ */
 export type DropdownItemType = 'anchor' | 'button';
 
-/** Visual variant of the toggle button. */
+/**
+ * Visual variant of the toggle button.
+ *
+ * @remarks
+ * `'solid'`: filled background.
+ * `'outline'`: transparent background with a coloured border.
+ * `'link'`: text link style with no border or background.
+ *
+ * @category Attributes
+ */
 export type DropdownVariant = 'solid' | 'outline' | 'link';
 
-/** Colour tone of the toggle button. */
-export type DropdownTone = 'success' | 'warning' | 'danger';
+/**
+ * Colour tone of the toggle button.
+ *
+ * @remarks
+ * `'success'`: green.
+ * `'warning'`: amber.
+ * `'danger'`: red.
+ *
+ * @category Attributes
+ */
+export type DropdownTone =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'info'
+  | 'warning'
+  | 'danger'
+  | 'dark';
 
-/** Options for a single item inside a dropdown menu. */
+/**
+ * Options for a single item inside a dropdown menu.
+ *
+ * @category Interfaces
+ */
 export interface DropdownItemOptions {
-  /** Display text. */
+  /**
+   * Display text.
+   */
   label: string;
-  /** Render as an anchor or a button. Defaults to `'button'`. */
+
+  /**
+   * Render as an anchor or a button. Defaults to `'button'`.
+   */
   type?: DropdownItemType;
-  /** `href` for anchor items. */
+
+  /**
+   * `href` for anchor items.
+   */
   href?: string;
-  /** Marks the item as the current selection. */
+
+  /**
+   * Marks the item as the current selection.
+   */
   active?: boolean;
-  /** Prevents interaction. */
+
+  /**
+   * Prevents interaction.
+   */
   disabled?: boolean;
-  /** Inserts a divider rule above this item. */
+
+  /**
+   * Inserts a divider rule above this item.
+   */
   dividerBefore?: boolean;
 }
 
-/** Options for {@link createDropdown}. */
+/**
+ * Options for {@link createDropdown}.
+ *
+ * @category Interfaces
+ */
 export interface DropdownOptions {
-  /** Menu items. */
+  /**
+   * Menu items.
+   */
   items: DropdownItemOptions[];
-  /** CSS class string for a leading icon inside the toggle button. */
+
+  /**
+   * CSS class string for a leading icon inside the toggle button.
+   */
   icon?: string;
-  /** Label text shown in the toggle button alongside or instead of the icon. */
+
+  /**
+   * Label text shown in the toggle button alongside or instead of the icon.
+   */
   label?: string;
-  /** Direction the menu opens. Defaults to `'down'`. */
+
+  /**
+   * Direction the menu opens. Defaults to `'down'`.
+   */
   direction?: DropdownDirection;
-  /** Open the menu on hover in addition to click. Defaults to `false`. */
+
+  /**
+   * Open the menu on hover in addition to click. Defaults to `false`.
+   */
   hover?: boolean;
-  /** Visual style of the toggle button. Defaults to `'solid'`. */
+
+  /**
+   * Visual style of the toggle button. Defaults to `'solid'`.
+   */
   variant?: DropdownVariant;
-  /** Colour tone of the toggle button. */
+
+  /**
+   * Colour tone of the toggle button.
+   */
   tone?: DropdownTone;
 }
 
 // ---------------------------------------------------------------------------
-// Internal constants
+// Internal
 // ---------------------------------------------------------------------------
 
 const DIRECTION_CLASS: Record<DropdownDirection, string> = {
@@ -234,23 +321,59 @@ export function createDropdown(options: DropdownOptions): HTMLElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the Dropdown component. @category Constants */
+/**
+ * CSS class references for the Dropdown component.
+ *
+ * @category Constants
+ */
 export const dropdown = {
-  /** Base wrapper class (opens downward). */
+  /**
+   * Base wrapper class (opens downward).
+   */
   base: 'dropdown',
-  /** Wrapper class variants by direction. */
+
+  /**
+   * Wrapper class variants by direction.
+   */
   directions: {
+    /**
+     * Opens below.
+     */
     down: 'dropdown',
+
+    /**
+     * Opens above.
+     */
     up: 'dropup',
+
+    /**
+     * Opens to the right.
+     */
     right: 'dropend',
+
+    /**
+     * Opens to the left.
+     */
     left: 'dropstart',
   },
-  /** Applied to the toggle button. */
+
+  /**
+   * Applied to the toggle button.
+   */
   toggle: 'dropdown-toggle',
-  /** The floating menu container. */
+
+  /**
+   * The floating menu container.
+   */
   menu: 'dropdown-menu',
-  /** Applied to each menu item (anchor or button). */
+
+  /**
+   * Applied to each menu item (anchor or button).
+   */
   item: 'dropdown-item',
-  /** Horizontal rule separating item groups. */
+
+  /**
+   * Horizontal rule separating item groups.
+   */
   divider: 'dropdown-divider',
 } as const;

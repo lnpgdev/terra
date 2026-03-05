@@ -41,20 +41,26 @@
  * @category Components
  */
 
-import BsCarousel from 'bootstrap/js/dist/carousel';
-
 import { createDiv } from '@lnpg/sol/elements/container/div';
 import { createSpan } from '@lnpg/sol/elements/container/span';
 import { createButton } from '@lnpg/sol/elements/form/button';
+import BsCarousel from 'bootstrap/js/dist/carousel';
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
-/** Options for a single carousel slide. */
+/**
+ * Options for a single carousel slide.
+ *
+ * @category Interfaces
+ */
 export interface CarouselSlideOptions {
-  /** Marks this slide as the initially visible one. Defaults to `false`. */
+  /**
+   * Marks this slide as the initially visible one. Defaults to `false`.
+   */
   active?: boolean;
+
   /**
    * Content to place inside the slide. Pass an `HTMLElement` for rich content
    * or a string for plain text.
@@ -62,19 +68,40 @@ export interface CarouselSlideOptions {
   content: HTMLElement | string;
 }
 
-/** Options for {@link createCarousel}. */
+/**
+ * Options for {@link createCarousel}.
+ *
+ * @category Interfaces
+ */
 export interface CarouselOptions {
-  /** Unique ID for the carousel container. Required for control wiring. */
+  /**
+   * Unique ID for the carousel container. Required for control wiring.
+   */
   id: string;
-  /** Slide descriptors. */
+
+  /**
+   * Slide descriptors.
+   */
   slides: CarouselSlideOptions[];
-  /** Automatically cycle through slides. Defaults to `false`. */
+
+  /**
+   * Automatically cycle through slides. Defaults to `false`.
+   */
   autoplay?: boolean;
-  /** Time in milliseconds between slide transitions. Defaults to `5000`. */
+
+  /**
+   * Time in milliseconds between slide transitions. Defaults to `5000`.
+   */
   interval?: number;
-  /** Pause cycling when the pointer is over the carousel. Defaults to `true`. */
+
+  /**
+   * Pause cycling when the pointer is over the carousel. Defaults to `true`.
+   */
   pauseOnHover?: boolean;
-  /** Render prev/next control buttons. Defaults to `true`. */
+
+  /**
+   * Render prev/next control buttons. Defaults to `true`.
+   */
   controls?: boolean;
 }
 
@@ -236,27 +263,60 @@ function _createControl(targetId: string, direction: 'prev' | 'next', label: str
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the Carousel component. @category Constants */
+/**
+ * CSS class references for the Carousel component.
+ *
+ * @category Constants
+ */
 export const carousel = {
-  /** Base carousel class. */
+  /**
+   * Base carousel class.
+   */
   base: 'carousel',
-  /** Enables slide transitions. */
+
+  /**
+   * Enables slide transitions.
+   */
   slide: 'slide',
-  /** Inner track containing all slides. */
+
+  /**
+   * Inner track containing all slides.
+   */
   inner: 'carousel-inner',
-  /** Individual slide item. */
+
+  /**
+   * Individual slide item.
+   */
   item: 'carousel-item',
-  /** Active (visible) slide. */
+
+  /**
+   * Active (visible) slide.
+   */
   active: 'active',
-  /** Previous control button. */
+
+  /**
+   * Previous control button.
+   */
   controlPrev: 'carousel-control-prev',
-  /** Next control button. */
+
+  /**
+   * Next control button.
+   */
   controlNext: 'carousel-control-next',
-  /** Icon inside the previous control. */
+
+  /**
+   * Icon inside the previous control.
+   */
   controlPrevIcon: 'carousel-control-prev-icon',
-  /** Icon inside the next control. */
+
+  /**
+   * Icon inside the next control.
+   */
   controlNextIcon: 'carousel-control-next-icon',
-  /** Selector used by {@link initCarousels} to find carousel containers. */
+
+  /**
+   * Selector used by {@link initCarousels} to find carousel containers.
+   */
   selector:
     '.carousel[data-lnpg-autoplay], .carousel[data-lnpg-interval], .carousel[data-lnpg-pause-on-hover]',
 } as const;

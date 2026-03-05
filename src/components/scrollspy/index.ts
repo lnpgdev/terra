@@ -49,19 +49,27 @@ export { BsScrollSpy };
 // Types
 // ---------------------------------------------------------------------------
 
-/** Options for {@link initScrollspy}. */
+/**
+ * Options for {@link initScrollspy}.
+ *
+ * @category Interfaces
+ */
 export interface ScrollspyOptions {
   /**
    * CSS selector or element for the nav whose links are activated.
    * Maps to Bootstrap's `target` config option.
    */
   target: string | HTMLElement;
+
   /**
    * IntersectionObserver root margin used to determine which section is active.
    * Defaults to `'0px 0px -25%'`.
    */
   rootMargin?: string;
-  /** Enables smooth scrolling when a nav link is clicked. Defaults to `false`. */
+
+  /**
+   * Enables smooth scrolling when a nav link is clicked. Defaults to `false`.
+   */
   smoothScroll?: boolean;
 }
 
@@ -104,14 +112,29 @@ export function initScrollspy(
 // Constants
 // ---------------------------------------------------------------------------
 
-/** Data attribute and selector references for the Scrollspy component. @category Constants */
+/**
+ * Data attribute and selector references for the Scrollspy component.
+ *
+ * @category Constants
+ */
 export const scrollspy = {
-  /** `data-bs-spy` value that activates scrollspy on an element. */
+  /**
+   * `data-bs-spy` value that activates scrollspy on an element.
+   */
   spy: 'scroll',
-  /** Attribute name for the target nav selector. */
+
+  /**
+   * Attribute name for the target nav selector.
+   */
   attrTarget: 'data-bs-target',
-  /** Attribute name for enabling smooth scroll. */
+
+  /**
+   * Attribute name for enabling smooth scroll.
+   */
   attrSmoothScroll: 'data-bs-smooth-scroll',
-  /** Attribute name for root margin. */
+
+  /**
+   * Attribute name for root margin.
+   */
   attrRootMargin: 'data-bs-root-margin',
 } as const;

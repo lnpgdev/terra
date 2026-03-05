@@ -36,45 +36,113 @@ import { createButton } from '@lnpg/sol/elements/form/button';
 // Types
 // ---------------------------------------------------------------------------
 
-/** Layout direction of the button group. */
+/**
+ * Layout direction of the button group.
+ *
+ * @remarks
+ * `'horizontal'`: buttons arranged in a row (default).
+ * `'vertical'`: buttons stacked in a column.
+ *
+ * @category Attributes
+ */
 export type ButtonGroupDirection = 'horizontal' | 'vertical';
 
-/** Visual style of each button in the group. */
+/**
+ * Visual style of each button in the group.
+ *
+ * @remarks
+ * `'solid'`: filled background.
+ * `'outline'`: transparent background with a coloured border.
+ * `'link'`: text link style with no border or background.
+ *
+ * @category Attributes
+ */
 export type ButtonGroupVariant = 'solid' | 'outline' | 'link';
 
 /**
  * Colour tone. Required for solid and outline variants;
  * ignored for link.
+ *
+ * @remarks
+ * `'success'`: green.
+ * `'warning'`: amber.
+ * `'danger'`: red.
+ *
+ * @category Attributes
  */
-export type ButtonGroupTone = 'success' | 'warning' | 'danger';
+export type ButtonGroupTone =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'info'
+  | 'warning'
+  | 'danger'
+  | 'dark';
 
-/** Size modifier for the button group and its buttons. */
+/**
+ * Size modifier for the button group and its buttons.
+ *
+ * @remarks
+ * `'sm'`: small.
+ * `'md'`: medium (default, no size class applied).
+ * `'lg'`: large.
+ *
+ * @category Attributes
+ */
 export type ButtonGroupSize = 'sm' | 'md' | 'lg';
 
-/** Options for a single button within a {@link ButtonGroupOptions}. */
+/**
+ * Options for a single button within a {@link ButtonGroupOptions}.
+ *
+ * @category Interfaces
+ */
 export interface ButtonGroupItemOptions {
-  /** Button label text. */
+  /**
+   * Button label text.
+   */
   label: string;
-  /** Whether the button is disabled. Defaults to `false`. */
+
+  /**
+   * Whether the button is disabled. Defaults to `false`.
+   */
   disabled?: boolean;
 }
 
-/** Options for {@link createButtonGroup}. */
+/**
+ * Options for {@link createButtonGroup}.
+ *
+ * @category Interfaces
+ */
 export interface ButtonGroupOptions {
-  /** Array of button descriptors to render inside the group. */
+  /**
+   * Array of button descriptors to render inside the group.
+   */
   buttons: ButtonGroupItemOptions[];
-  /** Layout direction. Defaults to `'horizontal'`. */
+
+  /**
+   * Layout direction. Defaults to `'horizontal'`.
+   */
   direction?: ButtonGroupDirection;
-  /** Size modifier. Defaults to `'md'` (no size class). */
+
+  /**
+   * Size modifier. Defaults to `'md'` (no size class).
+   */
   size?: ButtonGroupSize;
-  /** Visual style for every button in the group. Defaults to `'solid'`. */
+
+  /**
+   * Visual style for every button in the group. Defaults to `'solid'`.
+   */
   variant?: ButtonGroupVariant;
+
   /**
    * Colour tone. Required for solid and outline variants;
    * ignored for link.
    */
   tone?: ButtonGroupTone;
-  /** `aria-label` for the group element. Defaults to `'Button group'`. */
+
+  /**
+   * `aria-label` for the group element. Defaults to `'Button group'`.
+   */
   ariaLabel?: string;
 }
 
@@ -151,12 +219,34 @@ export function createButtonGroup(options: ButtonGroupOptions): HTMLElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the Button Group component. @category Constants */
+/**
+ * CSS class references for the Button Group component.
+ *
+ * @category Constants
+ */
 export const buttonGroup = {
-  /** Base horizontal group class. */
+  /**
+   * Base horizontal group class.
+   */
   base: 'btn-group',
-  /** Vertical group class. */
+
+  /**
+   * Vertical group class.
+   */
   vertical: 'btn-group-vertical',
-  /** Size modifier classes applied to the group wrapper. */
-  sizes: { sm: 'btn-group-sm', lg: 'btn-group-lg' },
+
+  /**
+   * Size modifier classes applied to the group wrapper.
+   */
+  sizes: {
+    /**
+     * Small.
+     */
+    sm: 'btn-group-sm',
+
+    /**
+     * Large.
+     */
+    lg: 'btn-group-lg',
+  },
 } as const;

@@ -23,27 +23,54 @@
 
 import { createButton } from '@lnpg/sol/elements/form/button';
 
-// ─── Types ───────────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
 
-/** Options for {@link createCloseButton}. */
+/**
+ * Options for {@link createCloseButton}.
+ *
+ * @category Interfaces
+ */
 export interface CloseButtonOptions {
-  /** White variant for use on dark backgrounds. Defaults to `false`. */
+  /**
+   * White variant for use on dark backgrounds. Defaults to `false`.
+   */
   white?: boolean;
-  /** Renders the button in a disabled state. Defaults to `false`. */
+
+  /**
+   * Renders the button in a disabled state. Defaults to `false`.
+   */
   disabled?: boolean;
-  /** Accessible label. Defaults to `'Close'`. */
+
+  /**
+   * Accessible label. Defaults to `'Close'`.
+   */
   label?: string;
-  /** Click handler attached to the button. */
+
+  /**
+   * Click handler attached to the button.
+   */
   onClick?: (event: MouseEvent) => void;
 }
 
-// ─── Factory ──────────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------------------
+// Factory
+// ---------------------------------------------------------------------------
 
 /**
  * Creates a Close Button element.
  *
  * @param options - Configuration for the close button.
  * @returns A `<button>` element ready to be appended to the DOM.
+ * @category Factory
+ *
+ * @example
+ * ```ts
+ * document.body.appendChild(
+ *   createCloseButton({ white: true, onClick: () => modal.hide() })
+ * );
+ * ```
  */
 export function createCloseButton(options: CloseButtonOptions = {}): HTMLButtonElement {
   const { white = false, disabled = false, label = 'Close', onClick } = options;
@@ -60,12 +87,23 @@ export function createCloseButton(options: CloseButtonOptions = {}): HTMLButtonE
   return btn;
 }
 
-// ─── Constants ────────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------------------
+// Constants
+// ---------------------------------------------------------------------------
 
-/** CSS class references for the Close Button component. @category Constants */
+/**
+ * CSS class references for the Close Button component.
+ *
+ * @category Constants
+ */
 export const closeButton = {
-  /** Base close button with × icon. */
+  /**
+   * Base close button with × icon.
+   */
   base: 'btn-close',
-  /** White variant for use on dark backgrounds. */
+
+  /**
+   * White variant for use on dark backgrounds.
+   */
   white: 'btn-close-white',
 } as const;

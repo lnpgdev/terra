@@ -31,43 +31,94 @@
 
 import { createSpan } from '@lnpg/sol/elements/container/span';
 import { createA } from '@lnpg/sol/elements/inline/a';
-import { createUl } from '@lnpg/sol/elements/list/ul';
-import { createLi } from '@lnpg/sol/elements/list/li';
 import { createNav } from '@lnpg/sol/elements/layout/nav';
+import { createLi } from '@lnpg/sol/elements/list/li';
+import { createUl } from '@lnpg/sol/elements/list/ul';
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
-/** Size variant for the pagination control. */
+/**
+ * Size variant for the pagination control.
+ *
+ * @remarks
+ * `'sm'`: compact size.
+ * `'md'`: default Bootstrap size (no modifier class).
+ * `'lg'`: large size.
+ *
+ * @category Attributes
+ */
 export type PaginationSize = 'sm' | 'md' | 'lg';
 
-/** Alignment of the pagination list within its container. */
+/**
+ * Alignment of the pagination list within its container.
+ *
+ * @remarks
+ * `'start'`: left-aligned (default).
+ * `'center'`: centred.
+ * `'end'`: right-aligned.
+ *
+ * @category Attributes
+ */
 export type PaginationAlign = 'start' | 'center' | 'end';
 
-/** Options for a single pagination item. */
+/**
+ * Options for a single pagination item.
+ *
+ * @category Interfaces
+ */
 export interface PaginationItemOptions {
-  /** Visible label (e.g. `'1'`, `'Next'`, `'...'`). */
+  /**
+   * Visible label (e.g. `'1'`, `'Next'`, `'...'`).
+   */
   label: string;
-  /** When provided, the item renders as an `<a>` link. */
+
+  /**
+   * When provided, the item renders as an `<a>` link.
+   */
   href?: string;
-  /** Marks the item as the currently active page. */
+
+  /**
+   * Marks the item as the currently active page.
+   */
   active?: boolean;
-  /** Marks the item as non-interactive (e.g. Previous on page 1, ellipsis). */
+
+  /**
+   * Marks the item as non-interactive (e.g. Previous on page 1, ellipsis).
+   */
   disabled?: boolean;
-  /** Sets a `rel` attribute on the link (`'prev'` or `'next'`). */
+
+  /**
+   * Sets a `rel` attribute on the link (`'prev'` or `'next'`).
+   */
   rel?: 'prev' | 'next';
 }
 
-/** Options for {@link createPagination}. */
+/**
+ * Options for {@link createPagination}.
+ *
+ * @category Interfaces
+ */
 export interface PaginationOptions {
-  /** Page items to render. */
+  /**
+   * Page items to render.
+   */
   items: PaginationItemOptions[];
-  /** Size of the pagination control. Defaults to `'md'`. */
+
+  /**
+   * Size of the pagination control. Defaults to `'md'`.
+   */
   size?: PaginationSize;
-  /** Horizontal alignment. Defaults to `'start'`. */
+
+  /**
+   * Horizontal alignment. Defaults to `'start'`.
+   */
   align?: PaginationAlign;
-  /** `aria-label` for the `<nav>` landmark. Defaults to `'Pagination'`. */
+
+  /**
+   * `aria-label` for the `<nav>` landmark. Defaults to `'Pagination'`.
+   */
   ariaLabel?: string;
 }
 
@@ -147,26 +198,64 @@ export function createPagination(options: PaginationOptions): HTMLElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the Pagination component. @category Constants */
+/**
+ * CSS class references for the Pagination component.
+ *
+ * @category Constants
+ */
 export const pagination = {
-  /** Base pagination list class. */
+  /**
+   * Base pagination list class.
+   */
   base: 'pagination',
-  /** Individual page list item. */
+
+  /**
+   * Individual page list item.
+   */
   item: 'page-item',
-  /** Link or span inside a page item. */
+
+  /**
+   * Link or span inside a page item.
+   */
   link: 'page-link',
-  /** Applied to the currently active page item. */
+
+  /**
+   * Applied to the currently active page item.
+   */
   active: 'active',
-  /** Applied to non-interactive page items. */
+
+  /**
+   * Applied to non-interactive page items.
+   */
   disabled: 'disabled',
-  /** Size modifier classes. */
+
+  /**
+   * Size modifier classes.
+   */
   sizes: {
+    /**
+     * Compact size.
+     */
     sm: 'pagination-sm',
+
+    /**
+     * Large size.
+     */
     lg: 'pagination-lg',
   },
-  /** Alignment classes (applied to the `<ul>`). */
+
+  /**
+   * Alignment classes (applied to the `<ul>`).
+   */
   align: {
+    /**
+     * Centred.
+     */
     center: 'justify-content-center',
+
+    /**
+     * Right-aligned.
+     */
     end: 'justify-content-end',
   },
 } as const;

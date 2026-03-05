@@ -24,30 +24,65 @@
 import { createDiv } from '@lnpg/sol/elements/container/div';
 import { createSpan } from '@lnpg/sol/elements/container/span';
 
-// ─── Types ───────────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
 
-/** Visual style of the spinner. */
+/**
+ * Visual style of the spinner.
+ *
+ * @remarks
+ * `'border'`: a spinning ring (default).
+ * `'grow'`: a pulsing growing dot.
+ *
+ * @category Attributes
+ */
 export type SpinnerVariant = 'border' | 'grow';
 
-/** Options for {@link createSpinner}. */
+/**
+ * Options for {@link createSpinner}.
+ *
+ * @category Interfaces
+ */
 export interface SpinnerOptions {
-  /** Visual style of the spinner. Defaults to `'border'`. */
+  /**
+   * Visual style of the spinner. Defaults to `'border'`.
+   */
   variant?: SpinnerVariant;
-  /** Renders a smaller spinner. */
+
+  /**
+   * Renders a smaller spinner.
+   */
   size?: 'sm';
-  /** Bootstrap text utility class for colour (e.g. `'text-primary'`). */
+
+  /**
+   * Bootstrap text utility class for colour (e.g. `'text-primary'`).
+   */
   color?: string;
-  /** Accessible label for screen readers. Defaults to `'Loading...'`. */
+
+  /**
+   * Accessible label for screen readers. Defaults to `'Loading...'`.
+   */
   label?: string;
 }
 
-// ─── Factory ──────────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------------------
+// Factory
+// ---------------------------------------------------------------------------
 
 /**
  * Creates a fully structured Spinner element.
  *
  * @param options - Configuration for the spinner.
  * @returns A `<div>` element ready to be appended to the DOM.
+ * @category Factory
+ *
+ * @example
+ * ```ts
+ * document.body.appendChild(
+ *   createSpinner({ variant: 'border', color: 'text-primary' })
+ * );
+ * ```
  */
 export function createSpinner(options: SpinnerOptions = {}): HTMLElement {
   const { variant = 'border', size, color, label = 'Loading...' } = options;
@@ -64,16 +99,33 @@ export function createSpinner(options: SpinnerOptions = {}): HTMLElement {
   return el;
 }
 
-// ─── Constants ────────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------------------
+// Constants
+// ---------------------------------------------------------------------------
 
-/** CSS class references for the Spinner component. @category Constants */
+/**
+ * CSS class references for the Spinner component.
+ *
+ * @category Constants
+ */
 export const spinner = {
-  /** Bordered spinning indicator. */
+  /**
+   * Bordered spinning indicator.
+   */
   border: 'spinner-border',
-  /** Small bordered spinning indicator. */
+
+  /**
+   * Small bordered spinning indicator.
+   */
   borderSm: 'spinner-border-sm',
-  /** Growing pulsing indicator. */
+
+  /**
+   * Growing pulsing indicator.
+   */
   grow: 'spinner-grow',
-  /** Small growing pulsing indicator. */
+
+  /**
+   * Small growing pulsing indicator.
+   */
   growSm: 'spinner-grow-sm',
 } as const;

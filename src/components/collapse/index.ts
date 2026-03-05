@@ -33,35 +33,67 @@
  * @category Components
  */
 
-import BsCollapse from 'bootstrap/js/dist/collapse';
-import { createA } from '@lnpg/sol/elements/inline/a';
-import { createButton } from '@lnpg/sol/elements/form/button';
 import { createDiv } from '@lnpg/sol/elements/container/div';
+import { createButton } from '@lnpg/sol/elements/form/button';
+import { createA } from '@lnpg/sol/elements/inline/a';
+import BsCollapse from 'bootstrap/js/dist/collapse';
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
-/** The element type used to trigger a collapse. */
+/**
+ * The element type used to trigger a collapse.
+ *
+ * @remarks
+ * `'button'`: renders a `<button>` element (default).
+ * `'anchor'`: renders an `<a>` element with `role="button"`.
+ *
+ * @category Attributes
+ */
 export type CollapseToggleVariant = 'button' | 'anchor';
 
-/** Options for {@link createCollapseToggle}. */
+/**
+ * Options for {@link createCollapseToggle}.
+ *
+ * @category Interfaces
+ */
 export interface CollapseToggleOptions {
-  /** Element type for the toggle. Defaults to `'button'`. */
+  /**
+   * Element type for the toggle. Defaults to `'button'`.
+   */
   variant?: CollapseToggleVariant;
-  /** ID of the collapse panel to target (without the `#` prefix). */
+
+  /**
+   * ID of the collapse panel to target (without the `#` prefix).
+   */
   target: string;
-  /** Whether the panel is expanded on initial render. Defaults to `false`. */
+
+  /**
+   * Whether the panel is expanded on initial render. Defaults to `false`.
+   */
   expanded?: boolean;
-  /** Visible text label on the toggle element. */
+
+  /**
+   * Visible text label on the toggle element.
+   */
   label: string;
 }
 
-/** Options for {@link createCollapse}. */
+/**
+ * Options for {@link createCollapse}.
+ *
+ * @category Interfaces
+ */
 export interface CollapseOptions {
-  /** ID applied to the collapse panel element. */
+  /**
+   * ID applied to the collapse panel element.
+   */
   id: string;
-  /** Whether the panel is visible on initial render. Defaults to `false`. */
+
+  /**
+   * Whether the panel is visible on initial render. Defaults to `false`.
+   */
   open?: boolean;
 }
 
@@ -127,6 +159,7 @@ export function createCollapseToggle(
 
   const el = createButton(label, {
     type: 'button',
+    className: 'btn',
     dataset: { bsToggle: collapse.toggle, bsTarget: `#${target}` },
     attrs: { 'aria-expanded': String(expanded), 'aria-controls': target },
   });
@@ -162,16 +195,34 @@ export function createCollapse(options: CollapseOptions): HTMLElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class and selector references for the Collapse component. @category Constants */
+/**
+ * CSS class and selector references for the Collapse component.
+ *
+ * @category Constants
+ */
 export const collapse = {
-  /** Base collapse class. */
+  /**
+   * Base collapse class.
+   */
   base: 'collapse',
-  /** Class added when the panel is visible. */
+
+  /**
+   * Class added when the panel is visible.
+   */
   show: 'show',
-  /** Class present during the open/close transition. */
+
+  /**
+   * Class present during the open/close transition.
+   */
   collapsing: 'collapsing',
-  /** Value used for `data-bs-toggle`. */
+
+  /**
+   * Value used for `data-bs-toggle`.
+   */
   toggle: 'collapse',
-  /** Selector used to find all collapse toggles in the document. */
+
+  /**
+   * Selector used to find all collapse toggles in the document.
+   */
   selector: '[data-bs-toggle="collapse"]',
 } as const;

@@ -23,47 +23,93 @@
  */
 
 import { createDiv } from '@lnpg/sol/elements/container/div';
-import { createSelect as createSolSelect } from '@lnpg/sol/elements/form/select';
-import { createOption } from '@lnpg/sol/elements/form/option';
 import { createLabel as createSolLabel } from '@lnpg/sol/elements/form/label';
+import { createOption } from '@lnpg/sol/elements/form/option';
+import { createSelect as createSolSelect } from '@lnpg/sol/elements/form/select';
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
-/** A single option within a select. */
+/**
+ * A single option within a select.
+ *
+ * @category Interfaces
+ */
 export interface SelectOption {
-  /** Submitted value. */
+  /**
+   * Submitted value.
+   */
   value: string;
-  /** Visible label text. */
+
+  /**
+   * Visible label text.
+   */
   label: string;
-  /** Prevents the option from being selected. */
+
+  /**
+   * Prevents the option from being selected.
+   */
   disabled?: boolean;
 }
 
-/** Size of the select control. */
+/**
+ * Size of the select control.
+ *
+ * @remarks
+ * `'sm'`: compact.
+ * `'md'`: default Bootstrap size (no modifier class).
+ * `'lg'`: large.
+ *
+ * @category Attributes
+ */
 export type SelectSize = 'sm' | 'md' | 'lg';
 
-/** Options for {@link createSelect}. */
+/**
+ * Options for {@link createSelect}.
+ *
+ * @category Interfaces
+ */
 export interface SelectOptions {
-  /** The list of options to render. */
+  /**
+   * The list of options to render.
+   */
   options: SelectOption[];
-  /** Initially selected value. Defaults to the first option. */
+
+  /**
+   * Initially selected value. Defaults to the first option.
+   */
   value?: string;
-  /** Size of the control. Defaults to `'md'`. */
+
+  /**
+   * Size of the control. Defaults to `'md'`.
+   */
   size?: SelectSize;
-  /** Allows multiple selections. Defaults to `false`. */
+
+  /**
+   * Allows multiple selections. Defaults to `false`.
+   */
   multiple?: boolean;
-  /** Disables the control. Defaults to `false`. */
+
+  /**
+   * Disables the control. Defaults to `false`.
+   */
   disabled?: boolean;
+
   /**
    * Visible label text. Rendered as a `<label>` when provided.
    * Either `label` or `ariaLabel` should be set.
    */
   label?: string;
-  /** `aria-label` applied to the `<select>` when no visible label is shown. */
+
+  /**
+   * `aria-label` applied to the `<select>` when no visible label is shown.
+   */
   ariaLabel?: string;
-  /** Called when the selected value changes. */
+
+  /**
+   * Called when the selected value changes.
+   */
   onChange?: (value: string) => void;
 }
 
@@ -156,13 +202,29 @@ export function createSelect(options: SelectOptions): HTMLElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the Select component. @category Constants */
+/**
+ * CSS class references for the Select component.
+ *
+ * @category Constants
+ */
 export const select = {
-  /** Base select class. */
+  /**
+   * Base select class.
+   */
   base: 'form-select',
-  /** Size modifier classes. */
+
+  /**
+   * Size modifier classes.
+   */
   sizes: {
+    /**
+     * Compact size.
+     */
     sm: 'form-select-sm',
+
+    /**
+     * Large size.
+     */
     lg: 'form-select-lg',
   },
 } as const;

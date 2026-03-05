@@ -43,21 +43,42 @@
  * @category Components
  */
 
-import BsToast from 'bootstrap/js/dist/toast';
-
 import { createDiv } from '@lnpg/sol/elements/container/div';
 import { createButton } from '@lnpg/sol/elements/form/button';
-import { createStrong } from '@lnpg/sol/elements/inline/strong';
 import { createSmall } from '@lnpg/sol/elements/inline/small';
+import { createStrong } from '@lnpg/sol/elements/inline/strong';
+import BsToast from 'bootstrap/js/dist/toast';
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
-/** Semantic colour variants available for the Toast component. */
+/**
+ * Semantic colour variants available for the Toast component.
+ *
+ * @remarks
+ * `'info'`: cyan.
+ * `'success'`: green.
+ * `'warning'`: amber.
+ * `'danger'`: red.
+ *
+ * @category Attributes
+ */
 export type ToastVariant = 'info' | 'success' | 'warning' | 'danger';
 
-/** Fixed-position placement of a toast container. */
+/**
+ * Fixed-position placement of a toast container.
+ *
+ * @remarks
+ * `'top-start'`: top-left corner.
+ * `'top-end'`: top-right corner (default).
+ * `'bottom-start'`: bottom-left corner.
+ * `'bottom-end'`: bottom-right corner.
+ * `'top-center'`: top-centre.
+ * `'bottom-center'`: bottom-centre.
+ *
+ * @category Attributes
+ */
 export type ToastPlacement =
   | 'top-start'
   | 'top-end'
@@ -66,39 +87,84 @@ export type ToastPlacement =
   | 'top-center'
   | 'bottom-center';
 
-/** Gap between stacked toasts in a container. */
+/**
+ * Gap between stacked toasts in a container.
+ *
+ * @remarks
+ * `'sm'`: 0.25rem gap.
+ * `'md'`: 0.5rem gap (default).
+ * `'lg'`: 1rem gap.
+ *
+ * @category Attributes
+ */
 export type ToastGap = 'sm' | 'md' | 'lg';
 
-/** Options for {@link createToast}. */
+/**
+ * Options for {@link createToast}.
+ *
+ * @category Interfaces
+ */
 export interface ToastOptions {
-  /** Semantic colour variant. */
+  /**
+   * Semantic colour variant.
+   */
   variant?: ToastVariant;
-  /** Text content of the toast body. Required. */
+
+  /**
+   * Text content of the toast body. Required.
+   */
   body: string;
-  /** Title text shown in the toast header. Omit for a body-only toast. */
+
+  /**
+   * Title text shown in the toast header. Omit for a body-only toast.
+   */
   title?: string;
-  /** Meta text (e.g. timestamp) shown beside the title. */
+
+  /**
+   * Meta text (e.g. timestamp) shown beside the title.
+   */
   meta?: string;
-  /** Auto-dismiss after `delay` ms. Defaults to `true`. */
+
+  /**
+   * Auto-dismiss after `delay` ms. Defaults to `true`.
+   */
   autohide?: boolean;
-  /** Auto-dismiss delay in milliseconds. Defaults to `5000`. */
+
+  /**
+   * Auto-dismiss delay in milliseconds. Defaults to `5000`.
+   */
   delay?: number;
-  /** Enable the fade animation. Defaults to `true`. */
+
+  /**
+   * Enable the fade animation. Defaults to `true`.
+   */
   animation?: boolean;
-  /** Include a close button in the header. Defaults to `true`. */
+
+  /**
+   * Include a close button in the header. Defaults to `true`.
+   */
   dismissible?: boolean;
 }
 
-/** Options for {@link createToastContainer}. */
+/**
+ * Options for {@link createToastContainer}.
+ *
+ * @category Interfaces
+ */
 export interface ToastContainerOptions {
-  /** Fixed-position placement. Defaults to `'top-end'`. */
+  /**
+   * Fixed-position placement. Defaults to `'top-end'`.
+   */
   placement?: ToastPlacement;
-  /** Gap between stacked toasts. Defaults to `'md'`. */
+
+  /**
+   * Gap between stacked toasts. Defaults to `'md'`.
+   */
   gap?: ToastGap;
 }
 
 // ---------------------------------------------------------------------------
-// Internal constants
+// Internal
 // ---------------------------------------------------------------------------
 
 const PLACEMENT_CLASSES: Record<ToastPlacement, string[]> = {
@@ -115,10 +181,6 @@ const GAP_CLASSES: Record<ToastGap, string> = {
   md: 'gap-2',
   lg: 'gap-3',
 };
-
-// ---------------------------------------------------------------------------
-// Timer (pause-on-hover autohide)
-// ---------------------------------------------------------------------------
 
 interface TimerState {
   remaining: number;
@@ -189,31 +251,6 @@ function scheduleHide(el: HTMLElement, ms: number, instance: BsToast): void {
 }
 
 // ---------------------------------------------------------------------------
-// Show / hide
-// ---------------------------------------------------------------------------
-
-/**
- * Shows a toast using Terra's autohide and pause-on-hover logic.
- * Reads `data-lnpg-autohide`, `data-lnpg-delay`, and `data-lnpg-animation`
- * from the element.
- *
- * @param el - The `.toast` element to show.
- * @category Utility
- */
-export function showToast(el: HTMLElement): void {
-  const autohide = el.dataset.lnpgAutohide !== 'false';
-  const delay = parseInt(el.dataset.lnpgDelay ?? '5000', 10);
-  const animation = el.dataset.lnpgAnimation !== 'false';
-  const instance = BsToast.getOrCreateInstance(el, { autohide: false, animation });
-
-  instance.show();
-
-  if (autohide) {
-    scheduleHide(el, delay, instance);
-  }
-}
-
-// ---------------------------------------------------------------------------
 // Initialiser
 // ---------------------------------------------------------------------------
 
@@ -247,10 +284,6 @@ export function initToasts(): void {
     BsToast.getOrCreateInstance(el, { autohide: false, animation });
   });
 }
-
-// ---------------------------------------------------------------------------
-// Event delegation
-// ---------------------------------------------------------------------------
 
 function handleToggle(e: Event): void {
   const target = e.target;
@@ -295,8 +328,29 @@ if (document.readyState === 'loading') {
   document.addEventListener('click', handleDismiss);
 }
 
+/**
+ * Shows a toast using Terra's autohide and pause-on-hover logic.
+ * Reads `data-lnpg-autohide`, `data-lnpg-delay`, and `data-lnpg-animation`
+ * from the element.
+ *
+ * @param el - The `.toast` element to show.
+ * @category Initialiser
+ */
+export function showToast(el: HTMLElement): void {
+  const autohide = el.dataset.lnpgAutohide !== 'false';
+  const delay = parseInt(el.dataset.lnpgDelay ?? '5000', 10);
+  const animation = el.dataset.lnpgAnimation !== 'false';
+  const instance = BsToast.getOrCreateInstance(el, { autohide: false, animation });
+
+  instance.show();
+
+  if (autohide) {
+    scheduleHide(el, delay, instance);
+  }
+}
+
 // ---------------------------------------------------------------------------
-// Factory
+// Factories
 // ---------------------------------------------------------------------------
 
 /**
@@ -404,28 +458,64 @@ export function createToast(options: ToastOptions): HTMLElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the Toast component. @category Constants */
+/**
+ * CSS class references for the Toast component.
+ *
+ * @category Constants
+ */
 export const toast = {
-  /** Base toast class. */
+  /**
+   * Base toast class.
+   */
   base: 'toast',
-  /** Header row containing title, meta, and close button. */
+
+  /**
+   * Header row containing title, meta, and close button.
+   */
   header: 'toast-header',
-  /** Content area of the toast. */
+
+  /**
+   * Content area of the toast.
+   */
   body: 'toast-body',
-  /** Title element inside the header. */
+
+  /**
+   * Title element inside the header.
+   */
   title: 'toast-title',
-  /** Meta/timestamp element inside the header. */
+
+  /**
+   * Meta/timestamp element inside the header.
+   */
   meta: 'toast-meta',
-  /** Wrapper that positions and stacks multiple toasts. */
+
+  /**
+   * Wrapper that positions and stacks multiple toasts.
+   */
   container: 'toast-container',
+
+  /**
+   * Semantic variant classes.
+   */
   variants: {
-    /** Cyan. */
+    /**
+     * Cyan info variant.
+     */
     info: 'toast-info',
-    /** Green. */
+
+    /**
+     * Green success variant.
+     */
     success: 'toast-success',
-    /** Amber. */
+
+    /**
+     * Amber warning variant.
+     */
     warning: 'toast-warning',
-    /** Red. */
+
+    /**
+     * Red danger variant.
+     */
     danger: 'toast-danger',
   },
 } as const;

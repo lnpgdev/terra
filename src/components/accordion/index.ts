@@ -34,56 +34,124 @@
  */
 
 import { createDiv } from '@lnpg/sol/elements/container/div';
-import { createH2 } from '@lnpg/sol/elements/heading/h2';
 import { createButton } from '@lnpg/sol/elements/form/button';
+import { createH2 } from '@lnpg/sol/elements/heading/h2';
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
 /**
- * Controls whether only one item can be open at a time (`'single'`) or
- * items toggle independently (`'multiple'`).
+ * The supported modes for the accordion.
+ *
+ * @remarks
+ * `'single'`: only one item open at a time (Bootstrap `data-bs-parent`).
+ * `'multiple'`: items toggle independently.
+ *
+ * @category Attributes
  */
 export type AccordionMode = 'single' | 'multiple';
 
-/** Visual style of the accordion. */
+/**
+ * The supported variants for the accordion.
+ *
+ * @remarks
+ * `'default'`: standard accordion style.
+ * `'notification'`: shows a coloured left accent bar on each item.
+ *
+ * @category Attributes
+ */
 export type AccordionVariant = 'default' | 'notification';
 
-/** Colour tone applied to an item in the notification variant. */
-export type AccordionItemTone = 'info' | 'success' | 'warning' | 'danger';
+/**
+ * The supported tones for an accordion item in the notification variant.
+ *
+ * @remarks
+ * `'info'`: informational tone.
+ * `'success'`: success tone.
+ * `'warning'`: warning tone.
+ * `'danger'`: danger tone.
+ *
+ * @category Attributes
+ */
+export type AccordionItemTone =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'info'
+  | 'warning'
+  | 'danger'
+  | 'dark';
 
-/** Options for a single accordion item. */
+/**
+ * Options for a single accordion item.
+ *
+ * @category Interfaces
+ */
 export interface AccordionItemOptions {
-  /** Unique ID used for the collapse panel and button aria attributes. */
+  /**
+   * Unique ID used for the collapse panel and button aria attributes.
+   */
   id: string;
-  /** Button label text. */
+
+  /**
+   * Button label text.
+   */
   label: string;
-  /** Body content text (HTML not supported -- use the DOM API for rich content). */
+
+  /**
+   * Body content text (HTML not supported -- use the DOM API for rich content).
+   */
   body: string;
-  /** Render the item expanded on load. Defaults to `false`. */
+
+  /**
+   * Render the item expanded on load. Defaults to `false`.
+   */
   open?: boolean;
-  /** Prevent the item from being toggled. Defaults to `false`. */
+
+  /**
+   * Prevent the item from being toggled. Defaults to `false`.
+   */
   disabled?: boolean;
-  /** Accent tone for the notification variant. */
+
+  /**
+   * Accent tone for the notification variant.
+   */
   tone?: AccordionItemTone;
 }
 
-/** Options for {@link createAccordion}. */
+/**
+ * Options for {@link createAccordion}.
+ *
+ * @category Interfaces
+ */
 export interface AccordionOptions {
-  /** Unique ID for the accordion container. Required for `'single'` mode. */
-  id: string;
-  /** Item descriptors. */
-  items: AccordionItemOptions[];
   /**
-   * `'single'` -- only one item open at a time (Bootstrap `data-bs-parent`).
-   * `'multiple'` -- items toggle independently.
+   * Unique ID for the accordion container. Required for `'single'` mode.
+   */
+  id: string;
+
+  /**
+   * Item descriptors.
+   */
+  items: AccordionItemOptions[];
+
+  /**
+   * `'single'`: only one item open at a time (Bootstrap `data-bs-parent`).
+   * `'multiple'`: items toggle independently.
+   *
    * Defaults to `'single'`.
    */
   mode?: AccordionMode;
-  /** Visual style. Defaults to `'default'`. */
+
+  /**
+   * Visual style. Defaults to `'default'`.
+   */
   variant?: AccordionVariant;
-  /** Remove outer borders and rounded corners (Bootstrap flush style). */
+
+  /**
+   * Remove outer borders and rounded corners (Bootstrap flush style).
+   */
   flush?: boolean;
 }
 
@@ -145,9 +213,11 @@ export function createAccordion(options: AccordionOptions): HTMLElement {
     itemEl.appendChild(header);
 
     // Panel
-    const panelAttrs = mode === 'single' 
-      ? { id: item.id, className: `accordion-collapse collapse${item.open ? ' show' : ''}`, dataset: { bsParent: `#${id}` } }
-      : { id: item.id, className: `accordion-collapse collapse${item.open ? ' show' : ''}` };
+    const panelClassName = `${accordion.panel} collapse${item.open ? ' show' : ''}`;
+    const panelAttrs =
+      mode === 'single'
+        ? { id: item.id, className: panelClassName, dataset: { bsParent: `#${id}` } }
+        : { id: item.id, className: panelClassName };
 
     const panel = createDiv(undefined, panelAttrs);
 
@@ -165,30 +235,67 @@ export function createAccordion(options: AccordionOptions): HTMLElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the Accordion component. @category Constants */
+/**
+ * CSS class references for the Accordion component.
+ *
+ * @category Constants
+ */
 export const accordion = {
-  /** Base accordion class. */
+  /**
+   * Base accordion class.
+   */
   base: 'accordion',
-  /** Removes outer borders (Bootstrap flush style). */
+
+  /**
+   * Removes outer borders (Bootstrap flush style).
+   */
   flush: 'accordion-flush',
+
+  /**
+   * Variant modifier classes.
+   */
   variants: {
+    /**
+     * Left accent bar variant for notification-style accordions.
+     */
     notification: 'accordion-notification',
   },
-  /** Individual accordion item wrapper. */
+
+  /**
+   * Individual accordion item wrapper.
+   */
   item: 'accordion-item',
-  /** Item header wrapper (should be an `<h2>`-`<h6>`). */
+
+  /**
+   * Item header wrapper (should be an `<h2>`-`<h6>`).
+   */
   header: 'accordion-header',
-  /** Toggle button inside the header. */
+
+  /**
+   * Toggle button inside the header.
+   */
   button: 'accordion-button',
-  /** Collapsible panel wrapping the body. */
+
+  /**
+   * Collapsible panel wrapping the body.
+   */
   panel: 'accordion-collapse',
-  /** Content area inside the panel. */
+
+  /**
+   * Content area inside the panel.
+   */
   body: 'accordion-body',
-  /** Tone modifiers for notification variant items. */
+
+  /**
+   * Tone modifiers for notification variant items.
+   */
   tones: {
+    primary: 'accordion-item-primary',
+    secondary: 'accordion-item-secondary',
     info: 'accordion-item-info',
     success: 'accordion-item-success',
     warning: 'accordion-item-warning',
     danger: 'accordion-item-danger',
+    dark: 'accordion-item-dark',
   },
 } as const;

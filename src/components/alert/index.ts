@@ -30,14 +30,30 @@
  * @category Components
  */
 
-import BsAlert from 'bootstrap/js/dist/alert';
 import { createDiv } from '@lnpg/sol/elements/container/div';
-import { createA } from '@lnpg/sol/elements/inline/a';
 import { createButton } from '@lnpg/sol/elements/form/button';
+import { createA } from '@lnpg/sol/elements/inline/a';
+import BsAlert from 'bootstrap/js/dist/alert';
 
-// ─── Types ───────────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
 
-/** Semantic colour variants available for the Alert component. */
+/**
+ * Semantic colour variants available for the Alert component.
+ *
+ * @remarks
+ * `'primary'`: blue.
+ * `'secondary'`: grey.
+ * `'success'`: green.
+ * `'danger'`: red.
+ * `'warning'`: amber.
+ * `'info'`: cyan.
+ * `'light'`: light background.
+ * `'dark'`: dark background.
+ *
+ * @category Attributes
+ */
 export type AlertVariant =
   | 'primary'
   | 'secondary'
@@ -48,23 +64,46 @@ export type AlertVariant =
   | 'light'
   | 'dark';
 
-/** Options for {@link createAlert}. */
+/**
+ * Options for {@link createAlert}.
+ *
+ * @category Interfaces
+ */
 export interface AlertOptions {
-  /** Semantic colour variant. */
+  /**
+   * Semantic colour variant.
+   */
   variant: AlertVariant;
-  /** Short description displayed in the alert body. */
+
+  /**
+   * Short description displayed in the alert body.
+   */
   message: string;
-  /** URL opened by the "Read more." link - typically a modal anchor. */
+
+  /**
+   * URL opened by the "Read more." link - typically a modal anchor.
+   */
   href: string;
-  /** Auto-dismiss delay in milliseconds. Omit to disable auto-dismiss. */
+
+  /**
+   * Auto-dismiss delay in milliseconds. Omit to disable auto-dismiss.
+   */
   timeout?: number;
-  /** Show a manual close button. Defaults to `false`. */
+
+  /**
+   * Show a manual close button. Defaults to `false`.
+   */
   dismissible?: boolean;
-  /** Show a per-variant border. Defaults to `false`. */
+
+  /**
+   * Show a per-variant border. Defaults to `false`.
+   */
   bordered?: boolean;
 }
 
-// ─── Initialiser (for HTML-authored alerts) ───────────────────────────────────
+// ---------------------------------------------------------------------------
+// Initialiser
+// ---------------------------------------------------------------------------
 
 function initAlert(el: HTMLElement): void {
   const ms = parseInt(el.dataset.lnpgTimeout ?? '0', 10);
@@ -78,30 +117,53 @@ function initAlert(el: HTMLElement): void {
   el.addEventListener('close.bs.alert', () => clearTimeout(timer), { once: true });
 }
 
-function initAlerts(): void {
+/**
+ * Initialises auto-dismiss on all `.alert[data-lnpg-timeout]` elements in the
+ * document. Reads the `data-lnpg-timeout` attribute (ms) and schedules a
+ * Bootstrap Alert close after that delay.
+ *
+ * Runs automatically on `DOMContentLoaded`. Call manually after dynamically
+ * inserting alert elements into the DOM.
+ *
+ * @category Initialiser
+ */
+export function initAlerts(): void {
   document.querySelectorAll<HTMLElement>('.alert[data-lnpg-timeout]').forEach(initAlert);
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initAlerts);
-} else {
-  initAlerts();
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => initAlerts());
 }
 
-// ─── Factory ──────────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------------------
+// Factory
+// ---------------------------------------------------------------------------
 
 /**
  * Creates a fully structured Alert element.
  *
  * @param options - Configuration for the alert.
  * @returns A `<div>` element ready to be appended to the DOM.
+ * @category Factory
+ *
+ * @example
+ * ```ts
+ * document.body.appendChild(
+ *   createAlert({
+ *     variant: 'success',
+ *     message: 'Record saved.',
+ *     href: '#details-modal',
+ *     timeout: 5000,
+ *   })
+ * );
+ * ```
  */
 export function createAlert(options: AlertOptions): HTMLElement {
   const { variant, message, href, timeout, dismissible = false, bordered = false } = options;
 
-  const classes = ['alert', `alert-${variant}`];
-  if (dismissible) classes.push('alert-dismissible');
-  if (bordered) classes.push('alert-bordered');
+  const classes: string[] = [alert.base, alert.variants[variant]];
+  if (dismissible) classes.push(alert.dismissible);
+  if (bordered) classes.push(alert.bordered);
 
   const el = createDiv(undefined, {
     className: classes.join(' '),
@@ -110,7 +172,7 @@ export function createAlert(options: AlertOptions): HTMLElement {
 
   el.appendChild(document.createTextNode(message));
 
-  const link = createA('Read more.', { href, className: 'alert-link' });
+  const link = createA('Read more.', { href, className: alert.link });
   el.appendChild(link);
 
   if (dismissible) {
@@ -133,36 +195,83 @@ export function createAlert(options: AlertOptions): HTMLElement {
   return el;
 }
 
-// ─── Constants ────────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------------------
+// Constants
+// ---------------------------------------------------------------------------
 
-/** CSS class references for the Alert component. @category Constants */
+/**
+ * CSS class references for the Alert component.
+ *
+ * @category Constants
+ */
 export const alert = {
-  /** Base alert class. */
+  /**
+   * Base alert class.
+   */
   base: 'alert',
-  /** Apply to heading elements inside an alert. */
+
+  /**
+   * Apply to heading elements inside an alert.
+   */
   heading: 'alert-heading',
-  /** Apply to `<a>` elements inside an alert for matching colour. */
+
+  /**
+   * Apply to `<a>` elements inside an alert for matching colour.
+   */
   link: 'alert-link',
-  /** Adds right padding to accommodate a `.btn-close` element. */
+
+  /**
+   * Adds right padding to accommodate a `.btn-close` element.
+   */
   dismissible: 'alert-dismissible',
-  /** Re-enables the per-variant border (off by default). */
+
+  /**
+   * Re-enables the per-variant border (off by default).
+   */
   bordered: 'alert-bordered',
+
+  /**
+   * Variant modifier classes.
+   */
   variants: {
-    /** Blue. */
+    /**
+     * Blue.
+     */
     primary: 'alert-primary',
-    /** Grey. */
+
+    /**
+     * Grey.
+     */
     secondary: 'alert-secondary',
-    /** Green. */
+
+    /**
+     * Green.
+     */
     success: 'alert-success',
-    /** Red. */
+
+    /**
+     * Red.
+     */
     danger: 'alert-danger',
-    /** Amber. */
+
+    /**
+     * Amber.
+     */
     warning: 'alert-warning',
-    /** Cyan. */
+
+    /**
+     * Cyan.
+     */
     info: 'alert-info',
-    /** Light. */
+
+    /**
+     * Light.
+     */
     light: 'alert-light',
-    /** Dark. */
+
+    /**
+     * Dark.
+     */
     dark: 'alert-dark',
   },
 } as const;

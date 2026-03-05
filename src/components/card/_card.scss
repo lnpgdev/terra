@@ -8,7 +8,12 @@
  * The accent bar is an absolutely-positioned child element.
  * .card-has-accent applies overflow: hidden so the bar is clipped to the
  * card's border-radius automatically (handles the default inherit radius).
+ *
+ * Accent tone classes are generated dynamically via @each over $component-tones,
+ * so adding a new tone to src/tokens/_tones.scss propagates here automatically.
  */
+
+@use '../../tokens/tones' as tokens;
 
 // ---------------------------------------------------------------------------
 // Base -- square corners override
@@ -135,23 +140,15 @@
   --card-accent-size: 6px;
 }
 
-// Tones
-.card-accent-info {
-  --card-accent-color: var(--bs-info);
+// Accent tones
+
+@each $tone in tokens.$component-tones {
+  .card-accent-#{$tone} {
+    --card-accent-color: var(--bs-#{$tone});
+  }
 }
 
-.card-accent-success {
-  --card-accent-color: var(--bs-success);
-}
-
-.card-accent-warning {
-  --card-accent-color: var(--bs-warning);
-}
-
-.card-accent-danger {
-  --card-accent-color: var(--bs-danger);
-}
-
+// Neutral is not a Bootstrap theme color -- kept as a standalone alias
 .card-accent-neutral {
   --card-accent-color: var(--bs-secondary);
 }

@@ -41,32 +41,109 @@ import { createDiv } from '@lnpg/sol/elements/container/div';
 // Types
 // ---------------------------------------------------------------------------
 
-/** Visual style of the card. */
+/**
+ * Visual style of the card.
+ *
+ * @remarks
+ * `'default'`: standard Bootstrap card styling.
+ * `'outlined'`: transparent background with a visible border.
+ * `'elevated'`: borderless with a box shadow.
+ * `'muted'`: secondary background with no border.
+ *
+ * @category Attributes
+ */
 export type CardVariant = 'default' | 'outlined' | 'elevated' | 'muted';
 
-/** Size modifier affecting internal padding. */
+/**
+ * Size modifier affecting internal padding.
+ *
+ * @remarks
+ * `'sm'`: reduced padding.
+ * `'md'`: default Bootstrap padding (no size class applied).
+ * `'lg'`: increased padding.
+ *
+ * @category Attributes
+ */
 export type CardSize = 'sm' | 'md' | 'lg';
 
-/** Border-radius of the card corners. */
+/**
+ * Border-radius of the card corners.
+ *
+ * @remarks
+ * `'none'`: square corners (default, matching Terra's design language).
+ * `'sm'`: 0.25rem radius.
+ * `'md'`: 0.5rem radius.
+ * `'lg'`: 1rem radius.
+ *
+ * @category Attributes
+ */
 export type CardRadius = 'none' | 'sm' | 'md' | 'lg';
 
-/** Edge on which the accent bar is placed. */
+/**
+ * Edge on which the accent bar is placed.
+ *
+ * @remarks
+ * `'top'` / `'bottom'` / `'left'` / `'right'`: the four card edges.
+ *
+ * @category Attributes
+ */
 export type CardAccentPosition = 'top' | 'bottom' | 'left' | 'right';
 
-/** Colour tone of the accent bar. */
-export type CardAccentTone = 'info' | 'success' | 'warning' | 'danger' | 'neutral';
+/**
+ * Colour tone of the accent bar.
+ *
+ * @remarks
+ * `'info'`: cyan.
+ * `'success'`: green.
+ * `'warning'`: amber.
+ * `'danger'`: red.
+ * `'neutral'`: secondary grey.
+ *
+ * @category Attributes
+ */
+export type CardAccentTone =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'info'
+  | 'warning'
+  | 'danger'
+  | 'dark'
+  | 'neutral';
 
-/** Thickness of the accent bar. */
+/**
+ * Thickness of the accent bar.
+ *
+ * @remarks
+ * `'xs'`: 2px.
+ * `'sm'`: 4px (default).
+ * `'md'`: 6px.
+ *
+ * @category Attributes
+ */
 export type CardAccentThickness = 'xs' | 'sm' | 'md';
 
-/** Options for the card accent bar. */
+/**
+ * Options for the card accent bar.
+ *
+ * @category Interfaces
+ */
 export interface CardAccentOptions {
-  /** Edge on which to place the bar. */
+  /**
+   * Edge on which to place the bar.
+   */
   position: CardAccentPosition;
-  /** Colour tone. */
+
+  /**
+   * Colour tone.
+   */
   tone: CardAccentTone;
-  /** Bar thickness. Defaults to `'sm'`. */
+
+  /**
+   * Bar thickness. Defaults to `'sm'`.
+   */
   thickness?: CardAccentThickness;
+
   /**
    * Accessible label. Provide when the accent bar is the only indicator of
    * state and there is no accompanying text conveying the same meaning.
@@ -74,20 +151,35 @@ export interface CardAccentOptions {
   ariaLabel?: string;
 }
 
-/** Options for {@link createCard}. */
+/**
+ * Options for {@link createCard}.
+ *
+ * @category Interfaces
+ */
 export interface CardOptions {
-  /** Visual style. Defaults to `'default'`. */
+  /**
+   * Visual style. Defaults to `'default'`.
+   */
   variant?: CardVariant;
-  /** Internal padding size. Defaults to `'md'`. */
+
+  /**
+   * Internal padding size. Defaults to `'md'`.
+   */
   size?: CardSize;
-  /** Corner rounding. Defaults to `'none'`. */
+
+  /**
+   * Corner rounding. Defaults to `'none'`.
+   */
   radius?: CardRadius;
-  /** Accent bar configuration. Omit to render without an accent. */
+
+  /**
+   * Accent bar configuration. Omit to render without an accent.
+   */
   accent?: CardAccentOptions;
 }
 
 // ---------------------------------------------------------------------------
-// Factory: accent bar
+// Factories
 // ---------------------------------------------------------------------------
 
 /**
@@ -113,10 +205,6 @@ export function createCardAccent(options: CardAccentOptions): HTMLElement {
 
   return el;
 }
-
-// ---------------------------------------------------------------------------
-// Factory: card container
-// ---------------------------------------------------------------------------
 
 /**
  * Creates a card container element.
@@ -167,53 +255,209 @@ export function createCard(options: CardOptions = {}): HTMLElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the Card component. @category Constants */
+/**
+ * CSS class references for the Card component.
+ *
+ * @category Constants
+ */
 export const card = {
-  /** Base card class. */
+  /**
+   * Base card class.
+   */
   base: 'card',
-  /** Applied to the card when it contains an accent bar. */
+
+  /**
+   * Applied to the card when it contains an accent bar.
+   */
   hasAccent: 'card-has-accent',
+
+  /**
+   * Variant modifier classes.
+   */
   variants: {
+    /**
+     * Transparent background with a visible border.
+     */
     outlined: 'card-outlined',
+
+    /**
+     * Borderless with a box shadow.
+     */
     elevated: 'card-elevated',
+
+    /**
+     * Secondary background with no border.
+     */
     muted: 'card-muted',
   },
+
+  /**
+   * Size modifier classes.
+   */
   sizes: {
+    /**
+     * Reduced padding.
+     */
     sm: 'card-sm',
+
+    /**
+     * Increased padding.
+     */
     lg: 'card-lg',
   },
+
+  /**
+   * Border-radius modifier classes.
+   */
   radius: {
+    /**
+     * 0.25rem radius.
+     */
     sm: 'card-radius-sm',
+
+    /**
+     * 0.5rem radius.
+     */
     md: 'card-radius-md',
+
+    /**
+     * 1rem radius.
+     */
     lg: 'card-radius-lg',
   },
+
+  /**
+   * Accent bar sub-component classes.
+   */
   accent: {
+    /**
+     * Base accent bar class.
+     */
     base: 'card-accent',
+
+    /**
+     * Position modifier classes.
+     */
     positions: {
+      /**
+       * Top edge.
+       */
       top: 'card-accent-top',
+
+      /**
+       * Bottom edge.
+       */
       bottom: 'card-accent-bottom',
+
+      /**
+       * Left edge.
+       */
       left: 'card-accent-left',
+
+      /**
+       * Right edge.
+       */
       right: 'card-accent-right',
     },
+
+    /**
+     * Tone modifier classes.
+     */
     tones: {
-      info: 'card-accent-info',
+      /**
+       * Blue.
+       */
+      primary: 'card-accent-primary',
+
+      /**
+       * Indigo.
+       */
+      secondary: 'card-accent-secondary',
+
+      /**
+       * Green.
+       */
       success: 'card-accent-success',
+
+      /**
+       * Cyan.
+       */
+      info: 'card-accent-info',
+
+      /**
+       * Amber.
+       */
       warning: 'card-accent-warning',
+
+      /**
+       * Red.
+       */
       danger: 'card-accent-danger',
+
+      /**
+       * Dark neutral.
+       */
+      dark: 'card-accent-dark',
+
+      /**
+       * Secondary grey.
+       */
       neutral: 'card-accent-neutral',
     },
+
+    /**
+     * Thickness modifier classes.
+     */
     thickness: {
+      /**
+       * 2px.
+       */
       xs: 'card-accent-xs',
+
+      /**
+       * 4px (default).
+       */
       sm: 'card-accent-sm',
+
+      /**
+       * 6px.
+       */
       md: 'card-accent-md',
     },
   },
-  /** Standard Bootstrap card sub-element classes. */
+
+  /**
+   * Standard Bootstrap card sub-element classes.
+   */
   header: 'card-header',
+
+  /**
+   * Card body class.
+   */
   body: 'card-body',
+
+  /**
+   * Card footer class.
+   */
   footer: 'card-footer',
+
+  /**
+   * Card title class.
+   */
   title: 'card-title',
+
+  /**
+   * Card subtitle class.
+   */
   subtitle: 'card-subtitle',
+
+  /**
+   * Card text class.
+   */
   text: 'card-text',
+
+  /**
+   * Card top image class.
+   */
   img: 'card-img-top',
 } as const;

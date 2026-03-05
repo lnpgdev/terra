@@ -5,14 +5,21 @@
  * wrapper, disabled row styling, and table section header/footer helpers.
  */
 
-// Muted variant - subtle secondary background.
+// ---------------------------------------------------------------------------
+// Muted variant
+// ---------------------------------------------------------------------------
+
+// Subtle secondary background.
 .table-muted {
   --bs-table-bg: var(--bs-secondary-bg);
 }
 
-// Scrollable wrapper enabling a sticky column header.
+// ---------------------------------------------------------------------------
+// Scrollable wrapper
+// ---------------------------------------------------------------------------
+
 // Wrap the <table> in a <div class="table-scrollable"> and add
-// stickyHeader: true to apply sticky thead cells.
+// stickyHeader: true to enable a sticky column header.
 .table-scrollable {
   max-height: 400px;
   overflow-y: auto;
@@ -25,7 +32,11 @@
   }
 }
 
-// Disabled row - fades and blocks interaction.
+// ---------------------------------------------------------------------------
+// Disabled row
+// ---------------------------------------------------------------------------
+
+// Fades and blocks interaction.
 .table > :not(caption) > tr.table-row-disabled > * {
   opacity: 0.5;
   pointer-events: none;

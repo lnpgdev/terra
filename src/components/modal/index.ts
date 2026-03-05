@@ -52,11 +52,11 @@
  * @category Components
  */
 
-import BsModal from 'bootstrap/js/dist/modal';
 import { createDiv } from '@lnpg/sol/elements/container/div';
 import { createButton } from '@lnpg/sol/elements/form/button';
-import { createA } from '@lnpg/sol/elements/inline/a';
 import { createH1 } from '@lnpg/sol/elements/heading/h1';
+import { createA } from '@lnpg/sol/elements/inline/a';
+import BsModal from 'bootstrap/js/dist/modal';
 
 // Re-export Bootstrap Modal for consumers who need programmatic control.
 export { BsModal };
@@ -65,28 +65,68 @@ export { BsModal };
 // Types
 // ---------------------------------------------------------------------------
 
-/** Element type for a modal trigger. */
+/**
+ * Element type for a modal trigger.
+ *
+ * @remarks
+ * `'button'`: renders as a `<button>` element (default).
+ * `'anchor'`: renders as an `<a>` element.
+ *
+ * @category Attributes
+ */
 export type ModalTriggerVariant = 'button' | 'anchor';
 
-/** Size modifier for the modal dialog. */
+/**
+ * Size modifier for the modal dialog.
+ *
+ * @remarks
+ * `'sm'`: small dialog (300px max-width).
+ * `'lg'`: large dialog (800px max-width).
+ * `'xl'`: extra-large dialog (1140px max-width).
+ * `'fullscreen'`: covers the full viewport.
+ *
+ * @category Attributes
+ */
 export type ModalSize = 'sm' | 'lg' | 'xl' | 'fullscreen';
 
-/** Options for {@link createModalTrigger}. */
+/**
+ * Options for {@link createModalTrigger}.
+ *
+ * @category Interfaces
+ */
 export interface ModalTriggerOptions {
-  /** ID of the modal to open (without `#`). */
+  /**
+   * ID of the modal to open (without `#`).
+   */
   target: string;
-  /** Visible label on the trigger. */
+
+  /**
+   * Visible label on the trigger.
+   */
   label: string;
-  /** Element type. Defaults to `'button'`. */
+
+  /**
+   * Element type. Defaults to `'button'`.
+   */
   variant?: ModalTriggerVariant;
 }
 
-/** Options for {@link createModal}. */
+/**
+ * Options for {@link createModal}.
+ *
+ * @category Interfaces
+ */
 export interface ModalOptions {
-  /** ID applied to the modal root element. Required for trigger wiring. */
+  /**
+   * ID applied to the modal root element. Required for trigger wiring.
+   */
   id: string;
-  /** ID of the element that labels the modal (for `aria-labelledby`). */
+
+  /**
+   * ID of the element that labels the modal (for `aria-labelledby`).
+   */
   labelledBy?: string;
+
   /**
    * Applies Bootstrap's fade transition. Defaults to `false` (instant open).
    * Set to `true` to match `data-lnpg-fade="true"` on HTML-authored modals.
@@ -94,31 +134,64 @@ export interface ModalOptions {
   fade?: boolean;
 }
 
-/** Options for {@link createModalDialog}. */
+/**
+ * Options for {@link createModalDialog}.
+ *
+ * @category Interfaces
+ */
 export interface ModalDialogOptions {
-  /** Vertically centres the dialog in the viewport. Defaults to `true`. */
+  /**
+   * Vertically centres the dialog in the viewport. Defaults to `true`.
+   */
   centered?: boolean;
-  /** Scrolls content inside the modal body. Defaults to `true`. */
+
+  /**
+   * Scrolls content inside the modal body. Defaults to `true`.
+   */
   scrollable?: boolean;
-  /** Optional size modifier. */
+
+  /**
+   * Optional size modifier.
+   */
   size?: ModalSize;
 }
 
-/** Options for {@link createModalHeader}. */
+/**
+ * Options for {@link createModalHeader}.
+ *
+ * @category Interfaces
+ */
 export interface ModalHeaderOptions {
-  /** Title text. */
+  /**
+   * Title text.
+   */
   title: string;
-  /** ID applied to the title element (use with `labelledBy` on the modal). */
+
+  /**
+   * ID applied to the title element (use with `labelledBy` on the modal).
+   */
   titleId?: string;
-  /** Accessible label for the close button. Defaults to `'Close'`. */
+
+  /**
+   * Accessible label for the close button. Defaults to `'Close'`.
+   */
   closeLabel?: string;
 }
 
-/** Options for {@link createModalPage}. */
+/**
+ * Options for {@link createModalPage}.
+ *
+ * @category Interfaces
+ */
 export interface ModalPageOptions {
-  /** ID applied to this page element (used by `data-lnpg-modal-page`). */
+  /**
+   * ID applied to this page element (used by `data-lnpg-modal-page`).
+   */
   id: string;
-  /** Whether this page is the initially visible one. Defaults to `false`. */
+
+  /**
+   * Whether this page is the initially visible one. Defaults to `false`.
+   */
   active?: boolean;
 }
 
@@ -180,6 +253,10 @@ function _updatePageNav(parentModal: HTMLElement, currentIndex: number, total: n
   // data-lnpg-modal-last: visible only on the final page (e.g. a Save button).
   parentModal.querySelectorAll<HTMLElement>('[data-lnpg-modal-last]').forEach((btn) => {
     btn.classList.toggle('d-none', !isLast);
+    // Ensure that if it is visible, it dismisses the modal
+    if (!btn.hasAttribute('data-bs-dismiss')) {
+      btn.setAttribute('data-bs-dismiss', 'modal');
+    }
   });
 }
 
@@ -460,48 +537,114 @@ export function createModalPage(options: ModalPageOptions): HTMLElement {
 
 /**
  * Data attribute names used by the modal page navigation system.
+ *
  * @category Constants
  */
 export const modalPageAttrs = {
-  /** Attribute on a button that jumps to a named page by ID. */
+  /**
+   * Attribute on a button that jumps to a named page by ID.
+   */
   page: 'data-lnpg-modal-page',
-  /** Attribute on a button that navigates to the previous page. Hidden on page 1. */
+
+  /**
+   * Attribute on a button that navigates to the previous page. Hidden on page 1.
+   */
   prev: 'data-lnpg-modal-prev',
-  /** Attribute on a button that navigates to the next page. Hidden on the last page. */
+
+  /**
+   * Attribute on a button that navigates to the next page. Hidden on the last page.
+   */
   next: 'data-lnpg-modal-next',
-  /** Attribute on a button that is only visible on the last page (e.g. Save). */
+
+  /**
+   * Attribute on a button that is only visible on the last page (e.g. Save).
+   */
   last: 'data-lnpg-modal-last',
 } as const;
 
-/** CSS class and selector references for the Modal component. @category Constants */
+/**
+ * CSS class and selector references for the Modal component.
+ *
+ * @category Constants
+ */
 export const modal = {
-  /** Root modal element class. */
+  /**
+   * Root modal element class.
+   */
   base: 'modal',
-  /** Dialog layout container class. */
+
+  /**
+   * Dialog layout container class.
+   */
   dialog: 'modal-dialog',
-  /** Vertical centering modifier. */
+
+  /**
+   * Vertical centering modifier.
+   */
   centered: 'modal-dialog-centered',
-  /** Body-scrollable modifier. */
+
+  /**
+   * Body-scrollable modifier.
+   */
   scrollable: 'modal-dialog-scrollable',
-  /** Visual content wrapper class. */
+
+  /**
+   * Visual content wrapper class.
+   */
   content: 'modal-content',
-  /** Header sub-component class. */
+
+  /**
+   * Header sub-component class.
+   */
   header: 'modal-header',
-  /** Title element class. */
+
+  /**
+   * Title element class.
+   */
   title: 'modal-title',
-  /** Body sub-component class. */
+
+  /**
+   * Body sub-component class.
+   */
   body: 'modal-body',
-  /** Footer sub-component class. */
+
+  /**
+   * Footer sub-component class.
+   */
   footer: 'modal-footer',
-  /** Pages container class (Terra extension). */
+
+  /**
+   * Pages container class (Terra extension).
+   */
   pages: 'modal-pages',
-  /** Single page class (Terra extension). */
+
+  /**
+   * Single page class (Terra extension).
+   */
   page: 'modal-page',
-  /** Size modifier classes. */
+
+  /**
+   * Size modifier classes.
+   */
   sizes: {
+    /**
+     * Small dialog (300px max-width).
+     */
     sm: 'modal-sm',
+
+    /**
+     * Large dialog (800px max-width).
+     */
     lg: 'modal-lg',
+
+    /**
+     * Extra-large dialog (1140px max-width).
+     */
     xl: 'modal-xl',
+
+    /**
+     * Full viewport.
+     */
     fullscreen: 'modal-fullscreen',
   },
 } as const;

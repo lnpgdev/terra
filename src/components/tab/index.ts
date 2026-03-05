@@ -35,14 +35,13 @@
  * @category Components
  */
 
-import BsTab from 'bootstrap/js/dist/tab';
-
 import { createDiv } from '@lnpg/sol/elements/container/div';
 import { createButton } from '@lnpg/sol/elements/form/button';
 import { createA } from '@lnpg/sol/elements/inline/a';
 import { createI } from '@lnpg/sol/elements/inline/i';
-import { createUl } from '@lnpg/sol/elements/list/ul';
 import { createLi } from '@lnpg/sol/elements/list/li';
+import { createUl } from '@lnpg/sol/elements/list/ul';
+import BsTab from 'bootstrap/js/dist/tab';
 
 import { createBadge, type BadgeOptions } from '../badge/index';
 
@@ -50,69 +49,157 @@ import { createBadge, type BadgeOptions } from '../badge/index';
 // Types
 // ---------------------------------------------------------------------------
 
-/** Visual style of the nav. */
+/**
+ * Visual style of the nav.
+ *
+ * @remarks
+ * `'tabs'`: Bootstrap tab borders (default).
+ * `'pills'`: pill-shaped nav items.
+ * `'underline'`: underline indicator.
+ *
+ * @category Attributes
+ */
 export type TabVariant = 'tabs' | 'pills' | 'underline';
 
-/** Horizontal alignment of the nav. */
+/**
+ * Horizontal alignment of the nav.
+ *
+ * @remarks
+ * `'start'`: left-aligned (default).
+ * `'centre'`: centred.
+ * `'end'`: right-aligned.
+ * `'spread'`: items fill available width.
+ *
+ * @category Attributes
+ */
 export type TabAlign = 'start' | 'centre' | 'end' | 'spread';
 
-/** Size modifier for the nav. */
+/**
+ * Size modifier for the nav.
+ *
+ * @remarks
+ * `'sm'`: compact.
+ * `'md'`: default (no modifier class).
+ * `'lg'`: large.
+ *
+ * @category Attributes
+ */
 export type TabSize = 'sm' | 'md' | 'lg';
 
 /**
  * Interaction mode.
- * - `'panels'` (default): each item is a `<button>` that toggles a tab-pane.
- * - `'links'`: each item is an `<a>` navigating to `href`.
+ *
+ * @remarks
+ * `'panels'`: each item is a `<button>` that toggles a tab-pane (default).
+ * `'links'`: each item is an `<a>` navigating to `href`.
+ *
+ * @category Attributes
  */
 export type TabMode = 'links' | 'panels';
 
-/** Options for a single tab item within {@link TabsOptions}. */
+/**
+ * Options for a single tab item within {@link TabsOptions}.
+ *
+ * @category Interfaces
+ */
 export interface TabItemOptions {
-  /** Unique ID for the item. Used as the `<button>` id and to link the panel. */
+  /**
+   * Unique ID for the item. Used as the `<button>` id and to link the panel.
+   */
   id: string;
-  /** Visible label text. */
+
+  /**
+   * Visible label text.
+   */
   label: string;
-  /** Optional leading icon CSS class string (e.g. `'bi bi-house'`). */
+
+  /**
+   * Optional leading icon CSS class string (e.g. `'bi bi-house'`).
+   */
   icon?: string;
-  /** URL for link-mode items. */
+
+  /**
+   * URL for link-mode items.
+   */
   href?: string;
+
   /**
    * ID of the target tab-pane panel. Falls back to `id` when omitted.
    * Only used in panels mode.
    */
   target?: string;
-  /** Whether this item is active/selected. */
+
+  /**
+   * Whether this item is active/selected.
+   */
   active?: boolean;
-  /** Whether this item is disabled. */
+
+  /**
+   * Whether this item is disabled.
+   */
   disabled?: boolean;
-  /** Tooltip text. Requires Bootstrap Tooltip initialisation after DOM insertion. */
+
+  /**
+   * Tooltip text. Requires Bootstrap Tooltip initialisation after DOM insertion.
+   */
   tooltip?: string;
-  /** Tooltip placement. Defaults to Bootstrap's default (`'top'`). */
+
+  /**
+   * Tooltip placement. Defaults to Bootstrap's default (`'top'`).
+   */
   tooltipPosition?: 'top' | 'right' | 'bottom' | 'left';
-  /** Optional badge to append after the label. */
+
+  /**
+   * Optional badge to append after the label.
+   */
   badge?: BadgeOptions;
 }
 
-/** Options for {@link createTabs}. */
+/**
+ * Options for {@link createTabs}.
+ *
+ * @category Interfaces
+ */
 export interface TabsOptions {
-  /** Array of tab item descriptors. */
+  /**
+   * Array of tab item descriptors.
+   */
   tabs: TabItemOptions[];
-  /** Visual style. Defaults to `'tabs'`. */
+
+  /**
+   * Visual style. Defaults to `'tabs'`.
+   */
   variant?: TabVariant;
-  /** Size modifier. Defaults to `'md'` (no size class). */
+
+  /**
+   * Size modifier. Defaults to `'md'` (no size class).
+   */
   size?: TabSize;
-  /** Alignment of the nav items. Defaults to `'start'`. */
+
+  /**
+   * Alignment of the nav items. Defaults to `'start'`.
+   */
   align?: TabAlign;
-  /** Allow items to wrap onto multiple lines. Defaults to `true`. */
+
+  /**
+   * Allow items to wrap onto multiple lines. Defaults to `true`.
+   */
   wrap?: boolean;
-  /** Enable horizontal scrolling instead of wrapping. Defaults to `false`. */
+
+  /**
+   * Enable horizontal scrolling instead of wrapping. Defaults to `false`.
+   */
   scroll?: boolean;
+
   /**
    * Interaction mode. Defaults to `'panels'`.
    * Set to `'links'` to render `<a>` elements instead of `<button>` toggles.
    */
   mode?: TabMode;
-  /** Optional id applied to the `<ul>` element. */
+
+  /**
+   * Optional id applied to the `<ul>` element.
+   */
   id?: string;
 }
 
@@ -302,32 +389,94 @@ export function createTabContent(tabs: TabItemOptions[]): HTMLElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the Tab component. @category Constants */
+/**
+ * CSS class references for the Tab component.
+ *
+ * @category Constants
+ */
 export const tab = {
-  /** Base nav class. Always applied. */
+  /**
+   * Base nav class. Always applied.
+   */
   nav: 'nav',
-  /** Variant classes keyed by variant name. */
+
+  /**
+   * Variant classes keyed by variant name.
+   */
   variants: {
+    /**
+     * Bootstrap tab borders variant.
+     */
     tabs: 'nav-tabs',
+
+    /**
+     * Pill-shaped nav items variant.
+     */
     pills: 'nav-pills',
+
+    /**
+     * Underline indicator variant.
+     */
     underline: 'nav-underline',
   },
-  /** Nav item class. */
+
+  /**
+   * Nav item class.
+   */
   item: 'nav-item',
-  /** Nav link class. Applied to each `<button>` or `<a>`. */
+
+  /**
+   * Nav link class. Applied to each `<button>` or `<a>`.
+   */
   link: 'nav-link',
-  /** Size modifier classes applied to the `<ul>`. */
-  sizes: { sm: 'nav-sm', lg: 'nav-lg' },
-  /** Alignment modifier classes. */
+
+  /**
+   * Size modifier classes applied to the `<ul>`.
+   */
+  sizes: {
+    /**
+     * Compact size modifier.
+     */
+    sm: 'nav-sm',
+
+    /**
+     * Large size modifier.
+     */
+    lg: 'nav-lg',
+  },
+
+  /**
+   * Alignment modifier classes.
+   */
   align: {
+    /**
+     * Centred alignment.
+     */
     centre: 'justify-content-center',
+
+    /**
+     * Right-aligned.
+     */
     end: 'justify-content-end',
+
+    /**
+     * Items fill available width.
+     */
     spread: 'nav-fill',
   },
-  /** Horizontal-scroll wrapper class. */
+
+  /**
+   * Horizontal-scroll wrapper class.
+   */
   scroll: 'nav-scroll',
-  /** Tab-content container class. */
+
+  /**
+   * Tab-content container class.
+   */
   content: 'tab-content',
-  /** Tab-pane class. */
+
+  /**
+   * Tab-pane class.
+   */
   pane: 'tab-pane',
 } as const;

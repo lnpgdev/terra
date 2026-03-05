@@ -37,94 +37,212 @@ import { createDiv } from '@lnpg/sol/elements/container/div';
 import { createSpan } from '@lnpg/sol/elements/container/span';
 import { createStrong } from '@lnpg/sol/elements/inline/strong';
 import { createTable as createTableElement } from '@lnpg/sol/elements/table/table';
-import { createTr } from '@lnpg/sol/elements/table/tr';
 import { createTd } from '@lnpg/sol/elements/table/td';
 import { createTh } from '@lnpg/sol/elements/table/th';
+import { createTr } from '@lnpg/sol/elements/table/tr';
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
-/** Compact or standard row height. */
+/**
+ * Compact or standard row height.
+ *
+ * @remarks
+ * `'sm'`: compact row padding.
+ * `'md'`: standard row padding (default).
+ *
+ * @category Attributes
+ */
 export type TableSize = 'sm' | 'md';
 
-/** Background tone of the table. */
+/**
+ * Background tone of the table.
+ *
+ * @remarks
+ * `'default'`: standard Bootstrap table styling.
+ * `'muted'`: subtle secondary background with no border.
+ *
+ * @category Attributes
+ */
 export type TableVariant = 'default' | 'muted';
 
-/** Contextual row tone. */
-export type TableRowTone = 'info' | 'success' | 'danger';
+/**
+ * Contextual row tone.
+ *
+ * @remarks
+ * `'info'`: cyan.
+ * `'success'`: green.
+ * `'danger'`: red.
+ *
+ * @category Attributes
+ */
+export type TableRowTone =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'info'
+  | 'warning'
+  | 'danger'
+  | 'dark';
 
-/** Cell text alignment. */
+/**
+ * Cell text alignment.
+ *
+ * @remarks
+ * `'left'`: left-aligned (default).
+ * `'center'`: centred.
+ * `'right'`: right-aligned.
+ *
+ * @category Attributes
+ */
 export type TableAlign = 'left' | 'center' | 'right';
 
-/** Options for {@link createTable}. */
+/**
+ * Options for {@link createTable}.
+ *
+ * @category Interfaces
+ */
 export interface TableOptions {
-  /** Compact row padding. Defaults to `'md'`. */
+  /**
+   * Compact row padding. Defaults to `'md'`.
+   */
   size?: TableSize;
-  /** Alternate row background shading. */
+
+  /**
+   * Alternate row background shading.
+   */
   striped?: boolean;
-  /** Row highlight on hover. */
+
+  /**
+   * Row highlight on hover.
+   */
   hover?: boolean;
-  /** Cell borders on all sides. */
+
+  /**
+   * Cell borders on all sides.
+   */
   bordered?: boolean;
-  /** Remove all cell borders. */
+
+  /**
+   * Remove all cell borders.
+   */
   borderless?: boolean;
+
   /**
    * Wraps the `<table>` in a `<div class="table-responsive">` for horizontal
    * scrolling on narrow viewports. When `true` the function returns the
    * wrapper `<div>` rather than the `<table>` directly.
    */
   responsive?: boolean;
+
   /**
    * Wraps the `<table>` in a scrollable container and makes `<thead>` cells
    * sticky. Implies `responsive`. When `true` the function returns the wrapper.
    */
   stickyHeader?: boolean;
-  /** Visual style of the table. Defaults to `'default'`. */
+
+  /**
+   * Visual style of the table. Defaults to `'default'`.
+   */
   variant?: TableVariant;
 }
 
-/** Options for {@link createTableRow}. */
+/**
+ * Options for {@link createTableRow}.
+ *
+ * @category Interfaces
+ */
 export interface TableRowOptions {
-  /** Contextual background tone for the row. */
+  /**
+   * Contextual background tone for the row.
+   */
   tone?: TableRowTone;
-  /** Highlights the row as the selected/active row. */
+
+  /**
+   * Highlights the row as the selected/active row.
+   */
   selected?: boolean;
-  /** Fades and blocks interaction on the row. */
+
+  /**
+   * Fades and blocks interaction on the row.
+   */
   disabled?: boolean;
 }
 
-/** Options for {@link createTableCell}. */
+/**
+ * Options for {@link createTableCell}.
+ *
+ * @category Interfaces
+ */
 export interface TableCellOptions {
-  /** Text alignment within the cell. Defaults to `'left'`. */
+  /**
+   * Text alignment within the cell. Defaults to `'left'`.
+   */
   align?: TableAlign;
-  /** Truncates overflowing text with an ellipsis. */
+
+  /**
+   * Truncates overflowing text with an ellipsis.
+   */
   truncate?: boolean;
-  /** Right-aligns content (conventional for numeric columns). */
+
+  /**
+   * Right-aligns content (conventional for numeric columns).
+   */
   numeric?: boolean;
-  /** Prevents text wrapping. */
+
+  /**
+   * Prevents text wrapping.
+   */
   nowrap?: boolean;
-  /** Makes the cell content editable. */
+
+  /**
+   * Makes the cell content editable.
+   */
   isEditable?: boolean;
 }
 
-/** Options for {@link createTableHeadCell}. */
+/**
+ * Options for {@link createTableHeadCell}.
+ *
+ * @category Interfaces
+ */
 export interface TableHeadCellOptions {
-  /** Text alignment within the header cell. Defaults to `'left'`. */
+  /**
+   * Text alignment within the header cell. Defaults to `'left'`.
+   */
   align?: TableAlign;
-  /** Truncates overflowing text with an ellipsis. */
+
+  /**
+   * Truncates overflowing text with an ellipsis.
+   */
   truncate?: boolean;
-  /** Right-aligns content (conventional for numeric columns). */
+
+  /**
+   * Right-aligns content (conventional for numeric columns).
+   */
   numeric?: boolean;
-  /** Prevents text wrapping. */
+
+  /**
+   * Prevents text wrapping.
+   */
   nowrap?: boolean;
 }
 
-/** Options for {@link createTableHeader} and {@link createTableFooter}. */
+/**
+ * Options for {@link createTableHeader} and {@link createTableFooter}.
+ *
+ * @category Interfaces
+ */
 export interface TableSectionOptions {
-  /** Primary title text displayed in the section. */
+  /**
+   * Primary title text displayed in the section.
+   */
   title: string;
-  /** Secondary metadata text (e.g. row count, last updated). */
+
+  /**
+   * Secondary metadata text (e.g. row count, last updated).
+   */
   meta?: string;
 }
 
@@ -305,47 +423,244 @@ function _createTableSection(className: string, options: TableSectionOptions): H
 }
 
 // ---------------------------------------------------------------------------
+// Detail table
+// ---------------------------------------------------------------------------
+
+/**
+ * Options for {@link createDetailTable}.
+ *
+ * @category Interfaces
+ */
+export interface DetailTableOptions {
+  /**
+   * Compact row padding. Defaults to `'md'`.
+   */
+  size?: TableSize;
+
+  /**
+   * Row highlight on hover.
+   */
+  hover?: boolean;
+
+  /**
+   * Wraps the `<table>` in a `<div class="table-responsive">` for horizontal
+   * scrolling on narrow viewports. When `true` the function returns the wrapper.
+   */
+  responsive?: boolean;
+
+  /**
+   * Wraps the `<table>` in a scrollable container and makes `<thead>` cells
+   * sticky. Implies `responsive`. When `true` the function returns the wrapper.
+   */
+  stickyHeader?: boolean;
+}
+
+/**
+ * Creates a striped `<table>` element suited for key-value detail layouts.
+ *
+ * Equivalent to `createTable({ striped: true, ...options })`.
+ *
+ * @param options - Table configuration (striped is always enabled).
+ * @returns A `<table>` or wrapper `<div>`.
+ * @category Factory
+ *
+ * @example
+ * ```ts
+ * const t = createDetailTable();
+ * const thead = t.createTHead();
+ * thead.appendChild(createDetailSectionRow('Basic Information'));
+ * const body = t.createTBody();
+ * body.appendChild(createDetailRow('Title', 'Mr'));
+ * body.appendChild(createDetailRow('First Name', 'Anthony'));
+ * ```
+ */
+export function createDetailTable(options: DetailTableOptions = {}): HTMLElement {
+  return createTable({ striped: true, ...options });
+}
+
+/**
+ * Creates a `<tr>` with a `<th scope="row">` label cell and a `<td>` value cell.
+ *
+ * Use inside a `<tbody>` produced by {@link createDetailTable}.
+ *
+ * @param label - Bold label text rendered in the `<th>`.
+ * @param value - Value text or element rendered in the `<td>`.
+ * @returns An `HTMLTableRowElement`.
+ * @category Factory
+ */
+export function createDetailRow(
+  label: string,
+  value: string | HTMLElement,
+): HTMLTableRowElement {
+  const tr = createTr();
+
+  const th = createTh(label, { scope: 'row' });
+  tr.appendChild(th);
+
+  const td = createTd(typeof value === 'string' ? value : '');
+  if (typeof value !== 'string') td.appendChild(value);
+  tr.appendChild(td);
+
+  return tr;
+}
+
+/**
+ * Creates a full-width `<tr>` acting as a section header inside a `<thead>`.
+ *
+ * The row uses `table-dark` styling and spans `colspan` columns (default 2).
+ *
+ * @param title - Section title text.
+ * @param colspan - Number of columns to span. Defaults to `2`.
+ * @returns An `HTMLTableRowElement`.
+ * @category Factory
+ */
+export function createDetailSectionRow(title: string, colspan = 2): HTMLTableRowElement {
+  const tr = createTr(undefined, { className: 'table-dark' });
+
+  const th = createTh(title, { scope: 'colgroup' });
+  th.setAttribute('colspan', String(colspan));
+  tr.appendChild(th);
+
+  return tr;
+}
+
+// ---------------------------------------------------------------------------
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the Table component. @category Constants */
+/**
+ * CSS class references for the Table component.
+ *
+ * @category Constants
+ */
 export const table = {
-  /** Base table class. */
+  /**
+   * Base table class.
+   */
   base: 'table',
-  /** Compact row padding. */
+
+  /**
+   * Size modifier classes.
+   */
   sizes: {
+    /**
+     * Compact row padding.
+     */
     sm: 'table-sm',
   },
-  /** Alternate row shading. */
+
+  /**
+   * Alternate row shading.
+   */
   striped: 'table-striped',
-  /** Row highlight on hover. */
+
+  /**
+   * Row highlight on hover.
+   */
   hover: 'table-hover',
-  /** Cell borders on all sides. */
+
+  /**
+   * Cell borders on all sides.
+   */
   bordered: 'table-bordered',
-  /** Remove all cell borders. */
+
+  /**
+   * Remove all cell borders.
+   */
   borderless: 'table-borderless',
-  /** Horizontal scroll wrapper (Bootstrap). */
+
+  /**
+   * Horizontal scroll wrapper (Bootstrap).
+   */
   responsive: 'table-responsive',
-  /** Vertical scroll wrapper with sticky header (Terra). */
+
+  /**
+   * Vertical scroll wrapper with sticky header (Terra).
+   */
   scrollable: 'table-scrollable',
-  /** Table variant classes. */
+
+  /**
+   * Table variant classes.
+   */
   variants: {
+    /**
+     * Subtle secondary background with no border.
+     */
     muted: 'table-muted',
   },
-  /** Row tone classes (Bootstrap contextual colours). */
+
+  /**
+   * Row tone classes (Bootstrap contextual colours).
+   */
   rowTones: {
-    info: 'table-info',
+    /**
+     * Primary blue tone.
+     */
+    primary: 'table-primary',
+
+    /**
+     * Secondary grey tone.
+     */
+    secondary: 'table-secondary',
+
+    /**
+     * Green success tone.
+     */
     success: 'table-success',
+
+    /**
+     * Cyan info tone.
+     */
+    info: 'table-info',
+
+    /**
+     * Amber warning tone.
+     */
+    warning: 'table-warning',
+
+    /**
+     * Red danger tone.
+     */
     danger: 'table-danger',
+
+    /**
+     * Dark tone.
+     */
+    dark: 'table-dark',
   },
-  /** Row selected/active class. */
+
+  /**
+   * Row selected/active class.
+   */
   rowSelected: 'table-active',
-  /** Disabled row class (Terra). */
+
+  /**
+   * Disabled row class (Terra).
+   */
   rowDisabled: 'table-row-disabled',
-  /** Table section header wrapper class. */
+
+  /**
+   * Table section header wrapper class.
+   */
   sectionHeader: 'table-section-header',
-  /** Table section footer wrapper class. */
+
+  /**
+   * Table section footer wrapper class.
+   */
   sectionFooter: 'table-section-footer',
-  /** Metadata text within a section header or footer. */
+
+  /**
+   * Metadata text within a section header or footer.
+   */
   sectionMeta: 'table-section-meta',
+
+  /**
+   * Detail table classes.
+   */
+  detail: {
+    /**
+     * Dark background applied to the section header row.
+     */
+    sectionRow: 'table-dark',
+  },
 } as const;

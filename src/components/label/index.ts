@@ -35,16 +35,60 @@ import { createI } from '@lnpg/sol/elements/inline/i';
 // Types
 // ---------------------------------------------------------------------------
 
-/** Colour tone of the label. */
-export type LabelTone = 'info' | 'success' | 'warning' | 'danger';
+/**
+ * Colour tone of the label.
+ *
+ * @remarks
+ * `'info'`: cyan.
+ * `'success'`: green.
+ * `'warning'`: amber.
+ * `'danger'`: red.
+ *
+ * @category Attributes
+ */
+export type LabelTone =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'info'
+  | 'warning'
+  | 'danger'
+  | 'dark';
 
-/** Visual style of the label. */
+/**
+ * Visual style of the label.
+ *
+ * @remarks
+ * `'solid'`: filled background.
+ * `'outline'`: transparent background with a coloured border.
+ * `'ghost'`: subtle tinted background.
+ *
+ * @category Attributes
+ */
 export type LabelVariant = 'solid' | 'outline' | 'ghost';
 
-/** Shape of the label. */
+/**
+ * Shape of the label.
+ *
+ * @remarks
+ * `'square'`: sharp corners (default).
+ * `'rounded'`: slight border radius.
+ * `'pill'`: fully rounded ends.
+ *
+ * @category Attributes
+ */
 export type LabelShape = 'square' | 'rounded' | 'pill';
 
-/** Size modifier for the label. */
+/**
+ * Size modifier for the label.
+ *
+ * @remarks
+ * `'sm'`: small.
+ * `'md'`: default (no modifier class applied).
+ * `'lg'`: large.
+ *
+ * @category Attributes
+ */
 export type LabelSize = 'sm' | 'md' | 'lg';
 
 /**
@@ -54,29 +98,52 @@ export type LabelSize = 'sm' | 'md' | 'lg';
  */
 type IconType = string;
 
-/** Options for {@link createLabel}. */
+/**
+ * Options for {@link createLabel}.
+ *
+ * @category Interfaces
+ */
 export interface LabelOptions {
-  /** Text content of the label. */
+  /**
+   * Text content of the label.
+   */
   label: string;
-  /** Colour tone. */
+
+  /**
+   * Colour tone.
+   */
   tone?: LabelTone;
-  /** Visual style. Defaults to `'solid'`. */
+
+  /**
+   * Visual style. Defaults to `'solid'`.
+   */
   variant?: LabelVariant;
-  /** Shape. Defaults to `'square'`. */
+
+  /**
+   * Shape. Defaults to `'square'`.
+   */
   shape?: LabelShape;
-  /** Size modifier. Defaults to `'md'` (no size class). */
+
+  /**
+   * Size modifier. Defaults to `'md'` (no size class).
+   */
   size?: LabelSize;
+
   /**
    * Leading icon. Accepts a CSS class string (e.g. `'bi bi-star'`).
    * Will be typed as `IconType` from the Icon component once available.
    */
   icon?: IconType;
+
   /**
    * Tooltip text. Requires Bootstrap Tooltip initialisation -- call
    * `initTooltips()` from the Tooltip component after inserting into the DOM.
    */
   tooltip?: string;
-  /** Tooltip placement. Defaults to Bootstrap's default (`'top'`). */
+
+  /**
+   * Tooltip placement. Defaults to Bootstrap's default (`'top'`).
+   */
   tooltipPosition?: 'top' | 'right' | 'bottom' | 'left';
 }
 
@@ -152,40 +219,169 @@ export function createLabel(options: LabelOptions): HTMLSpanElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the Label component. @category Constants */
+/**
+ * CSS class references for the Label component.
+ *
+ * @category Constants
+ */
 export const labelComponent = {
-  /** Base label class. Always applied. */
+  /**
+   * Base label class. Always applied.
+   */
   base: 'label',
-  /** Shape classes. */
+
+  /**
+   * Shape modifier classes.
+   */
   shapes: {
+    /**
+     * Sharp corners (default).
+     */
     square: 'label-square',
+
+    /**
+     * Slight border radius.
+     */
     rounded: 'label-rounded',
+
+    /**
+     * Fully rounded ends.
+     */
     pill: 'label-pill',
   },
-  /** Size modifier classes. */
+
+  /**
+   * Size modifier classes.
+   */
   sizes: {
+    /**
+     * Small.
+     */
     sm: 'label-sm',
+
+    /**
+     * Large.
+     */
     lg: 'label-lg',
   },
-  /** Solid variant tone classes (tinted bg + emphasis text). */
+
+  /**
+   * Solid variant tone classes (tinted bg + emphasis text).
+   */
   solid: {
-    info: 'label-solid-info',
+    /**
+     * Blue.
+     */
+    primary: 'label-solid-primary',
+
+    /**
+     * Indigo.
+     */
+    secondary: 'label-solid-secondary',
+
+    /**
+     * Green.
+     */
     success: 'label-solid-success',
+
+    /**
+     * Cyan.
+     */
+    info: 'label-solid-info',
+
+    /**
+     * Amber.
+     */
     warning: 'label-solid-warning',
+
+    /**
+     * Red.
+     */
     danger: 'label-solid-danger',
+
+    /**
+     * Dark neutral.
+     */
+    dark: 'label-solid-dark',
   },
-  /** Outline variant tone classes (border + text, transparent bg). */
+
+  /**
+   * Outline variant tone classes (border + text, transparent bg).
+   */
   outline: {
-    info: 'label-outline-info',
+    /**
+     * Blue.
+     */
+    primary: 'label-outline-primary',
+
+    /**
+     * Indigo.
+     */
+    secondary: 'label-outline-secondary',
+
+    /**
+     * Green.
+     */
     success: 'label-outline-success',
+
+    /**
+     * Cyan.
+     */
+    info: 'label-outline-info',
+
+    /**
+     * Amber.
+     */
     warning: 'label-outline-warning',
+
+    /**
+     * Red.
+     */
     danger: 'label-outline-danger',
+
+    /**
+     * Dark neutral.
+     */
+    dark: 'label-outline-dark',
   },
-  /** Ghost variant tone classes (text only, no bg or border). */
+
+  /**
+   * Ghost variant tone classes (text only, no bg or border).
+   */
   ghost: {
-    info: 'label-ghost-info',
+    /**
+     * Blue.
+     */
+    primary: 'label-ghost-primary',
+
+    /**
+     * Indigo.
+     */
+    secondary: 'label-ghost-secondary',
+
+    /**
+     * Green.
+     */
     success: 'label-ghost-success',
+
+    /**
+     * Cyan.
+     */
+    info: 'label-ghost-info',
+
+    /**
+     * Amber.
+     */
     warning: 'label-ghost-warning',
+
+    /**
+     * Red.
+     */
     danger: 'label-ghost-danger',
+
+    /**
+     * Dark neutral.
+     */
+    dark: 'label-ghost-dark',
   },
 } as const;

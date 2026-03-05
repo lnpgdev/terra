@@ -29,12 +29,22 @@ import { createA } from '@lnpg/sol/elements/inline/a';
 // Types
 // ---------------------------------------------------------------------------
 
-/** A single SubNav link option. */
+/**
+ * A single SubNav link option.
+ *
+ * @category Interfaces
+ */
 export interface SubNavOption {
-  /** Visible label text. */
+  /**
+   * Visible label text.
+   */
   label: string;
-  /** Link destination. */
+
+  /**
+   * Link destination.
+   */
   href: string;
+
   /**
    * Optional icon rendered as HTML. Appears before the label on the left link
    * and after the label on the right link.
@@ -45,16 +55,25 @@ export interface SubNavOption {
   icon?: string;
 }
 
-/** Options for {@link createSubNav}. */
+/**
+ * Options for {@link createSubNav}.
+ *
+ * @category Interfaces
+ */
 export interface SubNavOptions {
-  /** Left navigation link (e.g. "← Back to search"). */
+  /**
+   * Left navigation link (e.g. "← Back to search").
+   */
   left?: SubNavOption;
-  /** Right navigation link (e.g. "All members →"). */
+
+  /**
+   * Right navigation link (e.g. "All members →").
+   */
   right?: SubNavOption;
 }
 
 // ---------------------------------------------------------------------------
-// Factory
+// Factories
 // ---------------------------------------------------------------------------
 
 /**
@@ -123,10 +142,19 @@ export function createSubNavLink(option: SubNavOption, side: 'left' | 'right'): 
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the SubNav component. @category Constants */
+/**
+ * CSS class references for the SubNav component.
+ *
+ * @category Constants
+ */
 export const subnav = {
-  /** Bar wrapper class. */
+  /**
+   * Bar wrapper class.
+   */
   base: 'subnav',
-  /** Navigation link class. */
+
+  /**
+   * Navigation link class.
+   */
   link: 'subnav-link',
 } as const;

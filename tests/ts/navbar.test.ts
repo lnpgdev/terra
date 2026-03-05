@@ -29,7 +29,7 @@ describe('navbar constants', () => {
     expect(navbar.link).toBe('navbar-link');
     expect(navbar.actions).toBe('navbar-actions');
     expect(navbar.expand.lg).toBe('navbar-expand-lg');
-    expect(navbar.variants.dark).toBe('navbar-dark');
+    expect(navbar.variants.light).toBe('navbar-light');
   });
 });
 
@@ -45,9 +45,15 @@ describe('createNavbar', () => {
     expect(el.classList.contains('navbar-expand-lg')).toBe(true);
   });
 
-  it('applies dark variant', () => {
-    const el = createNavbar({ variant: 'dark' });
-    expect(el.classList.contains('navbar-dark')).toBe(true);
+  it('dark is the default — no extra class added', () => {
+    const el = createNavbar();
+    expect(el.classList.contains('navbar-light')).toBe(false);
+    expect(el.classList.contains('navbar-dark')).toBe(false);
+  });
+
+  it('applies navbar-light class for light variant', () => {
+    const el = createNavbar({ variant: 'light' });
+    expect(el.classList.contains('navbar-light')).toBe(true);
   });
 
   it('applies sticky-top class', () => {

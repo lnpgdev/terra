@@ -31,12 +31,11 @@
  * @category Components
  */
 
-import BsOffcanvas from 'bootstrap/js/dist/offcanvas';
-
 import { createDiv } from '@lnpg/sol/elements/container/div';
 import { createButton } from '@lnpg/sol/elements/form/button';
-import { createA } from '@lnpg/sol/elements/inline/a';
 import { createH5 } from '@lnpg/sol/elements/heading/h5';
+import { createA } from '@lnpg/sol/elements/inline/a';
+import BsOffcanvas from 'bootstrap/js/dist/offcanvas';
 
 // Re-export Bootstrap Offcanvas for consumers who need programmatic control.
 export { BsOffcanvas };
@@ -45,46 +44,104 @@ export { BsOffcanvas };
 // Types
 // ---------------------------------------------------------------------------
 
-/** Which edge the offcanvas panel slides in from. */
+/**
+ * Which edge the offcanvas panel slides in from.
+ *
+ * @remarks
+ * `'start'`: slides in from the left.
+ * `'end'`: slides in from the right.
+ * `'top'`: slides in from the top.
+ * `'bottom'`: slides in from the bottom.
+ *
+ * @category Attributes
+ */
 export type OffcanvasPlacement = 'start' | 'end' | 'top' | 'bottom';
 
-/** Element type used to trigger an offcanvas panel. */
+/**
+ * Element type used to trigger an offcanvas panel.
+ *
+ * @remarks
+ * `'button'`: renders as a `<button>` element (default).
+ * `'anchor'`: renders as an `<a>` element.
+ *
+ * @category Attributes
+ */
 export type OffcanvasTriggerVariant = 'button' | 'anchor';
 
-/** Options for {@link createOffcanvasTrigger}. */
+/**
+ * Options for {@link createOffcanvasTrigger}.
+ *
+ * @category Interfaces
+ */
 export interface OffcanvasTriggerOptions {
-  /** ID of the offcanvas panel to open (without the `#` prefix). */
+  /**
+   * ID of the offcanvas panel to open (without the `#` prefix).
+   */
   target: string;
-  /** Visible label on the trigger element. */
+
+  /**
+   * Visible label on the trigger element.
+   */
   label: string;
-  /** Element type. Defaults to `'button'`. */
+
+  /**
+   * Element type. Defaults to `'button'`.
+   */
   variant?: OffcanvasTriggerVariant;
 }
 
-/** Options for {@link createOffcanvas}. */
+/**
+ * Options for {@link createOffcanvas}.
+ *
+ * @category Interfaces
+ */
 export interface OffcanvasOptions {
-  /** ID applied to the offcanvas panel element. Required for trigger wiring. */
+  /**
+   * ID applied to the offcanvas panel element. Required for trigger wiring.
+   */
   id: string;
-  /** Which edge the panel slides in from. Defaults to `'start'`. */
+
+  /**
+   * Which edge the panel slides in from. Defaults to `'start'`.
+   */
   placement?: OffcanvasPlacement;
+
   /**
    * Whether a backdrop is rendered behind the panel.
    * Pass `'static'` to prevent closing on backdrop click. Defaults to `true`.
    */
   backdrop?: boolean | 'static';
-  /** Whether page scrolling is allowed while the panel is open. Defaults to `false`. */
+
+  /**
+   * Whether page scrolling is allowed while the panel is open. Defaults to `false`.
+   */
   scroll?: boolean;
-  /** ID of the element that labels the panel (for `aria-labelledby`). */
+
+  /**
+   * ID of the element that labels the panel (for `aria-labelledby`).
+   */
   labelledBy?: string;
 }
 
-/** Options for {@link createOffcanvasHeader}. */
+/**
+ * Options for {@link createOffcanvasHeader}.
+ *
+ * @category Interfaces
+ */
 export interface OffcanvasHeaderOptions {
-  /** Title text displayed in the panel header. */
+  /**
+   * Title text displayed in the panel header.
+   */
   title: string;
-  /** ID applied to the title element (use with `labelledBy` on the panel). */
+
+  /**
+   * ID applied to the title element (use with `labelledBy` on the panel).
+   */
   titleId?: string;
-  /** Accessible label for the close button. Defaults to `'Close'`. */
+
+  /**
+   * Accessible label for the close button. Defaults to `'Close'`.
+   */
   closeLabel?: string;
 }
 
@@ -179,6 +236,7 @@ export function createOffcanvasTrigger(
 
   const el = createButton(label, {
     type: 'button',
+    className: 'btn',
     dataset: { bsToggle: offcanvas.toggle, bsTarget: `#${target}` },
     attrs: { 'aria-controls': target },
   });
@@ -283,27 +341,69 @@ export function createOffcanvasFooter(): HTMLElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class and selector references for the Offcanvas component. @category Constants */
+/**
+ * CSS class and selector references for the Offcanvas component.
+ *
+ * @category Constants
+ */
 export const offcanvas = {
-  /** Base offcanvas class. */
+  /**
+   * Base offcanvas class.
+   */
   base: 'offcanvas',
-  /** Header sub-component class. */
+
+  /**
+   * Header sub-component class.
+   */
   header: 'offcanvas-header',
-  /** Title element class. */
+
+  /**
+   * Title element class.
+   */
   title: 'offcanvas-title',
-  /** Body sub-component class. */
+
+  /**
+   * Body sub-component class.
+   */
   body: 'offcanvas-body',
-  /** Footer sub-component class (Terra extension). */
+
+  /**
+   * Footer sub-component class (Terra extension).
+   */
   footer: 'offcanvas-footer',
-  /** Value used for `data-bs-toggle`. */
+
+  /**
+   * Value used for `data-bs-toggle`.
+   */
   toggle: 'offcanvas',
-  /** Placement modifier classes keyed by placement value. */
+
+  /**
+   * Placement modifier classes keyed by placement value.
+   */
   placements: {
+    /**
+     * Slides in from the left.
+     */
     start: 'offcanvas-start',
+
+    /**
+     * Slides in from the right.
+     */
     end: 'offcanvas-end',
+
+    /**
+     * Slides in from the top.
+     */
     top: 'offcanvas-top',
+
+    /**
+     * Slides in from the bottom.
+     */
     bottom: 'offcanvas-bottom',
   },
-  /** Selector used to find all Terra offcanvas triggers in the document. */
+
+  /**
+   * Selector used to find all Terra offcanvas triggers in the document.
+   */
   selector: '[data-lnpg-target]',
 } as const;

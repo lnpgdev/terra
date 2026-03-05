@@ -26,38 +26,63 @@
  * @category Components
  */
 
-import { createNav } from '@lnpg/sol/elements/layout/nav';
-import { createOl } from '@lnpg/sol/elements/list/ol';
-import { createLi } from '@lnpg/sol/elements/list/li';
 import { createA } from '@lnpg/sol/elements/inline/a';
+import { createNav } from '@lnpg/sol/elements/layout/nav';
+import { createLi } from '@lnpg/sol/elements/list/li';
+import { createOl } from '@lnpg/sol/elements/list/ol';
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
-/** Options for a single breadcrumb item. */
+/**
+ * Options for a single breadcrumb item.
+ *
+ * @category Interfaces
+ */
 export interface BreadcrumbItemOptions {
-  /** Visible label text. */
+  /**
+   * Visible label text.
+   */
   label: string;
-  /** When provided, the item renders as an `<a>` link. */
+
+  /**
+   * When provided, the item renders as an `<a>` link.
+   */
   href?: string;
-  /** Marks the item as the current page. Adds `active` class and `aria-current="page"`. */
+
+  /**
+   * Marks the item as the current page. Adds `active` class and `aria-current="page"`.
+   */
   active?: boolean;
-  /** Renders the link as visually disabled. Only applies when `href` is also set. */
+
+  /**
+   * Renders the link as visually disabled. Only applies when `href` is also set.
+   */
   disabled?: boolean;
 }
 
-/** Options for {@link createBreadcrumb}. */
+/**
+ * Options for {@link createBreadcrumb}.
+ *
+ * @category Interfaces
+ */
 export interface BreadcrumbOptions {
-  /** Breadcrumb items in order from first to last. */
+  /**
+   * Breadcrumb items in order from first to last.
+   */
   items: BreadcrumbItemOptions[];
+
   /**
    * Divider character rendered between items.
    * Sets `--bs-breadcrumb-divider` as an inline style on the `<nav>`.
    * Defaults to Bootstrap's built-in `/`.
    */
   divider?: string;
-  /** `aria-label` for the `<nav>` landmark. Defaults to `'breadcrumb'`. */
+
+  /**
+   * `aria-label` for the `<nav>` landmark. Defaults to `'breadcrumb'`.
+   */
   label?: string;
 }
 
@@ -127,14 +152,29 @@ export function createBreadcrumb(options: BreadcrumbOptions): HTMLElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the Breadcrumb component. @category Constants */
+/**
+ * CSS class references for the Breadcrumb component.
+ *
+ * @category Constants
+ */
 export const breadcrumb = {
-  /** Base breadcrumb list class. */
+  /**
+   * Base breadcrumb list class.
+   */
   base: 'breadcrumb',
-  /** Individual breadcrumb item. */
+
+  /**
+   * Individual breadcrumb item.
+   */
   item: 'breadcrumb-item',
-  /** Applied to the current/last item. */
+
+  /**
+   * Applied to the current/last item.
+   */
   active: 'active',
-  /** Applied to a disabled link within an item. */
+
+  /**
+   * Applied to a disabled link within an item.
+   */
   disabled: 'disabled',
 } as const;

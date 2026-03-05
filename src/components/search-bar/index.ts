@@ -43,59 +43,113 @@ import { createLabel } from '@lnpg/sol/elements/form/label';
 // Types
 // ---------------------------------------------------------------------------
 
-/** Submit behaviour: whole query (`'single'`) or tokenised terms (`'multi'`). */
+/**
+ * Submit behaviour: whole query (`'single'`) or tokenised terms (`'multi'`).
+ *
+ * @remarks
+ * `'single'`: the entire input value is submitted as a string.
+ * `'multi'`: pressing Enter commits the current term as a removable token chip.
+ *
+ * @category Attributes
+ */
 export type SearchBarMode = 'single' | 'multi';
 
-/** Size variant. */
+/**
+ * Size variant.
+ *
+ * @remarks
+ * `'sm'`: compact size.
+ * `'md'`: default size (no modifier class).
+ * `'lg'`: large size.
+ *
+ * @category Attributes
+ */
 export type SearchBarSize = 'sm' | 'md' | 'lg';
 
-/** Options for {@link createSearchBar}. */
+/**
+ * Options for {@link createSearchBar}.
+ *
+ * @category Interfaces
+ */
 export interface SearchBarOptions {
-  /** Initial input value. Defaults to `''`. */
+  /**
+   * Initial input value. Defaults to `''`.
+   */
   value?: string;
-  /** Placeholder text. Defaults to `'Search...'`. */
+
+  /**
+   * Placeholder text. Defaults to `'Search...'`.
+   */
   placeholder?: string;
+
   /**
    * Visible label text. Rendered as a `<label>` element above the search bar
    * when provided. Either `label` or `ariaLabel` must be set.
    */
   label?: string;
+
   /**
    * Accessible label applied via `aria-label` on the input when no visible
    * label is shown. Required when `label` is omitted.
    */
   ariaLabel?: string;
-  /** Submit behaviour. Defaults to `'multi'`. */
+
+  /**
+   * Submit behaviour. Defaults to `'multi'`.
+   */
   mode?: SearchBarMode;
-  /** Pill-shaped border. Defaults to `false`. */
+
+  /**
+   * Pill-shaped border. Defaults to `false`.
+   */
   rounded?: boolean;
+
   /**
    * Raw SVG string for the leading icon. Defaults to a magnifying-glass icon.
    * Pass `null` to suppress the icon entirely.
    */
   icon?: string | null;
-  /** Size of the input. Defaults to `'md'`. */
+
+  /**
+   * Size of the input. Defaults to `'md'`.
+   */
   size?: SearchBarSize;
-  /** Disables the input. Defaults to `false`. */
+
+  /**
+   * Disables the input. Defaults to `false`.
+   */
   disabled?: boolean;
-  /** Focus the input on mount. Defaults to `false`. */
+
+  /**
+   * Focus the input on mount. Defaults to `false`.
+   */
   autofocus?: boolean;
+
   /**
    * Called when the search is submitted.
    * - `'single'` mode: receives the query string.
    * - `'multi'` mode: receives the current array of tokens.
    */
   onSubmit?: (payload: string | string[]) => void;
-  /** Called on every keystroke in the input. */
+
+  /**
+   * Called on every keystroke in the input.
+   */
   onChange?: (value: string) => void;
-  /** Called when a token is added in `'multi'` mode. */
+
+  /**
+   * Called when a token is added in `'multi'` mode.
+   */
   onTokenAdd?: (token: string) => void;
-  /** Called when a token is removed in `'multi'` mode. */
+
+  /**
+   * Called when a token is removed in `'multi'` mode.
+   */
   onTokenRemove?: (token: string) => void;
 }
 
 // ---------------------------------------------------------------------------
-// Default icon
+// Internal
 // ---------------------------------------------------------------------------
 
 const DEFAULT_ICON =
@@ -284,25 +338,59 @@ export function createSearchBar(options: SearchBarOptions = {}): HTMLElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the Search Bar component. @category Constants */
+/**
+ * CSS class references for the Search Bar component.
+ *
+ * @category Constants
+ */
 export const searchBar = {
-  /** Outermost search bar wrapper. */
+  /**
+   * Outermost search bar wrapper.
+   */
   base: 'search-bar',
-  /** Pill-shaped border modifier. */
+
+  /**
+   * Pill-shaped border modifier.
+   */
   rounded: 'search-bar-rounded',
-  /** Size modifier classes. */
+
+  /**
+   * Size modifier classes.
+   */
   sizes: {
+    /**
+     * Compact size.
+     */
     sm: 'search-bar-sm',
+
+    /**
+     * Large size.
+     */
     lg: 'search-bar-lg',
   },
-  /** Leading icon container. */
+
+  /**
+   * Leading icon container.
+   */
   icon: 'search-bar-icon',
-  /** Token chip container (multi mode). */
+
+  /**
+   * Token chip container (multi mode).
+   */
   tokens: 'search-bar-tokens',
-  /** Individual token chip. */
+
+  /**
+   * Individual token chip.
+   */
   token: 'search-bar-token',
-  /** Remove button inside a token chip. */
+
+  /**
+   * Remove button inside a token chip.
+   */
   tokenRemove: 'search-bar-token-remove',
-  /** Text input element. */
+
+  /**
+   * Text input element.
+   */
   input: 'search-bar-input',
 } as const;

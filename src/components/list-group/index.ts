@@ -33,23 +33,39 @@
 
 import { createDiv } from '@lnpg/sol/elements/container/div';
 import { createA } from '@lnpg/sol/elements/inline/a';
-import { createUl } from '@lnpg/sol/elements/list/ul';
 import { createLi } from '@lnpg/sol/elements/list/li';
+import { createUl } from '@lnpg/sol/elements/list/ul';
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
-/** Options for a single list group item. */
+/**
+ * Options for a single list group item.
+ *
+ * @category Interfaces
+ */
 export interface ListGroupItemOptions {
-  /** Visible content text. */
+  /**
+   * Visible content text.
+   */
   label: string;
-  /** When provided, renders the item as an `<a>` element. */
+
+  /**
+   * When provided, renders the item as an `<a>` element.
+   */
   href?: string;
-  /** Marks the item as the currently selected/active item. */
+
+  /**
+   * Marks the item as the currently selected/active item.
+   */
   active?: boolean;
-  /** Makes the item non-interactive. */
+
+  /**
+   * Makes the item non-interactive.
+   */
   disabled?: boolean;
+
   /**
    * Adds hover and focus interaction styles.
    * Applied automatically when `href` is set.
@@ -57,13 +73,25 @@ export interface ListGroupItemOptions {
   action?: boolean;
 }
 
-/** Options for {@link createListGroup}. */
+/**
+ * Options for {@link createListGroup}.
+ *
+ * @category Interfaces
+ */
 export interface ListGroupOptions {
-  /** Items to render in the list group. */
+  /**
+   * Items to render in the list group.
+   */
   items: ListGroupItemOptions[];
-  /** Removes outer borders so the list group sits flush inside a card or panel. */
+
+  /**
+   * Removes outer borders so the list group sits flush inside a card or panel.
+   */
   flush?: boolean;
-  /** Displays items in a row instead of a column. */
+
+  /**
+   * Displays items in a row instead of a column.
+   */
   horizontal?: boolean;
 }
 
@@ -144,20 +172,44 @@ export function createListGroup(options: ListGroupOptions): HTMLElement {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the List Group component. @category Constants */
+/**
+ * CSS class references for the List Group component.
+ *
+ * @category Constants
+ */
 export const listGroup = {
-  /** Base list group class. */
+  /**
+   * Base list group class.
+   */
   base: 'list-group',
-  /** Individual list group item. */
+
+  /**
+   * Individual list group item.
+   */
   item: 'list-group-item',
-  /** Adds interactive hover/focus styles to an item. */
+
+  /**
+   * Adds interactive hover/focus styles to an item.
+   */
   action: 'list-group-item-action',
-  /** Marks an item as currently active/selected. */
+
+  /**
+   * Marks an item as currently active/selected.
+   */
   active: 'active',
-  /** Marks an item as non-interactive. */
+
+  /**
+   * Marks an item as non-interactive.
+   */
   disabled: 'disabled',
-  /** Removes outer borders for use inside cards or panels. */
+
+  /**
+   * Removes outer borders for use inside cards or panels.
+   */
   flush: 'list-group-flush',
-  /** Displays items in a row. */
+
+  /**
+   * Displays items in a row.
+   */
   horizontal: 'list-group-horizontal',
 } as const;

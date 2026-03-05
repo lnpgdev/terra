@@ -1,15 +1,20 @@
 # Terra UI Kit
 
-A TypeScript UI component library for LNPG internal applications, built on top of [Bootstrap 5](https://getbootstrap.com/docs/5.3/) and the [Sol](https://github.com/lnpgdev/sol) design system.
+A TypeScript UI component library for LNPG internal applications, built on top of
+[Bootstrap 5](https://getbootstrap.com/docs/5.3/) and the [Sol](https://github.com/lnpgdev/sol)
+design system.
 
 ## Overview
 
 Terra provides two things for each component:
 
-1. **TypeScript factory functions** — programmatic element creation with typed options (e.g. `createButton(...)`, `createModal(...)`)
-2. **SCSS overrides** — Bootstrap customisation via Sol design tokens, compiled into a single `terra.css` stylesheet
+1. **TypeScript factory functions** — programmatic element creation with typed options (e.g.
+   `createButton(...)`, `createModal(...)`)
+2. **SCSS overrides** — Bootstrap customisation via Sol design tokens, compiled into a single
+   `terra.css` stylesheet
 
-Components that need no visual overrides (e.g. Breadcrumb, Carousel, Scrollspy) still export their CSS class constants and factory functions — only the SCSS file is a thin Bootstrap pass-through.
+Components that need no visual overrides (e.g. Breadcrumb, Carousel, Scrollspy) still export their
+CSS class constants and factory functions — only the SCSS file is a thin Bootstrap pass-through.
 
 ## Installation
 
@@ -73,44 +78,45 @@ document.body.appendChild(wrapper);
 
 ## Components
 
-| Component | Factory Function(s) | Notes |
-|---|---|---|
-| Accordion | `createAccordion` | |
-| Alert | `createAlert` | Auto-dismiss and manual close support |
-| Badge | `createBadge` | Pill, dot, square, and triangle shapes; overlay positioning |
-| Breadcrumb | `createBreadcrumb` | Configurable divider character |
-| Button | `createButton` | Solid, outline, and link variants |
-| Button Group | `createButtonGroup` | Horizontal and vertical orientations |
-| Card | `createCard` | |
-| Carousel | `createCarousel` | |
-| Close Button | `createCloseButton` | White variant for dark backgrounds |
-| Collapse | `createCollapse` | |
-| Dropdown | `createDropdown` | |
-| Horizontal Rule | `createHorizontalRule` | |
-| Label | `createLabel` | |
-| List Group | `createListGroup` | |
-| Logo | `createLogo` | |
-| Member Header | `createMemberHeader` | |
-| Modal | `createModal`, `createModalTrigger`, `initModals` | Multi-step switchable pages extension |
-| Navbar | `createNavbar` | |
-| Notification | `createNotification` | |
-| Offcanvas | `createOffcanvas` | |
-| Pagination | `createPagination` | |
-| Placeholder | `createPlaceholder` | Loading skeleton |
-| Scrollspy | — | CSS class constants only |
-| Search Bar | `createSearchBar` | |
-| Select | `createSelect` | |
-| Sidenav | `createSidenav` | |
-| Spinner | `createSpinner` | Border and grow variants |
-| Subnav | `createSubnav` | |
-| Tab | `createTab` | |
-| Table | `createTable` | |
-| Toast | `createToast` | |
-| Tooltip | `createTooltip`, `initTooltips` | |
+| Component       | Factory Function(s)                               | Notes                                                       |
+| --------------- | ------------------------------------------------- | ----------------------------------------------------------- |
+| Accordion       | `createAccordion`                                 |                                                             |
+| Alert           | `createAlert`                                     | Auto-dismiss and manual close support                       |
+| Badge           | `createBadge`                                     | Pill, dot, square, and triangle shapes; overlay positioning |
+| Breadcrumb      | `createBreadcrumb`                                | Configurable divider character                              |
+| Button          | `createButton`                                    | Solid, outline, and link variants                           |
+| Button Group    | `createButtonGroup`                               | Horizontal and vertical orientations                        |
+| Card            | `createCard`                                      |                                                             |
+| Carousel        | `createCarousel`                                  |                                                             |
+| Close Button    | `createCloseButton`                               | White variant for dark backgrounds                          |
+| Collapse        | `createCollapse`                                  |                                                             |
+| Dropdown        | `createDropdown`                                  |                                                             |
+| Horizontal Rule | `createHorizontalRule`                            |                                                             |
+| Label           | `createLabel`                                     |                                                             |
+| List Group      | `createListGroup`                                 |                                                             |
+| Logo            | `createLogo`                                      |                                                             |
+| Member Header   | `createMemberHeader`                              |                                                             |
+| Modal           | `createModal`, `createModalTrigger`, `initModals` | Multi-step switchable pages extension                       |
+| Navbar          | `createNavbar`                                    |                                                             |
+| Notification    | `createNotification`                              |                                                             |
+| Offcanvas       | `createOffcanvas`                                 |                                                             |
+| Pagination      | `createPagination`                                |                                                             |
+| Placeholder     | `createPlaceholder`                               | Loading skeleton                                            |
+| Scrollspy       | —                                                 | CSS class constants only                                    |
+| Search Bar      | `createSearchBar`                                 |                                                             |
+| Select          | `createSelect`                                    |                                                             |
+| Sidenav         | `createSidenav`                                   |                                                             |
+| Spinner         | `createSpinner`                                   | Border and grow variants                                    |
+| Subnav          | `createSubnav`                                    |                                                             |
+| Tab             | `createTab`                                       |                                                             |
+| Table           | `createTable`                                     |                                                             |
+| Toast           | `createToast`                                     |                                                             |
+| Tooltip         | `createTooltip`, `initTooltips`                   |                                                             |
 
 ## CSS Class Constants
 
-Every component also exports a typed constants object, useful when working directly with HTML markup:
+Every component also exports a typed constants object, useful when working directly with HTML
+markup:
 
 ```ts
 import { button } from '@lnpg/terra/components/button';
@@ -147,7 +153,11 @@ npm run build
 
 ## Architecture
 
-- **Build:** [Vite](https://vitejs.dev/) — outputs ESM and CJS bundles. New components are auto-discovered from `src/components/` with no build config changes required.
-- **Styling:** [Sass](https://sass-lang.com/) — each component has a partial (`_component.scss`) compiled into a single `terra.css` via `src/scss/terra.scss`.
-- **Testing:** [Vitest](https://vitest.dev/) with [happy-dom](https://github.com/capricorn86/happy-dom) — TypeScript tests in `tests/ts/` and SCSS compilation tests in `tests/scss/`.
+- **Build:** [Vite](https://vitejs.dev/) — outputs ESM and CJS bundles. New components are
+  auto-discovered from `src/components/` with no build config changes required.
+- **Styling:** [Sass](https://sass-lang.com/) — each component has a partial (`_component.scss`)
+  compiled into a single `terra.css` via `src/scss/terra.scss`.
+- **Testing:** [Vitest](https://vitest.dev/) with
+  [happy-dom](https://github.com/capricorn86/happy-dom) — TypeScript tests in `tests/ts/` and SCSS
+  compilation tests in `tests/scss/`.
 - **Design tokens:** Provided by `@lnpg/sol` and forwarded through `src/tokens/index.scss`.

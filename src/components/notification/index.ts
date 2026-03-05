@@ -48,40 +48,63 @@ import { createButton } from '@lnpg/sol/elements/form/button';
 // Types
 // ---------------------------------------------------------------------------
 
-/** Options for {@link createNotification}. */
+/**
+ * Options for {@link createNotification}.
+ *
+ * @category Interfaces
+ */
 export interface NotificationOptions {
   /**
    * Unique ID for this notification. Used to wire the collapse toggle when
    * `expandable` is `true` (panel ID becomes `${id}-body`).
    */
   id: string;
-  /** Primary text - the caller name, event title, etc. */
+
+  /**
+   * Primary text - the caller name, event title, etc.
+   */
   title: string;
-  /** Secondary text - call type, duration, description, etc. */
+
+  /**
+   * Secondary text - call type, duration, description, etc.
+   */
   subtitle: string;
-  /** Timestamp or relative time string displayed on the right. */
+
+  /**
+   * Timestamp or relative time string displayed on the right.
+   */
   time: string;
+
   /**
    * Marks the notification as unread - renders an indicator dot and bolds
    * the title. Defaults to `false`.
    */
   unread?: boolean;
+
   /**
    * When `true`, renders a chevron and a collapsible body panel.
    * The returned `body` element can be populated with detail content.
    * Defaults to `false`.
    */
   expandable?: boolean;
+
   /**
    * Initial expanded state when `expandable` is `true`. Defaults to `false`.
    */
   open?: boolean;
 }
 
-/** Elements returned by {@link createNotification}. */
+/**
+ * Elements returned by {@link createNotification}.
+ *
+ * @category Interfaces
+ */
 export interface NotificationElements {
-  /** The notification row wrapper element. */
+  /**
+   * The notification row wrapper element.
+   */
   element: HTMLElement;
+
   /**
    * The collapsible body element - only present when `expandable` is `true`.
    * Append your timeline or detail content here.
@@ -155,7 +178,10 @@ export function createNotification(options: NotificationOptions): NotificationEl
 
   // Chevron (expandable only)
   if (expandable) {
-    const chevron = createSpan(undefined, { className: notification.chevron, aria: { hidden: true } });
+    const chevron = createSpan(undefined, {
+      className: notification.chevron,
+      aria: { hidden: true },
+    });
     header.appendChild(chevron);
   }
 
@@ -169,9 +195,7 @@ export function createNotification(options: NotificationOptions): NotificationEl
 
   const collapsePanel = createDiv(undefined, {
     id: bodyId,
-    className: open
-      ? `collapse show ${notification.body}`
-      : `collapse ${notification.body}`,
+    className: open ? `collapse show ${notification.body}` : `collapse ${notification.body}`,
   });
 
   wrapper.appendChild(collapsePanel);
@@ -183,28 +207,64 @@ export function createNotification(options: NotificationOptions): NotificationEl
 // Constants
 // ---------------------------------------------------------------------------
 
-/** CSS class references for the Notification component. @category Constants */
+/**
+ * CSS class references for the Notification component.
+ *
+ * @category Constants
+ */
 export const notification = {
-  /** Row wrapper class. */
+  /**
+   * Row wrapper class.
+   */
   base: 'notification',
-  /** Modifier added when the notification is unread. */
+
+  /**
+   * Modifier added when the notification is unread.
+   */
   unread: 'notification-unread',
-  /** Modifier added when the notification is expandable. */
+
+  /**
+   * Modifier added when the notification is expandable.
+   */
   expandable: 'notification-expandable',
-  /** Header element class (div or button). */
+
+  /**
+   * Header element class (div or button).
+   */
   header: 'notification-header',
-  /** Unread indicator dot class. */
+
+  /**
+   * Unread indicator dot class.
+   */
   unreadDot: 'notification-unread-dot',
-  /** Content block class (wraps title + subtitle). */
+
+  /**
+   * Content block class (wraps title + subtitle).
+   */
   content: 'notification-content',
-  /** Title element class. */
+
+  /**
+   * Title element class.
+   */
   title: 'notification-title',
-  /** Subtitle element class. */
+
+  /**
+   * Subtitle element class.
+   */
   subtitle: 'notification-subtitle',
-  /** Time element class. */
+
+  /**
+   * Time element class.
+   */
   time: 'notification-time',
-  /** Chevron icon class (visible only when expandable). */
+
+  /**
+   * Chevron icon class (visible only when expandable).
+   */
   chevron: 'notification-chevron',
-  /** Collapsible body panel class. */
+
+  /**
+   * Collapsible body panel class.
+   */
   body: 'notification-body',
 } as const;
