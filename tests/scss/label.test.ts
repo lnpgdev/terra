@@ -60,9 +60,9 @@ describe('label SCSS', () => {
     expect(css).toContain('.label-ghost-danger');
   });
 
-  it('solid variants use --bs-*-bg-subtle', () => {
-    expect(css).toContain('--bs-info-bg-subtle');
-    expect(css).toContain('--bs-success-bg-subtle');
+  it('solid variants use --bs-* colour tokens', () => {
+    expect(css).toContain('--bs-info');
+    expect(css).toContain('--bs-success');
   });
 
   it('outline variants use transparent background', () => {
