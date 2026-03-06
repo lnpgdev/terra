@@ -1,6 +1,6 @@
 {
   "name": "@lnpg/terra",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "UI Kit for LNPG internal applications, built with Bootstrap compatibility.",
   "homepage": "https://github.com/lnpgdev/terra#readme",
   "bugs": {
