@@ -69,7 +69,7 @@ import BsCollapse from 'bootstrap/js/dist/collapse';
  * Visual theme variant for the navbar.
  *
  * @remarks
- * `'dark'`: dark background with light text (default — matches Orbit wireframe).
+ * `'dark'`: dark background with light text (default - matches Orbit wireframe).
  * `'light'`: light background with dark text.
  *
  * @category Attributes
@@ -400,7 +400,7 @@ export const navbar = {
   actions: 'navbar-actions',
 
   /**
-   * Variant modifier classes. Dark is the Terra base — only light needs a class.
+   * Variant modifier classes. Dark is the Terra base - only light needs a class.
    */
   variants: {
     /**
