@@ -488,10 +488,7 @@ export function createDetailTable(options: DetailTableOptions = {}): HTMLElement
  * @returns An `HTMLTableRowElement`.
  * @category Factory
  */
-export function createDetailRow(
-  label: string,
-  value: string | HTMLElement,
-): HTMLTableRowElement {
+export function createDetailRow(label: string, value: string | HTMLElement): HTMLTableRowElement {
   const tr = createTr();
 
   const th = createTh(label, { scope: 'row' });
