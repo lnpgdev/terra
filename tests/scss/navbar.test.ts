@@ -45,6 +45,6 @@ describe('navbar SCSS', () => {
   it('.navbar-light sets a light background', () => {
     expect(css).toContain('.navbar-light');
     expect(css).toContain('background-color: var(--bs-light)');
-    expect(css).toContain('--bs-navbar-brand-color: rgba(0, 0, 0, 0.9)');
+    expect(css).toContain('--bs-navbar-brand-color: rgb(0 0 0 / 90%)');
   });
 });
