@@ -34,16 +34,16 @@ function getEntries(): Record<string, string> {
 }
 
 /**
- * Copies font assets from @lnpg/sol into Terra's dist so that the relative
- * paths emitted by terra.css (e.g. ../assets/fonts/montserrat/...) resolve
- * correctly when consumers serve the package.
+ * Copies font assets from @lnpg/sol into assets/fonts/ at the package root.
+ * terra.css emits url(../assets/fonts/...) relative to dist/terra.css, which
+ * resolves to the package root's assets/fonts/ — so that is where they must live.
  */
 function copyFonts(): Plugin {
   return {
     name: 'terra-copy-fonts',
     closeBundle() {
       const src = resolve(__dirname, 'node_modules/@lnpg/sol/dist/assets/fonts');
-      const dest = resolve(__dirname, 'dist/assets/fonts');
+      const dest = resolve(__dirname, 'assets/fonts');
 
       if (!existsSync(src)) {
         console.warn('[terra-copy-fonts] Sol font directory not found:', src);
