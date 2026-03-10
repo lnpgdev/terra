@@ -1,8 +1,8 @@
-import { existsSync, readdirSync } from 'fs';
+import { cpSync, existsSync, readdirSync } from 'fs';
 import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -33,7 +33,31 @@ function getEntries(): Record<string, string> {
   return entries;
 }
 
+/**
+ * Copies font assets from @lnpg/sol into Terra's dist so that the relative
+ * paths emitted by terra.css (e.g. ../assets/fonts/montserrat/...) resolve
+ * correctly when consumers serve the package.
+ */
+function copyFonts(): Plugin {
+  return {
+    name: 'terra-copy-fonts',
+    closeBundle() {
+      const src = resolve(__dirname, 'node_modules/@lnpg/sol/dist/assets/fonts');
+      const dest = resolve(__dirname, 'dist/assets/fonts');
+
+      if (!existsSync(src)) {
+        console.warn('[terra-copy-fonts] Sol font directory not found:', src);
+        return;
+      }
+
+      cpSync(src, dest, { recursive: true });
+      console.log('[terra-copy-fonts] Copied fonts from Sol →', dest);
+    },
+  };
+}
+
 export default defineConfig({
+  plugins: [copyFonts()],
   build: {
     lib: {
       entry: getEntries(),
