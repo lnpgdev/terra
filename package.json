@@ -220,7 +220,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "prepublishOnly": "npm audit && npm run test && npm run build",
+    "test:build": "vitest run --config vitest.build.config.ts",
+    "prepublishOnly": "npm audit && npm run test && npm run build && npm run test:build",
     "prepack": "npm run build"
   },
   "peerDependencies": {
