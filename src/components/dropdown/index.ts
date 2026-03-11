@@ -36,6 +36,7 @@ import { createLi } from '@lnpg/sol/elements/list/li';
 import { createUl } from '@lnpg/sol/elements/list/ul';
 import { createHr } from '@lnpg/sol/elements/text/hr';
 import BsDropdown from 'bootstrap/js/dist/dropdown';
+import type { Tone } from '../../types';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -87,14 +88,7 @@ export type DropdownVariant = 'solid' | 'outline' | 'link';
  *
  * @category Attributes
  */
-export type DropdownTone =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'info'
-  | 'warning'
-  | 'danger'
-  | 'dark';
+export type DropdownTone = Tone;
 
 /**
  * Options for a single item inside a dropdown menu.

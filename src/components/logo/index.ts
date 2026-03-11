@@ -34,6 +34,7 @@ import { createImg } from '@lnpg/sol/elements/media/img';
 import logoBlack from '../../assets/logo-black.png';
 import logoColour from '../../assets/logo-colour.png';
 import logoWhite from '../../assets/logo-white.png';
+import type { ComponentSize } from '../../types';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -62,7 +63,7 @@ export type LogoVariant = 'light' | 'dark' | 'transparent';
  *
  * @category Attributes
  */
-export type LogoSize = 'sm' | 'md' | 'lg';
+export type LogoSize = ComponentSize;
 
 /**
  * Options for {@link createLogo}.

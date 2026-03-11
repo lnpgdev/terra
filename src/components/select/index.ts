@@ -26,6 +26,7 @@ import { createDiv } from '@lnpg/sol/elements/container/div';
 import { createLabel as createSolLabel } from '@lnpg/sol/elements/form/label';
 import { createOption } from '@lnpg/sol/elements/form/option';
 import { createSelect as createSolSelect } from '@lnpg/sol/elements/form/select';
+import type { ComponentSize } from '../../types';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -63,7 +64,7 @@ export interface SelectOption {
  *
  * @category Attributes
  */
-export type SelectSize = 'sm' | 'md' | 'lg';
+export type SelectSize = ComponentSize;
 
 /**
  * Options for {@link createSelect}.

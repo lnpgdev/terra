@@ -31,6 +31,7 @@
 
 import { createDiv } from '@lnpg/sol/elements/container/div';
 import { createButton } from '@lnpg/sol/elements/form/button';
+import type { Tone, ComponentSize } from '../../types';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -70,14 +71,7 @@ export type ButtonGroupVariant = 'solid' | 'outline' | 'link';
  *
  * @category Attributes
  */
-export type ButtonGroupTone =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'info'
-  | 'warning'
-  | 'danger'
-  | 'dark';
+export type ButtonGroupTone = Tone;
 
 /**
  * Size modifier for the button group and its buttons.
@@ -89,7 +83,7 @@ export type ButtonGroupTone =
  *
  * @category Attributes
  */
-export type ButtonGroupSize = 'sm' | 'md' | 'lg';
+export type ButtonGroupSize = ComponentSize;
 
 /**
  * Options for a single button within a {@link ButtonGroupOptions}.

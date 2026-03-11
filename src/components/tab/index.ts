@@ -42,6 +42,7 @@ import { createI } from '@lnpg/sol/elements/inline/i';
 import { createLi } from '@lnpg/sol/elements/list/li';
 import { createUl } from '@lnpg/sol/elements/list/ul';
 import BsTab from 'bootstrap/js/dist/tab';
+import type { ComponentSize } from '../../types';
 
 import { createBadge, type BadgeOptions } from '../badge/index';
 
@@ -84,7 +85,7 @@ export type TabAlign = 'start' | 'centre' | 'end' | 'spread';
  *
  * @category Attributes
  */
-export type TabSize = 'sm' | 'md' | 'lg';
+export type TabSize = ComponentSize;
 
 /**
  * Interaction mode.

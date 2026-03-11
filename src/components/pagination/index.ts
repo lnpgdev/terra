@@ -34,6 +34,7 @@ import { createA } from '@lnpg/sol/elements/inline/a';
 import { createNav } from '@lnpg/sol/elements/layout/nav';
 import { createLi } from '@lnpg/sol/elements/list/li';
 import { createUl } from '@lnpg/sol/elements/list/ul';
+import type { ComponentSize } from '../../types';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -49,7 +50,7 @@ import { createUl } from '@lnpg/sol/elements/list/ul';
  *
  * @category Attributes
  */
-export type PaginationSize = 'sm' | 'md' | 'lg';
+export type PaginationSize = ComponentSize;
 
 /**
  * Alignment of the pagination list within its container.
