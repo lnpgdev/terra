@@ -1,3 +1,4 @@
+export * from './app-switcher/index';
 export * from './accordion/index';
 export * from './alert/index';
 export * from './badge/index';
