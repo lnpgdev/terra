@@ -22,6 +22,7 @@
  */
 
 import { createHr as solHr } from '@lnpg/sol/elements/text/hr';
+import type { Tone, ComponentSize } from '../../types';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -42,7 +43,7 @@ import { createHr as solHr } from '@lnpg/sol/elements/text/hr';
  *
  * @category Attributes
  */
-export type HrTone = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'dark';
+export type HrTone = Tone;
 
 /**
  * Thickness size for the horizontal rule.
@@ -54,7 +55,7 @@ export type HrTone = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 
  *
  * @category Attributes
  */
-export type HrSize = 'sm' | 'md' | 'lg';
+export type HrSize = ComponentSize;
 
 /**
  * Options for {@link createHr}.

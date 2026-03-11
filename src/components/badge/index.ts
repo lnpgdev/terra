@@ -32,6 +32,7 @@
 import { createSpan } from '@lnpg/sol/elements/container/span';
 import { createA } from '@lnpg/sol/elements/inline/a';
 import { createI } from '@lnpg/sol/elements/inline/i';
+import type { Tone, ComponentSize } from '../../types';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -64,14 +65,7 @@ export type BadgeVariant = 'solid' | 'outline' | 'link';
  *
  * @category Attributes
  */
-export type BadgeTone =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'info'
-  | 'warning'
-  | 'danger'
-  | 'dark';
+export type BadgeTone = Tone;
 
 /**
  * Size modifier for the badge.
@@ -83,7 +77,7 @@ export type BadgeTone =
  *
  * @category Attributes
  */
-export type BadgeSize = 'sm' | 'md' | 'lg';
+export type BadgeSize = ComponentSize;
 
 /**
  * Shape of the badge.

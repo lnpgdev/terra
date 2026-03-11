@@ -38,6 +38,7 @@ import { createSpan } from '@lnpg/sol/elements/container/span';
 import { createButton } from '@lnpg/sol/elements/form/button';
 import { createInput } from '@lnpg/sol/elements/form/input';
 import { createLabel } from '@lnpg/sol/elements/form/label';
+import type { ComponentSize } from '../../types';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -64,7 +65,7 @@ export type SearchBarMode = 'single' | 'multi';
  *
  * @category Attributes
  */
-export type SearchBarSize = 'sm' | 'md' | 'lg';
+export type SearchBarSize = ComponentSize;
 
 /**
  * Options for {@link createSearchBar}.

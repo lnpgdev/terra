@@ -20,6 +20,7 @@
  */
 
 import { createButton as solButton } from '@lnpg/sol/elements/form/button';
+import type { Tone, ComponentSize } from '../../types';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -40,14 +41,7 @@ import { createButton as solButton } from '@lnpg/sol/elements/form/button';
  *
  * @category Attributes
  */
-export type ButtonTone =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'info'
-  | 'warning'
-  | 'danger'
-  | 'dark';
+export type ButtonTone = Tone;
 
 /**
  * Visual style of the button.
@@ -71,7 +65,7 @@ export type ButtonVariant = 'solid' | 'outline' | 'link';
  *
  * @category Attributes
  */
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonSize = ComponentSize;
 
 /**
  * Options for {@link createButton}.

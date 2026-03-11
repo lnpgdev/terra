@@ -36,6 +36,7 @@
 import { createDiv } from '@lnpg/sol/elements/container/div';
 import { createButton } from '@lnpg/sol/elements/form/button';
 import { createH2 } from '@lnpg/sol/elements/heading/h2';
+import type { Tone } from '../../types';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -74,14 +75,7 @@ export type AccordionVariant = 'default' | 'notification';
  *
  * @category Attributes
  */
-export type AccordionItemTone =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'info'
-  | 'warning'
-  | 'danger'
-  | 'dark';
+export type AccordionItemTone = Tone;
 
 /**
  * Options for a single accordion item.

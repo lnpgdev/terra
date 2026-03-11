@@ -36,6 +36,7 @@
  */
 
 import { createDiv } from '@lnpg/sol/elements/container/div';
+import type { Tone, ComponentSize } from '../../types';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -64,7 +65,7 @@ export type CardVariant = 'default' | 'outlined' | 'elevated' | 'muted';
  *
  * @category Attributes
  */
-export type CardSize = 'sm' | 'md' | 'lg';
+export type CardSize = ComponentSize;
 
 /**
  * Border-radius of the card corners.
@@ -101,15 +102,7 @@ export type CardAccentPosition = 'top' | 'bottom' | 'left' | 'right';
  *
  * @category Attributes
  */
-export type CardAccentTone =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'info'
-  | 'warning'
-  | 'danger'
-  | 'dark'
-  | 'neutral';
+export type CardAccentTone = Tone | 'neutral';
 
 /**
  * Thickness of the accent bar.

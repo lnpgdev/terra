@@ -40,6 +40,7 @@ import { createTable as createTableElement } from '@lnpg/sol/elements/table/tabl
 import { createTd } from '@lnpg/sol/elements/table/td';
 import { createTh } from '@lnpg/sol/elements/table/th';
 import { createTr } from '@lnpg/sol/elements/table/tr';
+import type { Tone } from '../../types';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -77,14 +78,7 @@ export type TableVariant = 'default' | 'muted';
  *
  * @category Attributes
  */
-export type TableRowTone =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'info'
-  | 'warning'
-  | 'danger'
-  | 'dark';
+export type TableRowTone = Tone;
 
 /**
  * Cell text alignment.

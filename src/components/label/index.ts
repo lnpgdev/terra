@@ -30,6 +30,7 @@
 
 import { createSpan } from '@lnpg/sol/elements/container/span';
 import { createI } from '@lnpg/sol/elements/inline/i';
+import type { Tone, ComponentSize } from '../../types';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -46,14 +47,7 @@ import { createI } from '@lnpg/sol/elements/inline/i';
  *
  * @category Attributes
  */
-export type LabelTone =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'info'
-  | 'warning'
-  | 'danger'
-  | 'dark';
+export type LabelTone = Tone;
 
 /**
  * Visual style of the label.
@@ -89,7 +83,7 @@ export type LabelShape = 'square' | 'rounded' | 'pill';
  *
  * @category Attributes
  */
-export type LabelSize = 'sm' | 'md' | 'lg';
+export type LabelSize = ComponentSize;
 
 /**
  * Placeholder for the Terra Icon type.
