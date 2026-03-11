@@ -5,6 +5,7 @@
 );
 
 // Component overrides
+@use '../components/app-switcher/app-switcher';
 @use '../components/accordion/accordion';
 @use '../components/alert/alert';
 @use '../components/badge/badge';
