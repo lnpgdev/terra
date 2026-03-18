@@ -140,6 +140,10 @@
   --card-accent-size: 6px;
 }
 
+.card-accent-lg {
+  --card-accent-size: 10px;
+}
+
 // Accent tones
 
 @each $tone in tokens.$component-tones {

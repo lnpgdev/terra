@@ -114,7 +114,7 @@ export type CardAccentTone = Tone | 'neutral';
  *
  * @category Attributes
  */
-export type CardAccentThickness = 'xs' | 'sm' | 'md';
+export type CardAccentThickness = 'xs' | 'sm' | 'md' | 'lg';
 
 /**
  * Options for the card accent bar.
@@ -416,6 +416,11 @@ export const card = {
        * 6px.
        */
       md: 'card-accent-md',
+
+      /**
+       * 10px.
+       */
+      lg: 'card-accent-lg',
     },
   },
 
