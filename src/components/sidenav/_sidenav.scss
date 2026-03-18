@@ -125,4 +125,19 @@
       }
     }
   }
+
+  // -------------------------------------------------------------------------
+  // Horizontal modifier - icon and label displayed side-by-side.
+  // Resets the writing-mode and rotation applied by the placement rules above.
+  // Declared last so it wins the cascade when combined with a placement class.
+  // -------------------------------------------------------------------------
+
+  &.sidenav-horizontal {
+    .sidenav-tab-content {
+      writing-mode: initial;
+      transform: none;
+      flex-direction: row;
+      gap: 0.625rem;
+    }
+  }
 }
