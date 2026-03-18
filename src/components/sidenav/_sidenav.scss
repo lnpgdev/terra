@@ -54,7 +54,11 @@
     .sidenav-tab {
       left: 0;
     }
+  }
 
+  &.sidenav-left-top:not(.sidenav-horizontal),
+  &.sidenav-left:not(.sidenav-horizontal),
+  &.sidenav-left-bottom:not(.sidenav-horizontal) {
     .sidenav-tab-content {
       writing-mode: vertical-rl;
       transform: rotate(180deg); // Flips vertical-rl so text reads bottom-to-top.
@@ -71,7 +75,11 @@
     .sidenav-tab {
       right: 0;
     }
+  }
 
+  &.sidenav-right-top:not(.sidenav-horizontal),
+  &.sidenav-right:not(.sidenav-horizontal),
+  &.sidenav-right-bottom:not(.sidenav-horizontal) {
     .sidenav-tab-content {
       writing-mode: vertical-rl;
     }
@@ -128,15 +136,13 @@
 
   // -------------------------------------------------------------------------
   // Horizontal modifier - icon and label displayed side-by-side.
-  // Resets the writing-mode and rotation applied by the placement rules above.
-  // Declared last so it wins the cascade when combined with a placement class.
+  // The placement rules above use :not(.sidenav-horizontal) to skip
+  // writing-mode entirely, so no cascade reset is needed here.
   // -------------------------------------------------------------------------
 
   &.sidenav-horizontal {
     .sidenav-tab-content {
-      writing-mode: initial;
-      transform: none;
-      flex-direction: row;
+      flex-direction: row-reverse;
       gap: 0.625rem;
     }
   }
