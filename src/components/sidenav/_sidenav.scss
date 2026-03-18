@@ -61,6 +61,7 @@
   &.sidenav-left-bottom:not(.sidenav-horizontal) {
     .sidenav-tab-content {
       writing-mode: vertical-rl;
+      flex-direction: row; // vertical-rl flips flex axes - row follows inline (vertical) for top-to-bottom stacking.
       transform: rotate(180deg); // Flips vertical-rl so text reads bottom-to-top.
     }
   }
@@ -82,6 +83,7 @@
   &.sidenav-right-bottom:not(.sidenav-horizontal) {
     .sidenav-tab-content {
       writing-mode: vertical-rl;
+      flex-direction: row; // vertical-rl flips flex axes - row follows inline (vertical) for top-to-bottom stacking.
     }
   }
 
